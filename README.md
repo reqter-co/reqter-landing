@@ -1,1 +1,1 @@
-# reqter-landing
+# REQTER - Content as a service 
