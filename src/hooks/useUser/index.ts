@@ -7,7 +7,7 @@ export default function useUser() {
   //   const { data, mutate, error } = useSWR("/api/user.json", fetcher);
   const { data, mutate, error } = useSWR("api_user", getUserInfo);
   const loading = !data && !error;
-  const loggedOut = error && error.status === 403;
+  const loggedOut = error && (error.status === 403 || error.status === 401);
 
   const addOrUpdateContactNumber = async (contact: string) => {
     console.log(contact, "contact");

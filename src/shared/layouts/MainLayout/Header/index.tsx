@@ -28,7 +28,6 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
       logout();
     }
   }, [loading, user, loggedOut]);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset < 45) setSticky(false);

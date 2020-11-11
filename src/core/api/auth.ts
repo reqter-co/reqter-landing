@@ -26,6 +26,11 @@ const login = async (username: string, password: string) => {
 };
 const getUserInfo = async () => {
   const token = Cookies.get("@caaser-token");
+  if (!token) {
+    const error: any = new Error("Not authorized!");
+    error["status"] = 403;
+    throw error;
+  }
   const response = await get<IUser>(urls.userInfo, {
     method: "GET",
     headers: {
@@ -36,7 +41,9 @@ const getUserInfo = async () => {
   if (response && response.parsedBody) {
     return response.parsedBody;
   }
-  return null;
+  const error: any = new Error("Not authorized!");
+  error["status"] = 403;
+  throw error;
 };
 
 export { login, getUserInfo };
