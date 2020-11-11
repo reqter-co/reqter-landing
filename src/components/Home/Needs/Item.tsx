@@ -7,7 +7,6 @@ export interface IServiceItemProp {
   number: any;
 }
 const ServicesItem = ({
-  logoBgColor,
   title,
   description,
   isReverse,

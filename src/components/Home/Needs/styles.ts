@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import { xs } from "@Utils/mediaQueries";
+// import { xs } from "@Utils/mediaQueries";
 import Section from "@Shared/components/Section";
 
 export const Wrapper = styled(Section)`

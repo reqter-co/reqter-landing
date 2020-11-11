@@ -1,20 +1,20 @@
-import useIsInViewport from "use-is-in-viewport";
+// import useIsInViewport from "use-is-in-viewport";
 import { theme } from "twin.macro";
-import useLanding from "@Hooks/useLanding";
-import useDataPath from "@Hooks/useDataPath";
-import { Wrapper, Title, Container } from "./styles";
+// import useLanding from "@Hooks/useLanding";
+// import useDataPath from "@Hooks/useDataPath";
+import { Wrapper,  Container } from "./styles";
 import Skill, { ISkillItem } from "./Item";
 import Wave from "@Shared/components/Wave";
 import dataList from "./data";
 
 const Features = () => {
-  const [isInViewport, targetRef] = useIsInViewport();
-  const { landingPage } = useLanding();
-  const { getKeyValue } = useDataPath();
+  // const [isInViewport, targetRef] = useIsInViewport();
+  // const { landingPage } = useLanding();
+  // const { getKeyValue } = useDataPath();
   return (
     <>
       <Wave />
-      <Wrapper bgColor={theme`colors.white`} ref={targetRef}>
+      <Wrapper bgColor={theme`colors.white`}>
         <h1 className="text-4xl font-semibold text-center text-black-color">
           So, what makes Reqter so special?
         </h1>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import { xs } from "@Utils/mediaQueries";
+// import { xs } from "@Utils/mediaQueries";
 
 export const ContentWrapper = styled.div`
   ${tw`flex m-auto mt-20 max-w-5xl `}

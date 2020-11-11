@@ -1,12 +1,12 @@
 import Cookies from "js-cookie";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
-import useRouter from "@Hooks/useRouter";
-import { mutate } from "swr";
+// import useRouter from "@Hooks/useRouter";
+// import { mutate } from "swr";
 import { login } from "@Core/api/auth";
 
 const useAuth = () => {
   const dispatch = useAuthDispatch();
-  const { push } = useRouter();
+  // const { push } = useRouter();
   const isAuthenticated = useAuthState("isAuthenticated");
   const isLoggedOut = useAuthState("isLoggedOut");
   const redirectPage = useAuthState("redirectPage");

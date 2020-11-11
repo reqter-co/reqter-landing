@@ -2,8 +2,8 @@ import tw from "twin.macro";
 import { useForm } from "react-hook-form";
 import useAuth from "@Hooks/useAuth";
 import Input from "@Shared/components/Form/Input";
-import Icon from "@Shared/components/Icon";
-import LineCenterText from "@Shared/components/LineCenterText";
+// import Icon from "@Shared/components/Icon";
+// import LineCenterText from "@Shared/components/LineCenterText";
 import Link from "@Shared/components/Link";
 import useDataPath from "@Hooks/useDataPath";
 import { ILogin } from "@Interfaces/login";
@@ -14,9 +14,6 @@ import {
   Title,
   Description,
   ForgotPassword,
-  Submit,
-  SocialButtons,
-  Button,
   SignupRow,
   SignupText,
   SignupLinkText,

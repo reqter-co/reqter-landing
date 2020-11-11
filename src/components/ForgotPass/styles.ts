@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 import { xs } from "@Utils/mediaQueries";
-import SocialButton from "@Shared/components/SocialButton";
 export const Logo = styled.div`
   ${tw`text-secondary-light-color font-semibold p-2 text-lg border border-secondary-light-color text-center rounded-lg`};
   width: 120px;

@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "@Shared/components/Link";
 import { Wrapper, Content, Logo, Menu, MenuItem } from "./styles";
@@ -8,7 +8,7 @@ import useAuth from "@Hooks/useAuth";
 import useUser from "@Hooks/useUser";
 import { IHeader } from "@Interfaces/header";
 import UserMenu from "@Shared/components/UserMenu";
-import { ThemeContext } from "@Contexts/theme";
+// import { ThemeContext } from "@Contexts/theme";
 import { IUser } from "@Interfaces/user";
 
 interface IProps {
@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  // const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, loggedOut, loading } = useUser();
   const { isAuthenticated, logout } = useAuth();
   const { getKeyValue } = useDataPath();
@@ -60,7 +60,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
                 <UserMenu user={user as IUser} />
               )}
             </MenuItem>
-            <MenuItem tw="phone:hidden" onClick={() => toggleTheme()}>
+            <MenuItem tw="phone:hidden">
               {getKeyValue(data, "link2title")}
             </MenuItem>
             <MenuItem tw="phone:hidden">
