@@ -9,6 +9,7 @@ import useUser from "@Hooks/useUser";
 import { IHeader } from "@Interfaces/header";
 import UserMenu from "@Shared/components/UserMenu";
 import { ThemeContext } from "@Contexts/theme";
+import { IUser } from "@Interfaces/user";
 
 interface IProps {
   data: IHeader;
@@ -16,12 +17,17 @@ interface IProps {
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { isAuthenticated } = useAuth();
-  const { user } = useUser();
+  const { user, loggedOut, loading } = useUser();
+  const { isAuthenticated, logout } = useAuth();
   const { getKeyValue } = useDataPath();
   const [isSticky, setSticky] = useState<boolean>(false);
   const router = useRouter();
 
+  useEffect(() => {
+    if (!loading && loggedOut && user) {
+      logout();
+    }
+  }, [loading, user, loggedOut]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset < 45) setSticky(false);
@@ -44,14 +50,14 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
         isSticky={isSticky}
         isTransparent={checkIsTransparent()}
       >
-        <Content className="dark:bg-gray-900">
+        <Content>
           <Logo>{getKeyValue(data, "logotitle")}</Logo>
           <Menu>
             <MenuItem>
-              {!isAuthenticated && !user ? (
+              {!isAuthenticated ? (
                 <Link href="/login">{getKeyValue(data, "link3title")}</Link>
               ) : (
-                <UserMenu userName={user?.name as string} />
+                <UserMenu user={user as IUser} />
               )}
             </MenuItem>
             <MenuItem tw="phone:hidden" onClick={() => toggleTheme()}>

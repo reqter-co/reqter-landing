@@ -1,7 +1,7 @@
-// const isBrowser = typeof window !== "undefined";
+import Cookies from "js-cookie";
+const isBrowser = typeof window !== "undefined";
 export const INITIAL_STATE = {
-  // isAuthenticated: isBrowser && !!localStorage.getItem("reema_access_token"),
-  isAuthenticated: false,
+  isAuthenticated: isBrowser && !!Cookies.get("@caaser-token"),
   isLoggedOut: false,
   redirectPage: "",
 };

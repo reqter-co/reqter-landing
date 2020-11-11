@@ -23,7 +23,7 @@ export const Description = styled.h3`
   ${tw`text-gray-700 mb-10`}
 `;
 export const ForgotPassword = styled.div`
-  ${tw`text-gray-900 text-sm`}
+  ${tw`text-primary-light-color text-sm`}
 `;
 export const Submit = styled.button`
   ${tw`bg-secondary-light-color text-white py-3 rounded mt-5 text-lg`};
@@ -52,6 +52,6 @@ export const SignupText = styled.h3`
   ${tw`text-gray-700 text-sm`};
 `;
 export const SignupLinkText = styled.div`
-  ${tw`text-secondary-light-color text-sm`};
+  ${tw`text-sm text-primary-light-color`};
   margin-inline-start: 5px;
 `;

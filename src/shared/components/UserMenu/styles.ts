@@ -8,9 +8,14 @@ export const MenuContainer = styled.div`
   height: 60px;
 `;
 export const UserIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   ${tw`rounded-full border-2 border-gray-800 flex items-center justify-center shadow`}
+`;
+export const UserImage = styled.img`
+  width: 50px;
+  height: 50px;
+  ${tw`rounded-full shadow border-4 border-white`}
 `;
 export const Name = styled.div`
   ${tw`text-base flex items-center`};

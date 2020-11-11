@@ -3,12 +3,18 @@ import Cookies from "js-cookie";
 const getUser = async () => {
   // sleep 500
   await new Promise((res) => setTimeout(res, 500));
-  const token = Cookies.get("reema_access_token");
+  const token = Cookies.get("@caaser-token");
   if (token) {
     // authorized
     return {
-      name: "Saeed Padyab",
-      avatar: "https://github.com/shuding.png",
+      profile: {
+        first_name: "Saeed",
+        last_name: "Padyab",
+        avatar: {
+          en: "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
+          fa: "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
+        },
+      },
     };
   }
 

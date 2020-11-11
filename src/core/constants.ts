@@ -5,8 +5,7 @@ export const defaultMetaTags: MetaTags = {
   logo:
     "https://blog.mailrelay.com/wp-content/uploads/2018/03/que-es-un-blog-1.png",
   canonical: `${process.env.DOMAIN_PUBLIC}`,
-  description:
-    "",
+  description: "",
   image:
     "https://blog.mailrelay.com/wp-content/uploads/2018/03/que-es-un-blog-1.png",
   robots: concatenateStrings(RobotsContent.index, RobotsContent.follow),
@@ -17,6 +16,7 @@ export const defaultMetaTags: MetaTags = {
 export const clientid =
   process.env.NEXT_PUBLIC_CLIENT_ID || "03387475-3e13-4781-ab3d-d155515c7cb7";
 const baseUrl = "https://requester.reqter.com";
+const authBaseUrl = "https://adminapi.reqter.com";
 const listLeanUrl = "/api/v1/lists/lean";
 export const urls = {
   assetsDownloadBaseUrl: "https://assets.reqter.com/asset/download/",
@@ -28,6 +28,8 @@ export const urls = {
   landing: baseUrl + listLeanUrl + "/5fa99d009d374e001a8582ed",
   categories: baseUrl + listLeanUrl + "/5e858a10f0356f001334ba30",
   tools: baseUrl + listLeanUrl + "/5f85885c56b30d001a1fc5b8",
-  login: baseUrl + listLeanUrl + "/5f88864b56b30d001a1fc5e5",
+  login: authBaseUrl + "/auth/token",
+  loginPage: baseUrl + listLeanUrl + "/5f88864b56b30d001a1fc5e5",
   signUpPage: baseUrl + listLeanUrl + "/5f8d72fc56b30d001a1fc603",
+  userInfo: authBaseUrl + "/auth/info",
 };

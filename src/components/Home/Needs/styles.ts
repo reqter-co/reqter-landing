@@ -9,9 +9,9 @@ export const Wrapper = styled(Section)`
 export const Title = styled.h1`
   ${tw`text-4xl text-gray-900 font-bold text-center `}
 `;
+export const Info = styled.h3`
+  ${tw`max-w-2xl m-auto mt-3 text-base font-semibold text-center mb-10`}
+`;
 export const Container = styled.div`
-  ${tw`flex flex-col justify-between m-auto mt-5 max-w-5xl`};
-  ${xs} {
-    ${tw`flex-col`}
-  }
+  ${tw`m-auto mt-5 max-w-5xl`};
 `;

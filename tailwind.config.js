@@ -38,6 +38,7 @@ module.exports = {
         "primary-light-color": "#3784ff",
         "primary-light-hover-color": "#2360c2",
         "secondary-light-color": "rgb(255,228,219)",
+        "secondary-light-hover-color": "rgb(255,120,75)",
         "secondary-dark-color": "rgb(255,120,75)",
       },
     },
