@@ -16,7 +16,7 @@ const ServicesItem = ({
   return (
     <div
       className={
-        "mt-5 mb-10 flex sm:flex-col sm:mb-0   " +
+        "mt-5 mb-10 flex sm:flex-col sm:mb-0 " +
         (isReverse ? "flex-row-reverse" : "flex-row")
       }
     >
@@ -24,7 +24,7 @@ const ServicesItem = ({
         <div
           className={
             "flex items-center text-white font-bold text-2xl justify-center flex-shrink-0 w-12 h-12 rounded-full xs:self-center sm:ml-3 sm:h-16 sm:w-16 sm:mb-3 " +
-            logoBgColor
+            "bg-gray-600"
           }
         >
           {number}

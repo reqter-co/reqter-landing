@@ -9,7 +9,7 @@ import {
   Link,
   CompanyName,
   Logo,
-} from "./styles";
+} from "./footer.style";
 import Icon from "@Shared/components/Icon";
 import { IFooter } from "@Interfaces/footer";
 type Props = {
@@ -22,40 +22,47 @@ const Footer = ({ data }: Props) => {
     <Wrapper>
       <Container>
         <Left>
-          <SocialIcon
-            href={getKeyValue(data, "linkedinlink")}
-            target="_blank"
-          >
-            <Icon name="linkedin" />
-          </SocialIcon>
-          <SocialIcon href={getKeyValue(data, "fblink")} target="_blank">
-            <Icon name="facebook" />
-          </SocialIcon>
-          <SocialIcon
-            href={getKeyValue(data, "instagramlink")}
-            target="_blank"
-          >
-            <Icon name="instagram" />
-          </SocialIcon>
+          <div>
+            Massive amounts of
+            content scattered across multiple CMSes, to a single source of
+            truth. Unified content anywhere
+          </div>
+          <div className="flex">
+            <SocialIcon
+              href={getKeyValue(data, "linkedinlink")}
+              target="_blank"
+            >
+              <Icon name="linkedin" />
+            </SocialIcon>
+            <SocialIcon href={getKeyValue(data, "fblink")} target="_blank">
+              <Icon name="facebook" />
+            </SocialIcon>
+            <SocialIcon
+              href={getKeyValue(data, "instagramlink")}
+              target="_blank"
+            >
+              <Icon name="instagram" />
+            </SocialIcon>
+          </div>
         </Left>
         <Right>
           <Column>
-            <Link
-              href={getKeyValue(data, "footerlink1url")}
-              target="_blank"
-            >
+            <Link href={getKeyValue(data, "footerlink1url")} target="_blank">
               {getKeyValue(data, "footerlink1title")}
             </Link>
-            <Link
-              href={getKeyValue(data, "footerlink2url")}
-              target="_blank"
-            >
+            <Link href={getKeyValue(data, "footerlink2url")} target="_blank">
               {getKeyValue(data, "footerlink2title")}
             </Link>
-            <Link
-              href={getKeyValue(data, "footerlink3url")}
-              target="_blank"
-            >
+            <Link href={getKeyValue(data, "footerlink3url")} target="_blank">
+              {getKeyValue(data, "footerlink3title")}
+            </Link>
+            <Link href={getKeyValue(data, "footerlink1url")} target="_blank">
+              {getKeyValue(data, "footerlink1title")}
+            </Link>
+            <Link href={getKeyValue(data, "footerlink2url")} target="_blank">
+              {getKeyValue(data, "footerlink2title")}
+            </Link>
+            <Link href={getKeyValue(data, "footerlink3url")} target="_blank">
               {getKeyValue(data, "footerlink3title")}
             </Link>
           </Column>
@@ -71,22 +78,22 @@ const Footer = ({ data }: Props) => {
             </Link>
           </Column>
           <Column>
-            <CompanyName>{getKeyValue(data, "companyname1","Reqter CMS")}</CompanyName>
+            <CompanyName>
+              {getKeyValue(data, "companyname1", "Reqter CMS")}
+            </CompanyName>
             <Link href={`mailto:${getKeyValue(data, "companyemail")}`}>
               <Icon name="email" />
               <span className="mx-2">
-                {getKeyValue(data, "companyemail1","info@reqter.com")}
+                {getKeyValue(data, "companyemail1", "info@reqter.com")}
               </span>
             </Link>
             <Link href={`tel:${getKeyValue(data, "copmanyphone")}`}>
               <Icon name="phone" />
-              <span className="mx-2">
-                {getKeyValue(data, "copmanyphone")}
-              </span>
+              <span className="mx-2">{getKeyValue(data, "copmanyphone")}</span>
             </Link>
           </Column>
           <Column>
-            <Logo>{getKeyValue(data, "logotitle1","REQTER")}</Logo>
+            <Logo>{getKeyValue(data, "logotitle1", "REQTER")}</Logo>
           </Column>
         </Right>
       </Container>

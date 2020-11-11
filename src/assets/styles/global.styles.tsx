@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import tw, { theme } from "twin.macro";
 export const GlobalStyles = createGlobalStyle`
    body {
+     background-color:gray;
     ${tw`font-vazir`}
   },
   :root {

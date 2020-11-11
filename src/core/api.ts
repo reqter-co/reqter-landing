@@ -4,8 +4,6 @@ import { LandingPage } from "@Interfaces/landing";
 import { ILogin } from "@Interfaces/login";
 import { ISignUpPage } from "@Interfaces/signupPage";
 import { ILocale } from "@Interfaces/locale";
-import { ICategory } from "@Interfaces/category";
-import { ITools } from "@Interfaces/tools";
 import { IHeader } from "@Interfaces/header";
 import { IFooter } from "@Interfaces/footer";
 //============================================================
@@ -100,7 +98,7 @@ const getLoginData = async () => {
   if (!token) {
     await getToken();
   }
-  const response = await get<ILogin[]>(urls.login, {
+  const response = await get<ILogin[]>(urls.loginPage, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

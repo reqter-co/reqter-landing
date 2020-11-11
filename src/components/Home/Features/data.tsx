@@ -2,8 +2,8 @@ export default [
   {
     icon: (
       <svg
-        width="12"
-        height="24"
+        width="18"
+        height="30"
         viewBox="0 0 12 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +21,8 @@ export default [
   {
     icon: (
       <svg
-        width="18"
-        height="19"
+        width="24"
+        height="25"
         viewBox="0 0 18 19"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +40,8 @@ export default [
   {
     icon: (
       <svg
-        width="24"
-        height="20"
+        width="30"
+        height="26"
         viewBox="0 0 24 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ export default [
         />
       </svg>
     ),
-    title: "Api Restful -Graphql coming soon",
+    title: "Api Restful",
     description:
       "Hubspot, custom HTML5 pages for lead generation, forms with CRM integration like salesforce, ZOHO, gravity forms etc.",
   },
@@ -60,8 +60,8 @@ export default [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="22"
-        height="22"
+        width="28"
+        height="28"
         viewBox="0 0 22 22"
         fill="none"
       >
@@ -79,8 +79,8 @@ export default [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="26"
+        height="26"
         viewBox="0 0 20 20"
         fill="none"
       >
@@ -99,8 +99,8 @@ export default [
   {
     icon: (
       <svg
-        width="16"
-        height="15"
+        width="22"
+        height="21"
         viewBox="0 0 16 15"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

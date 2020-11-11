@@ -1,10 +1,8 @@
 import { theme } from "twin.macro";
 import useLanding from "@Hooks/useLanding";
 import useDataPath from "@Hooks/useDataPath";
-import { Wrapper, Title, Container } from "./styles";
+import { Wrapper, Title, Info, Container } from "./styles";
 import Item from "./Item";
-import Tabs from "./Tabs/tabs.component";
-import TabsContent from "./TabsContent/content.component";
 const data = [
   {
     logoBgColor: "bg-primary-light-color",
@@ -55,6 +53,13 @@ const Needs = () => {
           "Reqter scales with your content needs"
         )}
       </Title>
+      <Info>
+        {getKeyValue(
+          landingPage,
+          "infosectiontitle",
+          "We have provided lots of amazing features which they will be useful for a developer who wants to make everything easily and fast"
+        )}
+      </Info>
       <Container>
         {data &&
           data.map((item, index) => (
