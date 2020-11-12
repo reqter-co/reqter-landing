@@ -1,7 +1,7 @@
 import { theme } from "twin.macro";
 import useLanding from "@Hooks/useLanding";
 import useDataPath from "@Hooks/useDataPath";
-import { Wrapper, Title, Info, Container } from "./styles";
+import { Wrapper, Container } from "./styles";
 import Item from "./Item";
 const data = [
   {
@@ -45,21 +45,19 @@ const Needs = () => {
   const { landingPage } = useLanding();
   const { getKeyValue } = useDataPath();
   return (
-    <Wrapper bgColor={theme`colors.white`}>
-      <Title>
-        {getKeyValue(
-          landingPage,
-          "infosectiontitle",
-          "Reqter scales with your content needs"
-        )}
-      </Title>
-      <Info>
-        {getKeyValue(
-          landingPage,
-          "infosectiontitle",
-          "We have provided lots of amazing features which they will be useful for a developer who wants to make everything easily and fast"
-        )}
-      </Info>
+    <Wrapper
+      bgColor={theme`colors.white`}
+      title={getKeyValue(
+        landingPage,
+        "infosectiontitle",
+        "Reqter scales with your content needs"
+      )}
+      description={getKeyValue(
+        landingPage,
+        "infosectiontitle",
+        "We have provided lots of amazing features which they will be useful for a developer who wants to make everything easily and fast"
+      )}
+    >
       <Container>
         {data &&
           data.map((item, index) => (

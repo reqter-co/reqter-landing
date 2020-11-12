@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
   // background-color: #2c3040;
   background-color: whitesmoke;
   ${tw`py-5`};
+  ${xs} {
+    ${tw`py-0`};
+  }
 `;
 export const Container = styled.div`
   ${tw`py-16 flex max-w-6xl m-auto`};
@@ -23,14 +26,21 @@ export const Left = styled.div`
     &:first-child {
       ${tw`font-semibold text-lg text-justify`};
       margin-bottom: 20px;
+      ${sm} {
+        margin-inline-end: 20px;
+      }
+      ${xs} {
+        margin-bottom: 0px;
+      }
     }
   }
   ${md} {
     margin-inline-end: 50px;
   }
   ${sm} {
-    ${tw`mb-5 justify-center items-center`};
+    ${tw`mb-5 justify-center items-center flex-row`};
     margin-inline-end: 0px;
+    max-width: 100%;
   }
 `;
 export const SocialIcon = styled.a`
@@ -44,6 +54,9 @@ export const SocialIcon = styled.a`
   transition: all 0.2s ease;
   &:hover {
     ${tw`bg-secondary-dark-color text-white`};
+  }
+  ${sm} {
+    ${tw`mt-0`};
   }
 `;
 export const Right = styled.div`

@@ -12,3 +12,9 @@ export const Wrapper = styled.div<Props>`
 export const Content = styled.div`
   ${tw`flex flex-col max-w-6xl m-auto`}
 `;
+export const Title = styled.div`
+  ${tw`text-4xl font-semibold text-center text-black px-5 phone:text-3xl`}
+`;
+export const Description = styled.div`
+  ${tw`max-w-lg m-auto mt-3 text-base font-semibold text-center`}
+`;

@@ -2,7 +2,7 @@
 import { theme } from "twin.macro";
 // import useLanding from "@Hooks/useLanding";
 // import useDataPath from "@Hooks/useDataPath";
-import { Wrapper,  Container } from "./styles";
+import { Wrapper, Container } from "./features.style";
 import Skill, { ISkillItem } from "./Item";
 import Wave from "@Shared/components/Wave";
 import dataList from "./data";
@@ -14,14 +14,11 @@ const Features = () => {
   return (
     <>
       <Wave />
-      <Wrapper bgColor={theme`colors.white`}>
-        <h1 className="text-4xl font-semibold text-center text-black-color">
-          So, what makes Reqter so special?
-        </h1>
-        <span className="max-w-2xl m-auto mt-3 text-base font-semibold text-center text-primary-color xs:px-4">
-          We have provided lots of amazing features which they will be useful
-          for a developer who wants to make everything easily and fast
-        </span>
+      <Wrapper
+        bgColor={theme`colors.white`}
+        title="So, what makes Reqter so special?"
+        description="We have provided lots of amazing features which they will be useful for a developer who wants to make everything easily and fast"
+      >
         <Container>
           {dataList.map(
             (item: ISkillItem, index: number): JSX.Element => (

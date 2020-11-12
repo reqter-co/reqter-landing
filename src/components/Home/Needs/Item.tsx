@@ -15,11 +15,11 @@ const ServicesItem = ({
   return (
     <div
       className={
-        "mt-5 mb-10 flex sm:flex-col sm:mb-0 " +
+        "mt-5 mb-10 flex tab-port:flex-col tab-port:mb-0 tab-land:px-5 " +
         (isReverse ? "flex-row-reverse" : "flex-row")
       }
     >
-      <div className="flex flex-row pt-10 sm:flex-col">
+      <div className="flex flex-row pt-10">
         <div
           className={
             "flex items-center text-white font-bold text-2xl justify-center flex-shrink-0 w-12 h-12 rounded-full xs:self-center sm:ml-3 sm:h-16 sm:w-16 sm:mb-3 " +
@@ -29,7 +29,7 @@ const ServicesItem = ({
           {number}
         </div>
         <div className="flex flex-col pl-5">
-          <h2 className="max-w-md text-3xl font-semibold sm:max-w-none">
+          <h2 className="max-w-md text-3xl font-semibold tab-port:max-w-none phone:text-2xl">
             {title}
           </h2>
           <span className="my-3">{description}</span>
@@ -56,8 +56,8 @@ const ServicesItem = ({
       </div>
       <div
         className={
-          "relative flex-shrink-0 rounded-lg sm:m-5 " +
-          (isReverse ? "mr-32" : "ml-32")
+          "flex-shrink-0 rounded-lg tab-port:mt-10 " +
+          (isReverse ? "mr-32 tab-port:m-0" : "ml-32 tab-port:m-0")
         }
         style={{ maxWidth: 400, height: 250 }}
       >
