@@ -31,7 +31,8 @@ const useAuth = () => {
   };
   const handleLoginSuccess = (token: string) => {
     Cookies.set("@caaser-token", token);
-    window.location.href = "http://localhost:3001/panel/home";
+    window.location.href =
+      process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS || window.location.href;
     // if (redirectPage) {
     //   mutate("api_user", null);
     //   push(redirectPage);
