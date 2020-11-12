@@ -1,9 +1,9 @@
-import Cookies from "js-cookie";
+import storage from "./../../services/storage";
 // mock the user api
 const getUser = async () => {
   // sleep 500
   await new Promise((res) => setTimeout(res, 500));
-  const token = Cookies.get("@caaser-token");
+  const token = storage.getItem("@caaser-token");
   if (token) {
     // authorized
     return {
@@ -11,8 +11,10 @@ const getUser = async () => {
         first_name: "Saeed",
         last_name: "Padyab",
         avatar: {
-          en: "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
-          fa: "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
+          en:
+            "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
+          fa:
+            "http://news.stanford.edu/thedish/wp-content/uploads/sites/2/2016/10/Decker.jpg",
         },
       },
     };

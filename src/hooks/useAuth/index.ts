@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import storage from "../../services/storage";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
@@ -30,7 +30,7 @@ const useAuth = () => {
     }
   };
   const handleLoginSuccess = (token: string) => {
-    Cookies.set("@caaser-token", token);
+    storage.setItem("@caaser-token", token);
     window.location.href =
       process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS || window.location.href;
     // if (redirectPage) {

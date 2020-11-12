@@ -1,6 +1,6 @@
-import Cookies from "js-cookie";
 import { get, post } from "@Utils/http";
 import { clientid, urls } from "@Core/constants";
+import storage from "../../services/storage";
 import { IUser } from "@Interfaces/user";
 
 // =====================================================
@@ -25,7 +25,7 @@ const login = async (username: string, password: string) => {
   return null;
 };
 const getUserInfo = async () => {
-  const token = Cookies.get("@caaser-token");
+  const token = storage.getItem("@caaser-token");
   if (!token) {
     const error: any = new Error("Not authorized!");
     error["status"] = 403;
