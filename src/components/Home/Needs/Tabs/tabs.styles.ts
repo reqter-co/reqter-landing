@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import { xs } from "@Utils/mediaQueries";
+// import { xs } from "@Utils/mediaQueries";
 
 export const TabsContainer = styled.ul`
   ${tw`flex m-auto mt-5 border-2 border-primary-light-color rounded-lg`}
