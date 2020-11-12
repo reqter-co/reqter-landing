@@ -2,6 +2,7 @@ import tw from "twin.macro";
 import { useForm } from "react-hook-form";
 import useAuth from "@Hooks/useAuth";
 import Input from "@Shared/components/Form/Input";
+import PasswordInput from "@Shared/components/Form/Password/password.component";
 // import Icon from "@Shared/components/Icon";
 // import LineCenterText from "@Shared/components/LineCenterText";
 import Link from "@Shared/components/Link";
@@ -33,8 +34,8 @@ const LoginForm = ({ data }: Props) => {
   const { _login } = useAuth();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
-      email: "reqter@reqter.com",
-      password: "logrezaee24359",
+      email: process.env.NEXT_PUBLIC_LOGIN_USERNAME || "",
+      password: process.env.NEXT_PUBLIC_LOGIN_PASSWORD || "",
     },
   });
   const { getKeyValue } = useDataPath();
@@ -65,7 +66,7 @@ const LoginForm = ({ data }: Props) => {
         })}
         hasError={errors.email ? true : false}
       />
-      <Input
+      <PasswordInput
         placeholder={getKeyValue(loginPage, "passwordplaceholder")}
         name="password"
         ref={register({

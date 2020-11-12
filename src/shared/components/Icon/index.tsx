@@ -19,7 +19,9 @@ import {
   FaUser,
   FaCaretDown,
   FaCaretUp,
+  FaEye,
   FaGooglePlus,
+  FaEyeSlash,
 } from "react-icons/fa";
 
 const icons: { [key in string]: any } = {
@@ -42,6 +44,8 @@ const icons: { [key in string]: any } = {
   user: <FaUser />,
   "caret-down": <FaCaretDown />,
   "caret-up": <FaCaretUp />,
+  eye: <FaEye />,
+  "eye-slash": <FaEyeSlash />,
 };
 const Icon = ({ name = "" }) => {
   return icons[name.toLowerCase()] ? icons[name.toLowerCase()] : "";

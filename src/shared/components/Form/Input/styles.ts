@@ -5,7 +5,7 @@ export const Input = styled.input<{ hasError?: boolean }>`
   &:focus {
   }
   &:focus {
-    ${tw`outline-none shadow`}
+    ${tw`outline-none`}
     border: ${({ hasError }) =>
       hasError
         ? `2px solid ${theme`colors.red.500`}`
