@@ -31,8 +31,13 @@ const useAuth = () => {
   };
   const handleLoginSuccess = (token: string) => {
     storage.setItem("@caaser-token", token);
-    window.location.href =
-      process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS || window.location.href;
+    const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
+    if (redirectUrl) {
+      window.location.href = redirectUrl;
+    } else {
+      window.location.reload();
+    }
+
     // if (redirectPage) {
     //   mutate("api_user", null);
     //   push(redirectPage);
@@ -42,7 +47,7 @@ const useAuth = () => {
     // dispatch({ type: "LOGIN_SUCCESS" });
   };
   const logout = () => {
-    Cookies.remove("@caaser-token");
+    storage.removeItem("@caaser-token");
     dispatch({ type: "LOGOUT" });
   };
   const setRedirectPage = (pageName: string) => {

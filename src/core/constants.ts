@@ -15,8 +15,8 @@ export const defaultMetaTags: MetaTags = {
 
 export const clientid =
   process.env.NEXT_PUBLIC_CLIENT_ID || "03387475-3e13-4781-ab3d-d155515c7cb7";
-const baseUrl = "https://requester.reqter.com";
-const authBaseUrl = "https://adminapi.reqter.com";
+const baseUrl = process.env.NEXT_PUBLIC_DATA_BASE_URL;
+const authBaseUrl = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
 const listLeanUrl = "/api/v1/lists/lean";
 export const urls = {
   assetsDownloadBaseUrl: "https://assets.reqter.com/asset/download/",
