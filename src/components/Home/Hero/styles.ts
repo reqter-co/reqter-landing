@@ -36,8 +36,8 @@ export const Content = styled.div`
   padding-inline-end: 30px;
   min-height: 420px;
   ${sm} {
-    ${tw`w-full`};
     padding: 0px;
+    ${tw`w-full px-5`};
   }
 `;
 export const Title = styled.h1`
@@ -60,13 +60,28 @@ export const Description = styled.div`
 
 export const Actions = styled.div`
   ${tw`flex mt-10`};
+  ${md} {
+    ${tw`px-5`};
+  }
+  ${sm} {
+    ${tw`justify-center px-0`};
+  }
+  ${xs} {
+    ${tw`flex-col`};
+  }
 `;
 export const Button = styled.button`
-  ${tw`flex mt-10 py-3 px-6 bg-white text-black text-lg rounded-lg outline-none font-semibold shadow-lg hover:shadow-xl`};
+  ${tw`flex justify-center items-center mt-10 py-3 px-6 bg-white text-center text-black text-lg rounded-lg outline-none font-semibold shadow-lg hover:shadow-xl`};
   &:first-child {
     margin-inline-end: 10px;
+    ${xs} {
+      margin-inline-end: 0px;
+    }
   }
   &:last-child {
     ${tw`bg-primary-light-color text-white`};
+  }
+  ${sm} {
+    ${tw`mt-2`}
   }
 `;

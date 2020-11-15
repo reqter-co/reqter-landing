@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import storage from "../../services/storage";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
@@ -30,9 +30,14 @@ const useAuth = () => {
     }
   };
   const handleLoginSuccess = (token: string) => {
-    Cookies.set("@caaser-token", token);
-    window.location.href =
-      process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS || window.location.href;
+    storage.setItem("@caaser-token", token);
+    const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
+    if (redirectUrl) {
+      window.location.href = redirectUrl;
+    } else {
+      window.location.reload();
+    }
+
     // if (redirectPage) {
     //   mutate("api_user", null);
     //   push(redirectPage);
@@ -42,7 +47,7 @@ const useAuth = () => {
     // dispatch({ type: "LOGIN_SUCCESS" });
   };
   const logout = () => {
-    Cookies.remove("@caaser-token");
+    storage.removeItem("@caaser-token");
     dispatch({ type: "LOGOUT" });
   };
   const setRedirectPage = (pageName: string) => {

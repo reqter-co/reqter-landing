@@ -1,7 +1,7 @@
-import Cookies from "js-cookie";
+import storage from "../../services/storage";
 const isBrowser = typeof window !== "undefined";
 export const INITIAL_STATE = {
-  isAuthenticated: isBrowser && !!Cookies.get("@caaser-token"),
+  isAuthenticated: isBrowser && !!storage.getItem("@caaser-token"),
   isLoggedOut: false,
   redirectPage: "",
 };
