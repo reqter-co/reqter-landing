@@ -1,12 +1,23 @@
 import { TabsContainer, TabItem } from "./tabs.styles";
-const Tabs = () => {
+const Tabs = ({
+  menu,
+  onSelectTab,
+  selected,
+}: {
+  menu: any[];
+  onSelectTab: (item: any) => void;
+  selected: any;
+}) => {
   return (
     <TabsContainer>
-      <TabItem>Modern Websites</TabItem>
-      <TabItem>Global Marketers</TabItem>
-      <TabItem>Content Hub</TabItem>
-      <TabItem>Mobile Apps</TabItem>
-      <TabItem>eCommerce</TabItem>
+      {menu?.map((item: any) => (
+        <TabItem
+          selected={selected && selected.id === item.id}
+          onClick={() => onSelectTab(item)}
+        >
+          {item.title}
+        </TabItem>
+      ))}
     </TabsContainer>
   );
 };

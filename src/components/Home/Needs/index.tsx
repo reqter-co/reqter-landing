@@ -1,49 +1,88 @@
 import { theme } from "twin.macro";
 import useLanding from "@Hooks/useLanding";
 import useDataPath from "@Hooks/useDataPath";
-import { Wrapper, Container } from "./styles";
-import Item from "./Item";
-const data = [
+import Tabs from "./Tabs/tabs.component";
+import TabsContent from "./TabsContent/content.component";
+import { Wrapper, Container, MobileContent } from "./styles";
+import { useState } from "react";
+const menu = [
   {
-    logoBgColor: "bg-primary-light-color",
-    title: "BUILD MODERN WEBSITES",
-    description:
-      "From massive amounts of content scattered across multiple CMSes, to a single source of truth. Unified content anywhere!",
-    isReverse: false,
+    id: 1,
+    title: "Modern Websites",
   },
   {
-    logoBgColor: "bg-secondary-dark-color",
-    title: "GLOBAL MARKETERS - MARK YOUR MARKET",
-    description:
-      "Global Marketers is a research hub to meet the syndicate, custom and consulting research needs. Our company excels in catering to the research requirements of commercial, industrial and all other business enterprises.",
-    isReverse: true,
+    id: 2,
+    title: "Global Marketers",
   },
   {
-    logoBgColor: "bg-primary-light-color",
-    title: "CONTENT HUB - MANAGING CONTENT OPERATIONS",
-    description:
-      "create and modify websites. They analyze user needs to implement website content, graphics, capacity and monitor website traffic and performance.",
-    isReverse: false,
+    id: 3,
+    title: "Content Hub",
   },
   {
-    logoBgColor: "bg-secondary-dark-color",
-    title: "MOBILE APPS - TOUCH MOVE FAST",
-    description:
-      "create and modify websites. They analyze user needs to implement website content, graphics, capacity and monitor website traffic and performance.",
-    isReverse: true,
+    id: 4,
+    title: "Mobile Apps",
   },
   {
-    logoBgColor: "bg-primary-light-color",
-    title: "E-COMMERCE - CREATE YOUR E-COMMERCE STORE",
-    description:
-      "create and modify websites. They analyze user needs to implement website content, graphics, capacity and monitor website traffic and performance.",
-    isReverse: false,
+    id: 5,
+    title: "eCommerce",
   },
 ];
+const content = [
+  {
+    id: 1,
+    title:
+      "Build immersive digital experiences with ReqterCMS, and engage with your customers.",
+    description:
+      "ReqterCMS provides your content and development teams complete flexibility, so you can focus on building exceptional websites without the overheads of maintaining multiple services.",
+    image:
+      "https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp",
+  },
+  {
+    id: 2,
+    title:
+      "Rapidly enhance your content delivery with localized content from a single content hub.",
+    description:
+      "Deliver native experiences to your customers on the move - without the compromise of app re-submits and frustrating over adapting content.",
+    image:
+      "https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp",
+  },
+  {
+    id: 3,
+    title:
+      "Maintain a single content repository to manage and organize your content, and distribute it across platforms and geographies.",
+    description:
+      "GraphCMS houses all your content in a singular hub, available from a single GraphQL endpoint. Easily maintain your omni-channel content for all platforms in one single source of truth.",
+    image:
+      "https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp",
+  },
+  {
+    id: 4,
+    title:
+      "Manage and create all pages, microsites, campaigns, and assets for all locales, from a single content repository.",
+    description:
+      "GraphCMS gives content teams complete control over how and where content can be distributed. Deliver global campaigns at scale with complete localization and powerful SEO capabilities out of the box..",
+    image:
+      "https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp",
+  },
+  {
+    id: 5,
+    title:
+      "Seamlessly integrate with all ECommerce PIMs and APIs to scale and personalise online shopping experiences across devices.",
 
+    description:
+      "Provide your customers with better shopping experiences, every single time. GraphCMS supports you in delivering unparalleled eCommerce experiences. Take a look at our open source shop project.",
+    image:
+      "https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp",
+  },
+];
 const Needs = () => {
   const { landingPage } = useLanding();
   const { getKeyValue } = useDataPath();
+  const [selected, setSelected] = useState(content[0]);
+
+  function handleSelectTab(tabItem: any) {
+    setSelected(content[tabItem.id - 1]);
+  }
   return (
     <Wrapper
       bgColor={theme`colors.white`}
@@ -52,24 +91,19 @@ const Needs = () => {
         "infosectiontitle",
         "Reqter scales with your content needs"
       )}
-      description={getKeyValue(
-        landingPage,
-        "infosectiontitle",
-        "We have provided lots of amazing features which they will be useful for a developer who wants to make everything easily and fast"
-      )}
     >
       <Container>
-        {data &&
-          data.map((item, index) => (
-            <Item
-              key={index}
-              number={index + 1}
-              logoBgColor={item.logoBgColor}
-              title={item.title}
-              description={item.description}
-              isReverse={item.isReverse}
+        <Tabs menu={menu} onSelectTab={handleSelectTab} selected={selected} />
+        <TabsContent isHiddenMobileSize={true} selected={selected} />
+        <MobileContent>
+          {content.map((item) => (
+            <TabsContent
+              isHiddenMobileSize={false}
+              key={item.id}
+              selected={item}
             />
           ))}
+        </MobileContent>
       </Container>
     </Wrapper>
   );

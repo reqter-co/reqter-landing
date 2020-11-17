@@ -17,6 +17,16 @@ const UserMenu = ({ user }: { user: IUser }): JSX.Element => {
     <>
       <Wrapper>
         <MenuContainer onClick={handleClick}>
+          <Name>
+            {(!user?.profile?.first_name ||
+              user?.profile?.first_name.length === 0) &&
+            (!user?.profile?.last_name || user?.profile?.last_name.length)
+              ? "Your Name"
+              : user?.profile?.first_name + " " + user?.profile?.last_name}
+            <span className="text-lgs">
+              <Icon name="caret-down" />
+            </span>
+          </Name>
           {avatar ? (
             <UserImage
               src={avatar
@@ -31,16 +41,6 @@ const UserMenu = ({ user }: { user: IUser }): JSX.Element => {
               <Icon name="user" />
             </UserIcon>
           )}
-          <Name>
-            <span className="text-lgs">
-              <Icon name="caret-down" />
-            </span>
-            {(!user?.profile?.first_name ||
-              user?.profile?.first_name.length === 0) &&
-            (!user?.profile?.last_name || user?.profile?.last_name.length)
-              ? "Your Name"
-              : user?.profile?.first_name + " " + user?.profile?.last_name}
-          </Name>
         </MenuContainer>
       </Wrapper>
       {isOpenMenu && <DropDown onClickOutside={handleClick} />}

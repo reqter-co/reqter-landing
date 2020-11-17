@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import Header from "./Header/header.component";
 import Footer from "@Shared/components/Footer";
 import Meta from "@Shared/components/Meta";
 import { MetaTags } from "@Interfaces/meta-tags";

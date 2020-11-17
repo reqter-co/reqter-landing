@@ -2,8 +2,10 @@ import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
-import Hero from "@Components/Home/Hero";
+import Hero from "@Components/Home/Hero/hero.component";
 import Needs from "@Components/Home/Needs";
+import StartFree from "@Components/Home/ForFree/free.component";
+import WhyUs from "@Components/Home/WhyUs";
 import Features from "@Components/Home/Features";
 import { getLandingPageData } from "@Core/api";
 import { LandingProvider } from "@Contexts/landing/landing.provider";
@@ -28,7 +30,9 @@ const Home: NextPage<IProps, any> = ({
       <LandingProvider data={{ landingPage }}>
         <Hero />
         <Needs />
+        <WhyUs />
         <Features />
+        <StartFree />
       </LandingProvider>
     </Layout>
   );

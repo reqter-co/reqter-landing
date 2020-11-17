@@ -1,3 +1,5 @@
+import Button from "@Shared/components/Button";
+import tw from "twin.macro";
 import {
   ContentWrapper,
   Left,
@@ -6,20 +8,24 @@ import {
   Right,
   Image,
 } from "./content.styles";
-const TabsContent = () => {
+const TabsContent = ({
+  isHiddenMobileSize,
+  selected,
+}: {
+  isHiddenMobileSize: boolean;
+  selected: any;
+}) => {
   return (
-    <ContentWrapper>
+    <ContentWrapper isHiddenMobileSize={isHiddenMobileSize}>
       <Left>
-        <Title>Model your content to get it reusable</Title>
-        <Info>
-          Envision, test and validate your ideas with quick wireframes and
-          detailed mockups.
-          <br /> Explore and iterate as your team builds momentum - moving
-          seamlessly from lo-fi to hi-fi as your project evolves.
-        </Info>
+        <Title>{selected?.title}</Title>
+        <Info>{selected?.description}</Info>
+        <Button secondary size="lg" cls={tw`mt-8 px-10`}>
+          Learn More
+        </Button>
       </Left>
       <Right>
-        <Image src="https://www.protranslate.net/blog/wp-content/uploads/2017/02/ecommerce.png" />
+        <Image src={selected?.image} />
       </Right>
     </ContentWrapper>
   );

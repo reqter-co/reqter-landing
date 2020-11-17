@@ -11,6 +11,7 @@ import {
   Logo,
 } from "./footer.style";
 import Icon from "@Shared/components/Icon";
+import AppLogo from "@Shared/components/AppLogo/logo.component";
 import { IFooter } from "@Interfaces/footer";
 type Props = {
   data: IFooter;
@@ -23,9 +24,8 @@ const Footer = ({ data }: Props) => {
       <Container>
         <Left>
           <div>
-            Massive amounts of
-            content scattered across multiple CMSes, to a single source of
-            truth. Unified content anywhere
+            Massive amounts of content scattered across multiple CMSes, to a
+            single source of truth. Unified content anywhere
           </div>
           <div className="flex">
             <SocialIcon
@@ -93,7 +93,9 @@ const Footer = ({ data }: Props) => {
             </Link>
           </Column>
           <Column>
-            <Logo>{getKeyValue(data, "logotitle1", "REQTER")}</Logo>
+            <Logo>
+              <AppLogo />
+            </Logo>
           </Column>
         </Right>
       </Container>

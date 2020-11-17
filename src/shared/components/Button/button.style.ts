@@ -3,7 +3,7 @@ import tw from "twin.macro";
 // import { xs, sm, md } from "@Utils/mediaQueries";
 
 export const Btn = styled.button<{ [key in string]: unknown }>`
-  ${tw`outline-none rounded-lg font-bold`};
+  ${tw`focus:border-none outline-none rounded-lg font-bold`};
   &:focus {
     ${tw`outline-none border-none shadow-none`};
   }

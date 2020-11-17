@@ -22,6 +22,7 @@ import {
   FaEye,
   FaGooglePlus,
   FaEyeSlash,
+  FaAlignRight,
 } from "react-icons/fa";
 
 const icons: { [key in string]: any } = {
@@ -46,6 +47,7 @@ const icons: { [key in string]: any } = {
   "caret-up": <FaCaretUp />,
   eye: <FaEye />,
   "eye-slash": <FaEyeSlash />,
+  "align-right": <FaAlignRight />,
 };
 const Icon = ({ name = "" }) => {
   return icons[name.toLowerCase()] ? icons[name.toLowerCase()] : "";

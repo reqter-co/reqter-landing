@@ -2,20 +2,22 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { xs, sm, md } from "@Utils/mediaQueries";
 export const Wrapper = styled.div`
-  // background-color: #2c3040;
-  background-color: whitesmoke;
-  ${tw`py-5`};
+  background-color: ;
+  ${tw`py-5 bg-black-light`};
   ${xs} {
     ${tw`py-0`};
   }
 `;
 export const Container = styled.div`
-  ${tw`py-16 flex max-w-6xl m-auto`};
+  ${tw`py-16 flex max-w-6xl m-auto text-white border-t border-gray-700`};
   ${md} {
     ${tw`px-4`};
   }
   ${sm} {
     ${tw`flex-col items-stretch`};
+  }
+  ${xs} {
+    ${tw`py-10`};
   }
 `;
 export const Left = styled.div`
@@ -30,7 +32,7 @@ export const Left = styled.div`
         margin-inline-end: 20px;
       }
       ${xs} {
-        margin-bottom: 0px;
+        margin-bottom: 10px;
       }
     }
   }
@@ -42,18 +44,22 @@ export const Left = styled.div`
     margin-inline-end: 0px;
     max-width: 100%;
   }
+  ${xs} {
+    ${tw`flex-col`}
+  }
 `;
 export const SocialIcon = styled.a`
-  ${tw`bg-secondary-light-color rounded-full flex items-center justify-center  text-2xl text-secondary-dark-color cursor-pointer mt-10`};
+  ${tw`rounded-full flex items-center justify-center text-2xl text-white cursor-pointer mt-10`};
   margin-inline-end: 20px;
   width: 60px;
   height: 60px;
+  background-color: rgba(255, 255, 255, 0.2);
   -webkit-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   transition: all 0.2s ease;
   &:hover {
-    ${tw`bg-secondary-dark-color text-white`};
+    ${tw`bg-secondary-dark-color`};
   }
   ${sm} {
     ${tw`mt-0`};
@@ -85,5 +91,5 @@ export const CompanyName = styled.div`
 `;
 
 export const Logo = styled.div`
-  ${tw`cursor-pointer bg-primary-light-color text-white text-2xl px-5 py-1 rounded font-semibold`}
+  display: none;
 `;
