@@ -40,6 +40,7 @@ module.exports = {
         "secondary-light-color": "rgb(255,228,219)",
         "secondary-light-hover-color": "rgb(255,120,75)",
         "secondary-dark-color": "rgb(255,120,75)",
+        "black-light": "#262335",
       },
     },
   },

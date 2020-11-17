@@ -1,31 +1,32 @@
 import {
   Wrapper,
   Section,
-  Content,
+  Left,
   Title,
   Description,
   Actions,
   Button,
-} from "./styles";
+  Right,
+  Image,
+} from "./hero.style";
 import useLanding from "@Hooks/useLanding";
-import useLanguage from "@Hooks/useLanguage";
 import useDataPath from "@Hooks/useDataPath";
-import useMediaUtils from "@Hooks/useMediaUtils";
 
 const Hero = () => {
   const { landingPage } = useLanding();
-  const { direction } = useLanguage();
   const { getKeyValue } = useDataPath();
-  const { getMediaValue } = useMediaUtils();
 
   return (
-    <Wrapper
-      img={getMediaValue(getKeyValue(landingPage, "heroimage"), "image")}
-      direction={direction}
-    >
+    <Wrapper>
       <Section>
-        <Content>
-          <Title>{getKeyValue(landingPage, "herotitle")}</Title>
+        <Left>
+          <Title>
+            {getKeyValue(
+              landingPage,
+              "herotitle1",
+              "Headless CMS with analytical approach"
+            )}
+          </Title>
           <Description>
             {getKeyValue(landingPage, "herodescription")}
           </Description>
@@ -33,7 +34,10 @@ const Hero = () => {
             <Button>Create a free account</Button>
             <Button>Video Demo</Button>
           </Actions>
-        </Content>
+        </Left>
+        <Right>
+          <Image src="/hero.png" />
+        </Right>
       </Section>
     </Wrapper>
   );
