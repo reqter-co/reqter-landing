@@ -1,20 +1,23 @@
+import tw from "twin.macro";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRouter from "@Hooks/useRouter";
 import Input from "@Shared/components/Form/Input";
-import Icon from "@Shared/components/Icon";
+import { notify } from "@Shared/components/Toast/toast.component";
+// import Icon from "@Shared/components/Icon";
 import Link from "@Shared/components/Link";
-import LineCenterText from "@Shared/components/LineCenterText";
+// import LineCenterText from "@Shared/components/LineCenterText";
 import useDataPath from "@Hooks/useDataPath";
 import { ISignUpPage } from "@Interfaces/signupPage";
 import { emailPattern } from "@Shared/helper/patterns";
+import CustomButton from "@Shared/components/Button";
+import useAuth from "@Hooks/useAuth";
+import PasswordInput from "@Shared/components/Form/Password/password.component";
 import {
   Content,
   Title,
   Description,
-  Submit,
-  SocialButtons,
-  Button,
-  SignupRow,
+  HavLoginBox,
   SignupText,
   SignupLinkText,
 } from "./styles";
@@ -28,15 +31,29 @@ type IFormProps = {
   fullname: string;
 };
 
-const LoginForm = ({ data }: Props) => {
+const SignUpForm = ({ data }: Props) => {
   const signupPage = data;
+  const { _signUp } = useAuth();
   const { push } = useRouter();
   const { register, errors, handleSubmit } = useForm<IFormProps>();
   const { getKeyValue } = useDataPath();
+  const [loading, toggleLoading] = useState(false);
 
   const onSubmit = ({ fullname, email, password }: IFormProps) => {
-    console.log(fullname, email, password);
-    push("/home");
+    if (!loading) {
+      toggleLoading(true);
+      _signUp(fullname, email, password, (result) => {
+        toggleLoading(false);
+        if (!result.success) {
+          notify({
+            description: result.error,
+            type: "success",
+          });
+        } else {
+          push("/home");
+        }
+      });
+    }
   };
   return (
     <Content onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +79,7 @@ const LoginForm = ({ data }: Props) => {
         })}
         hasError={errors.email ? true : false}
       />
-      <Input
+      <PasswordInput
         placeholder={getKeyValue(signupPage, "passwordplaceholder")}
         name="password"
         ref={register({
@@ -71,8 +88,16 @@ const LoginForm = ({ data }: Props) => {
         })}
         hasError={errors.password ? true : false}
       />
-      <Submit>{getKeyValue(signupPage, "submittext")}</Submit>
-      <LineCenterText label={getKeyValue(signupPage, "socialboxtitle")} />
+      <CustomButton
+        type="submit"
+        primary
+        size="lg"
+        cls={tw`mt-6`}
+        loading={loading}
+      >
+        {getKeyValue(signupPage, "submittext")}
+      </CustomButton>
+      {/* <LineCenterText label={getKeyValue(signupPage, "socialboxtitle")} />
       <SocialButtons>
         <Button>
           <Icon name="google" />
@@ -80,14 +105,14 @@ const LoginForm = ({ data }: Props) => {
         <Button>
           <Icon name="linkedin" />
         </Button>
-      </SocialButtons>
-      <SignupRow>
+      </SocialButtons> */}
+      <HavLoginBox>
         <SignupText>{getKeyValue(signupPage, "logintext")}</SignupText>
         <SignupLinkText>
           <Link href="/login">{getKeyValue(signupPage, "loginlinktext")}</Link>
         </SignupLinkText>
-      </SignupRow>
+      </HavLoginBox>
     </Content>
   );
 };
-export default LoginForm;
+export default SignUpForm;

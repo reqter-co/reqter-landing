@@ -29,6 +29,7 @@ export const urls = {
   categories: baseUrl + listLeanUrl + "/5e858a10f0356f001334ba30",
   tools: baseUrl + listLeanUrl + "/5f85885c56b30d001a1fc5b8",
   login: authBaseUrl + "/auth/token",
+  signUp: authBaseUrl + "/auth/register",
   loginPage: baseUrl + listLeanUrl + "/5f88864b56b30d001a1fc5e5",
   signUpPage: baseUrl + listLeanUrl + "/5f8d72fc56b30d001a1fc603",
   userInfo: authBaseUrl + "/auth/info",

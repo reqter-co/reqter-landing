@@ -69,13 +69,13 @@ export const Button = styled.button`
   }
 `;
 
-export const SignupRow = styled.div`
+export const HavLoginBox = styled.div`
   ${tw`flex items-center mt-4 justify-center`};
 `;
 export const SignupText = styled.h3`
   ${tw`text-gray-700 text-sm`};
 `;
 export const SignupLinkText = styled.div`
-  ${tw`text-secondary-light-color text-sm`};
+  ${tw`text-secondary-dark-color text-sm`};
   margin-inline-start: 5px;
 `;

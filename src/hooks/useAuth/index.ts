@@ -2,7 +2,7 @@ import storage from "../../services/storage";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
-import { login } from "@Core/api/auth";
+import { login, signUp } from "@Core/api/auth";
 
 const useAuth = () => {
   const dispatch = useAuthDispatch();
@@ -14,19 +14,35 @@ const useAuth = () => {
   const _login = async (
     username: string,
     password: string,
-    onFinished: () => void
+    onFinished: (result: any) => void
   ) => {
     try {
       const result = await login(username, password);
       if (onFinished) {
-        onFinished();
+        onFinished(result);
       }
       if (result) handleLoginSuccess(result?.access_token);
     } catch (error) {
       if (onFinished) {
-        onFinished();
+        onFinished(error);
       }
-      alert(error);
+    }
+  };
+  const _signUp = async (
+    fullname: string,
+    email: string,
+    password: string,
+    onFinished: (result: any) => void
+  ) => {
+    try {
+      const result = await signUp(fullname, email, password);
+      if (onFinished) {
+        onFinished(result);
+      }
+    } catch (error) {
+      if (onFinished) {
+        onFinished(error);
+      }
     }
   };
   const handleLoginSuccess = (token: string) => {
@@ -55,6 +71,7 @@ const useAuth = () => {
   };
   return {
     _login,
+    _signUp,
     isRedirected,
     redirectPage,
     setRedirectPage,

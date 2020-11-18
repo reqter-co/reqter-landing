@@ -1,4 +1,5 @@
 import tw from "twin.macro";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "@Hooks/useAuth";
 import Input from "@Shared/components/Form/Input";
@@ -19,7 +20,6 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
-import { useState } from "react";
 
 type Props = {
   data: ILogin;
