@@ -19,10 +19,10 @@ const useAuth = () => {
   ) => {
     try {
       const result = await login(username, password);
+      if (result) handleLoginSuccess(result?.access_token);
       if (onFinished) {
         onFinished(result);
       }
-      if (result) handleLoginSuccess(result?.access_token);
     } catch (error) {
       if (onFinished) {
         onFinished(error);
@@ -47,6 +47,7 @@ const useAuth = () => {
   };
   const handleLoginSuccess = (token: string) => {
     storage.setItem("@caaser-token", token);
+    dispatch({ type: "LOGIN_SUCCESS" });
     // const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
     // if (redirectUrl) {
     //   window.location.href = redirectUrl;
@@ -60,7 +61,6 @@ const useAuth = () => {
     // } else {
     //   push("/home");
     // }
-    dispatch({ type: "LOGIN_SUCCESS" });
   };
   const logout = () => {
     storage.removeItem("@caaser-token");

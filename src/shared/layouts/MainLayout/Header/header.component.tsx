@@ -28,17 +28,12 @@ interface IProps {
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
   // const { theme, toggleTheme } = useContext(ThemeContext);
-  const { user, loggedOut, loading } = useUser();
-  const { isAuthenticated, logout } = useAuth();
+  const { user } = useUser({});
+  const { isAuthenticated } = useAuth();
   const { getKeyValue } = useDataPath();
   const [isSticky, setSticky] = useState<boolean>(false);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loading && loggedOut && user) {
-      logout();
-    }
-  }, [loading, user, loggedOut]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset < 45) setSticky(false);
@@ -75,7 +70,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
             <MenuItem>{getKeyValue(data, "link2title--", "Blog")}</MenuItem>
           </Menu>
           <Actions className="tab-port:hidden">
-            {!isAuthenticated ? (
+            {!user || (user && user.auth === false) ? (
               <Button primary size="md">
                 <Link href="/login">{getKeyValue(data, "link3title")}</Link>
               </Button>

@@ -2,6 +2,7 @@ enum Role {
   owner = "owner",
 }
 export interface IUser {
+  auth: boolean;
   access_token: string;
   account_type: "free";
   active: boolean;

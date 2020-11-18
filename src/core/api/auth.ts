@@ -6,12 +6,7 @@ import { IUser, ISignUpFailed } from "@Interfaces/user";
 // =====================================================
 const getUserInfo = async () => {
   const token = storage.getItem("@caaser-token");
-  if (!token) {
-    const error: any = new Error("Not authorized!");
-    error["status"] = 403;
-    throw error;
-  }
-  const response = await get<IUser>(urls.userInfo, {
+  const response = await get<IUser | null>(urls.userInfo, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -21,9 +16,7 @@ const getUserInfo = async () => {
   if (response && response.parsedBody) {
     return response.parsedBody;
   }
-  const error: any = new Error("Not authorized!");
-  error["status"] = 403;
-  throw error;
+  return null;
 };
 const login = async (username: string, password: string) => {
   const response = await post<{ access_token: string }>(

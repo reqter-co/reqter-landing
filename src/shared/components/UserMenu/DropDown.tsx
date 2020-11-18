@@ -1,20 +1,20 @@
-import {  useRef } from "react";
-import { mutate } from "swr";
+import { useRef } from "react";
 import { MenuWrapper, MenuIcon, MenuItem } from "./styles";
 import useLanguage from "@Hooks/useLanguage";
 import useClickOutside from "@Hooks/useClickOutside";
 import useRouter from "@Hooks/useRouter";
 import useAuth from "@Hooks/useAuth";
+import useUser from "@Hooks/useUser";
 import Icon from "@Shared/components/Icon";
 import Link from "@Shared/components/Link";
+import storage from "src/services/storage";
 
 const UserMenu = ({
   onClickOutside,
 }: {
   onClickOutside: () => void;
 }): JSX.Element => {
-  // const { mutate } = useUser();
-  const { logout } = useAuth();
+  const { mutateUser } = useUser({});
   const { push } = useRouter();
   const { direction } = useLanguage();
   const menuRef = useRef<HTMLUListElement>(null);
@@ -22,11 +22,11 @@ const UserMenu = ({
     onClickOutside();
   });
 
-  function handleLogout() {
-    push("/home");
-    logout();
+  async function handleLogout() {
+    storage.removeItem("@caaser-token");
     onClickOutside();
-    mutate("api_user", null);
+    await mutateUser(null);
+    push("/home");
   }
 
   return (

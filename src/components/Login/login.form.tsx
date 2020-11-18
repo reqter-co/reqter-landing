@@ -21,6 +21,7 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
+import useUser from "@Hooks/useUser";
 
 type Props = {
   data: ILogin;
@@ -32,6 +33,7 @@ type IFormProps = {
 
 const LoginForm = ({ data }: Props) => {
   const loginPage = data;
+  const { mutateUser } = useUser({});
   const { _login } = useAuth();
   const { push } = useRouter();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
@@ -46,7 +48,8 @@ const LoginForm = ({ data }: Props) => {
   const onSubmit = ({ email, password }: IFormProps) => {
     if (!loading) {
       toggleLoading(true);
-      _login(email, password, () => {
+      _login(email, password, async () => {
+        await mutateUser(null);
         toggleLoading(false);
         push("/spaces");
       });

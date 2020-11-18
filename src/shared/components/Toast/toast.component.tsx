@@ -18,8 +18,8 @@ interface IToast {
   description?: string;
   type: "success" | "error" | "warning" | "info" | "default";
 }
-let notify = (props: IToast): void => undefined;
-let deleteToast = (id: any): void => undefined;
+let notify = (props: IToast): any => [props];
+let deleteToast = (id: any): any => [id];
 
 const Toast = (props: INotify) => {
   const { position, autoDelete, autoDeleteTime } = props;

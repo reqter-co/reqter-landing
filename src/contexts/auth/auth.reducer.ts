@@ -21,7 +21,7 @@ export function authReducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         isAuthenticated: false,
-        isLoggedOut: true,
+        isLoggedOut: false,
       };
     case "SET_REDIRECT_PAGE":
       return { ...state, redirectPage: action.payload };
