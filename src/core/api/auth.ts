@@ -1,7 +1,7 @@
 import { get, post } from "@Utils/http";
 import { clientid, urls } from "@Core/constants";
 import storage from "../../services/storage";
-import { IUser } from "@Interfaces/user";
+import { IUser, ISignUpFailed } from "@Interfaces/user";
 
 // =====================================================
 const getUserInfo = async () => {
@@ -47,7 +47,7 @@ const login = async (username: string, password: string) => {
 };
 
 const signUp = async (fullname: string, email: string, password: string) => {
-  const response = await post<{ error?: string; success?: boolean }>(
+  const response = await post<IUser | ISignUpFailed>(
     urls.signUp,
     {
       username: email,

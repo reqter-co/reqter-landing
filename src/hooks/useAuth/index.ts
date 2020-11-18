@@ -3,6 +3,7 @@ import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
 import { login, signUp } from "@Core/api/auth";
+import { IUser, ISignUpFailed } from "@Interfaces/user";
 
 const useAuth = () => {
   const dispatch = useAuthDispatch();
@@ -32,13 +33,12 @@ const useAuth = () => {
     fullname: string,
     email: string,
     password: string,
-    onFinished: (result: any) => void
+    onFinished: (result: IUser | ISignUpFailed | null) => void
   ) => {
     try {
       const result = await signUp(fullname, email, password);
-      if (onFinished) {
-        onFinished(result);
-      }
+      dispatch({ type: "LOGIN_SUCCESS" });
+      onFinished(result);
     } catch (error) {
       if (onFinished) {
         onFinished(error);
@@ -47,12 +47,12 @@ const useAuth = () => {
   };
   const handleLoginSuccess = (token: string) => {
     storage.setItem("@caaser-token", token);
-    const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
-    if (redirectUrl) {
-      window.location.href = redirectUrl;
-    } else {
-      window.location.reload();
-    }
+    // const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
+    // if (redirectUrl) {
+    //   window.location.href = redirectUrl;
+    // } else {
+    //   window.location.reload();
+    // }
 
     // if (redirectPage) {
     //   mutate("api_user", null);
@@ -60,7 +60,7 @@ const useAuth = () => {
     // } else {
     //   push("/home");
     // }
-    // dispatch({ type: "LOGIN_SUCCESS" });
+    dispatch({ type: "LOGIN_SUCCESS" });
   };
   const logout = () => {
     storage.removeItem("@caaser-token");

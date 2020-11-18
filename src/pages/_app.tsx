@@ -18,7 +18,7 @@ const ExtendedApp = ({ Component, pageProps }: AppProps) => {
             <Toast
               position="bottom-center"
               autoDelete={true}
-              autoDeleteTime={300000}
+              autoDeleteTime={3000}
             />
             <Component {...pageProps} />
           </LanguageProvider>

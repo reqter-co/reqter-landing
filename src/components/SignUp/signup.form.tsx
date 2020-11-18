@@ -13,6 +13,7 @@ import { emailPattern } from "@Shared/helper/patterns";
 import CustomButton from "@Shared/components/Button";
 import useAuth from "@Hooks/useAuth";
 import PasswordInput from "@Shared/components/Form/Password/password.component";
+import { ISignUpFailed, IUser } from "@Interfaces/user";
 import {
   Content,
   Title,
@@ -21,6 +22,7 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
+import storage from "src/services/storage";
 
 type Props = {
   data: ISignUpPage;
@@ -42,17 +44,28 @@ const SignUpForm = ({ data }: Props) => {
   const onSubmit = ({ fullname, email, password }: IFormProps) => {
     if (!loading) {
       toggleLoading(true);
-      _signUp(fullname, email, password, (result) => {
-        toggleLoading(false);
-        if (!result.success) {
-          notify({
-            description: result.error,
-            type: "success",
-          });
-        } else {
-          push("/home");
+      _signUp(
+        fullname,
+        email,
+        password,
+        (result: IUser | ISignUpFailed | null) => {
+          toggleLoading(false);
+          if (result)
+            if ("success" in result && !result.success) {
+              notify({
+                description: result.error,
+                type: "error",
+              });
+            } else {
+              notify({
+                description: "You registered successfully",
+                type: "success",
+              });
+              storage.setItem("@caaser-token", (result as IUser).access_token);
+              push("/spaces");
+            }
         }
-      });
+      );
     }
   };
   return (
