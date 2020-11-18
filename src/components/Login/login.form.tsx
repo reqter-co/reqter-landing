@@ -1,6 +1,8 @@
 import tw from "twin.macro";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "@Hooks/useAuth";
+import useRouter from "@Hooks/useRouter";
 import Input from "@Shared/components/Form/Input";
 import PasswordInput from "@Shared/components/Form/Password/password.component";
 // import Icon from "@Shared/components/Icon";
@@ -19,7 +21,6 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
-import { useState } from "react";
 
 type Props = {
   data: ILogin;
@@ -32,6 +33,7 @@ type IFormProps = {
 const LoginForm = ({ data }: Props) => {
   const loginPage = data;
   const { _login } = useAuth();
+  const { push } = useRouter();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
       email: process.env.NEXT_PUBLIC_LOGIN_USERNAME || "",
@@ -46,6 +48,7 @@ const LoginForm = ({ data }: Props) => {
       toggleLoading(true);
       _login(email, password, () => {
         toggleLoading(false);
+        push("/spaces");
       });
     }
   };

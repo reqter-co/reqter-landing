@@ -23,6 +23,10 @@ import {
   FaGooglePlus,
   FaEyeSlash,
   FaAlignRight,
+  FaCheckCircle,
+  FaInfoCircle,
+  FaTimesCircle,
+  FaExclamationTriangle,
 } from "react-icons/fa";
 
 const icons: { [key in string]: any } = {
@@ -48,8 +52,12 @@ const icons: { [key in string]: any } = {
   eye: <FaEye />,
   "eye-slash": <FaEyeSlash />,
   "align-right": <FaAlignRight />,
+  "circle-checked": <FaCheckCircle />,
+  "circle-info": <FaInfoCircle />,
+  "circle-times": <FaTimesCircle />,
+  warning: <FaExclamationTriangle />,
 };
-const Icon = ({ name = "" }) => {
+const Icon = ({ name = "" }: { name: string }) => {
   return icons[name.toLowerCase()] ? icons[name.toLowerCase()] : "";
 };
 

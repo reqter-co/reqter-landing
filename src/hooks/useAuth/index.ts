@@ -2,7 +2,8 @@ import storage from "../../services/storage";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
-import { login } from "@Core/api/auth";
+import { login, signUp } from "@Core/api/auth";
+import { IUser, ISignUpFailed } from "@Interfaces/user";
 
 const useAuth = () => {
   const dispatch = useAuthDispatch();
@@ -14,29 +15,44 @@ const useAuth = () => {
   const _login = async (
     username: string,
     password: string,
-    onFinished: () => void
+    onFinished: (result: any) => void
   ) => {
     try {
       const result = await login(username, password);
       if (onFinished) {
-        onFinished();
+        onFinished(result);
       }
       if (result) handleLoginSuccess(result?.access_token);
     } catch (error) {
       if (onFinished) {
-        onFinished();
+        onFinished(error);
       }
-      alert(error);
+    }
+  };
+  const _signUp = async (
+    fullname: string,
+    email: string,
+    password: string,
+    onFinished: (result: IUser | ISignUpFailed | null) => void
+  ) => {
+    try {
+      const result = await signUp(fullname, email, password);
+      dispatch({ type: "LOGIN_SUCCESS" });
+      onFinished(result);
+    } catch (error) {
+      if (onFinished) {
+        onFinished(error);
+      }
     }
   };
   const handleLoginSuccess = (token: string) => {
     storage.setItem("@caaser-token", token);
-    const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
-    if (redirectUrl) {
-      window.location.href = redirectUrl;
-    } else {
-      window.location.reload();
-    }
+    // const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
+    // if (redirectUrl) {
+    //   window.location.href = redirectUrl;
+    // } else {
+    //   window.location.reload();
+    // }
 
     // if (redirectPage) {
     //   mutate("api_user", null);
@@ -44,7 +60,7 @@ const useAuth = () => {
     // } else {
     //   push("/home");
     // }
-    // dispatch({ type: "LOGIN_SUCCESS" });
+    dispatch({ type: "LOGIN_SUCCESS" });
   };
   const logout = () => {
     storage.removeItem("@caaser-token");
@@ -55,6 +71,7 @@ const useAuth = () => {
   };
   return {
     _login,
+    _signUp,
     isRedirected,
     redirectPage,
     setRedirectPage,

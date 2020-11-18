@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 export const Wrapper = styled.div`
-  ${tw`relative`}
+  ${tw`relative cursor-pointer`}
 `;
 export const MenuContainer = styled.div`
   ${tw`flex items-center`};
@@ -22,7 +22,7 @@ export const Name = styled.div`
   margin-inline-start: 5px;
 `;
 export const MenuWrapper = styled.ul`
-  ${tw`absolute bg-white shadow rounded-lg`};
+  ${tw`absolute bg-white shadow rounded-lg shadow border border-gray-100`};
   width: 200px;
   direction: ${({ direction }: { direction: string }) => direction};
 `;
