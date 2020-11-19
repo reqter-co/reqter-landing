@@ -12,7 +12,7 @@ interface INotify {
   autoDelete: boolean;
   autoDeleteTime: number;
 }
-interface IToast {
+export interface IToast {
   id?: number;
   title?: string;
   description?: string;

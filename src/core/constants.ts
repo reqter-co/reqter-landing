@@ -15,6 +15,7 @@ export const defaultMetaTags: MetaTags = {
 
 export const clientid =
   process.env.NEXT_PUBLIC_CLIENT_ID || "03387475-3e13-4781-ab3d-d155515c7cb7";
+// ============================================================
 const baseUrl = process.env.NEXT_PUBLIC_DATA_BASE_URL;
 const authBaseUrl = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
 const listLeanUrl = "/api/v1/lists/lean";
@@ -33,4 +34,7 @@ export const urls = {
   loginPage: baseUrl + listLeanUrl + "/5f88864b56b30d001a1fc5e5",
   signUpPage: baseUrl + listLeanUrl + "/5f8d72fc56b30d001a1fc603",
   userInfo: authBaseUrl + "/auth/info",
+  forgotPass_sendCode: authBaseUrl + "/auth/forgotpassword",
+  forgotPass_verifyCode: authBaseUrl + "/auth/verifycode",
+  forgotPass_resetPass: authBaseUrl + "/auth/resetpassword",
 };

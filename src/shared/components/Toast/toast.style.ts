@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
   }
 `;
 export const ItemWrapper = styled.div`
-  ${tw`flex items-center bg-black-light p-5 py-4 text-white mx-5 my-2 rounded shadow cursor-pointer`}
+  ${tw`flex items-center w-full bg-black-light p-5 py-4 text-white mx-5 my-2 rounded shadow cursor-pointer`}
   &:hover {
     ${tw`shadow-2xl`}
   }

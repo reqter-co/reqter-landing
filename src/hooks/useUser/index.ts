@@ -19,14 +19,20 @@ export default function useUser({
   );
   const { push } = useRouter();
   const loading = (!user || (user && !user.auth)) && !error;
-  const loggedOut = !user?.auth;
+  const loggedOut = !user || (user && !user.auth);
+
   useEffect(() => {
     // if no redirect needed, just return (example: already on /dashboard)
     // if user data not yet there (fetch in progress, logged in or not) then don't do anything yet
     if (!redirectTo) return;
     if (!loading) {
-      if (redirectTo && !user?.account_type) {
+      if (redirectTo) {
         push(redirectTo as string);
+      }
+      if (loggedOut) {
+        if (user) {
+          mutateUser(null);
+        }
       }
     }
 
@@ -40,7 +46,7 @@ export default function useUser({
     //   mutateUser();
     //   push(redirectTo as string);
     // }
-  }, [user]);
+  }, [user, error, loggedOut]);
 
   return { user, mutateUser };
 }
