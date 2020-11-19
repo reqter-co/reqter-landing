@@ -37,7 +37,7 @@ const SendCodeToEmail = ({ onSuccessSendCode, data }: Props) => {
             onSuccessSendCode(email);
           }
         },
-        (error) => {
+        () => {
           toggleLoading(false);
           showNotify({
             type: "error",

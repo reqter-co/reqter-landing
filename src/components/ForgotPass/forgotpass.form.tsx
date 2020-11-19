@@ -25,16 +25,19 @@ const ForgetPassWizard = ({ data }: Props) => {
   const handleSuccessChangePassword = () => changeTab(4);
 
   return tab === 1 ? (
-    <SendCodeToEmail data={{}} onSuccessSendCode={handleSuccessSendCode} />
+    <SendCodeToEmail
+      data={loginPage}
+      onSuccessSendCode={handleSuccessSendCode}
+    />
   ) : tab === 2 ? (
     <VerifyCode
-      data={{}}
+      data={loginPage}
       email={email}
       onSuccessVerifyCode={handleSuccessVerifyCode}
     />
   ) : tab === 3 ? (
     <ResetPassword
-      data={{}}
+      data={loginPage}
       token={token}
       onSuccessChangePassword={handleSuccessChangePassword}
     />

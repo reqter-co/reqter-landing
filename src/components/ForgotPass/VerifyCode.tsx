@@ -38,7 +38,7 @@ const VerifyCode = ({ data, email, onSuccessVerifyCode }: Props) => {
             onSuccessVerifyCode(token);
           }
         },
-        (error) => {
+        () => {
           toggleLoading(false);
           showNotify({
             type: "error",

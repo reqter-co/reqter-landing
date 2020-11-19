@@ -1,18 +1,11 @@
 import { useEffect } from "react";
-import Router from "next/router";
 import useSWR from "swr";
 import useRouter from "@Hooks/useRouter";
 import { getUserInfo } from "@Core/api/auth";
-import storage from "src/services/storage";
-import { debug } from "console";
 type Props = {
   redirectTo?: boolean | string;
-  redirectIfFound?: boolean;
 };
-export default function useUser({
-  redirectTo = false,
-  redirectIfFound = false,
-}: Props) {
+export default function useUser({ redirectTo = false }: Props) {
   const { data: user, mutate: mutateUser, error } = useSWR(
     "/api/user",
     getUserInfo

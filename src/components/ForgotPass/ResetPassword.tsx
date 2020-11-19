@@ -39,7 +39,7 @@ const ResetPass = ({ data, token, onSuccessChangePassword }: Props) => {
             onSuccessChangePassword();
           }
         },
-        (error) => {
+        () => {
           toggleLoading(false);
           showNotify({
             type: "error",

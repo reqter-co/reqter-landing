@@ -12,7 +12,6 @@ import {
   NavBarIcon,
 } from "./header.style";
 import useDataPath from "@Hooks/useDataPath";
-import useAuth from "@Hooks/useAuth";
 import useUser from "@Hooks/useUser";
 import { IHeader } from "@Interfaces/header";
 import UserMenu from "@Shared/components/UserMenu";
@@ -29,7 +28,6 @@ interface IProps {
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
   // const { theme, toggleTheme } = useContext(ThemeContext);
   const { user } = useUser({});
-  const { isAuthenticated } = useAuth();
   const { getKeyValue } = useDataPath();
   const [isSticky, setSticky] = useState<boolean>(false);
   const router = useRouter();
