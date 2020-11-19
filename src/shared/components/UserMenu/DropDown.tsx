@@ -6,8 +6,6 @@ import useRouter from "@Hooks/useRouter";
 import useUser from "@Hooks/useUser";
 import Icon from "@Shared/components/Icon";
 import Link from "@Shared/components/Link";
-import storage from "src/services/storage";
-import { useAuthDispatch } from "@Contexts/auth/auth.provider";
 import useAuth from "@Hooks/useAuth";
 
 const UserMenu = ({
