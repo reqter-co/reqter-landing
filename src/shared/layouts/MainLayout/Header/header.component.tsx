@@ -1,6 +1,5 @@
 import tw from "twin.macro";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "@Shared/components/Link";
 import {
   Wrapper,
@@ -12,13 +11,12 @@ import {
   NavBarIcon,
 } from "./header.style";
 import useDataPath from "@Hooks/useDataPath";
-import useAuth from "@Hooks/useAuth";
 import useUser from "@Hooks/useUser";
+import useRouter from "@Hooks/useRouter";
 import { IHeader } from "@Interfaces/header";
 import UserMenu from "@Shared/components/UserMenu";
 import AppLogo from "@Shared/components/AppLogo/logo.component";
 import Button from "@Shared/components/Button";
-// import { ThemeContext } from "@Contexts/theme";
 import { IUser } from "@Interfaces/user";
 import Icon from "@Shared/components/Icon";
 
@@ -27,18 +25,11 @@ interface IProps {
 }
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
-  // const { theme, toggleTheme } = useContext(ThemeContext);
-  const { user, loggedOut, loading } = useUser();
-  const { isAuthenticated, logout } = useAuth();
+  const { user } = useUser({});
+  const { push, currentRoute } = useRouter();
   const { getKeyValue } = useDataPath();
   const [isSticky, setSticky] = useState<boolean>(false);
-  const router = useRouter();
 
-  useEffect(() => {
-    if (!loading && loggedOut && user) {
-      logout();
-    }
-  }, [loading, user, loggedOut]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset < 45) setSticky(false);
@@ -52,7 +43,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   }, []);
 
   const checkIsTransparent = (): boolean => {
-    return router.pathname === `/`;
+    return currentRoute === `/`;
   };
   return (
     <>
@@ -62,7 +53,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
         isTransparent={checkIsTransparent()}
       >
         <Content>
-          <Logo>
+          <Logo onClick={() => push("/")}>
             <AppLogo />
           </Logo>
           <Menu>
@@ -75,7 +66,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
             <MenuItem>{getKeyValue(data, "link2title--", "Blog")}</MenuItem>
           </Menu>
           <Actions className="tab-port:hidden">
-            {!isAuthenticated ? (
+            {!user ? (
               <Button primary size="md">
                 <Link href="/login">{getKeyValue(data, "link3title")}</Link>
               </Button>

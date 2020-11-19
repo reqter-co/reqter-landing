@@ -35,6 +35,6 @@ export const SignupText = styled.h3`
   ${tw`text-gray-700 text-sm`};
 `;
 export const SignupLinkText = styled.div`
-  ${tw`text-secondary-light-color text-sm`};
+  ${tw`text-primary-light-color`};
   margin-inline-start: 5px;
 `;

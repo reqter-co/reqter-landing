@@ -4,14 +4,14 @@ import { xs, sm, md } from "@Utils/mediaQueries";
 import Section from "@Shared/components/Section";
 
 export const Wrapper = styled(Section)`
-  ${tw`py-20 pb-10`};
+  ${tw`py-20 pb-0`};
   ${xs} {
     ${tw`py-10`};
   }
 `;
 
 export const Container = styled.div`
-  ${tw`flex flex-col justify-center items-center text-white`};
+  ${tw`flex flex-col justify-center items-center text-white border-b border-gray-700 pb-16`};
 `;
 
 export const Title = styled.h1`

@@ -1,19 +1,21 @@
-import {  useRef } from "react";
-import { mutate } from "swr";
+import { useRef } from "react";
 import { MenuWrapper, MenuIcon, MenuItem } from "./styles";
 import useLanguage from "@Hooks/useLanguage";
 import useClickOutside from "@Hooks/useClickOutside";
 import useRouter from "@Hooks/useRouter";
-import useAuth from "@Hooks/useAuth";
+import useUser from "@Hooks/useUser";
 import Icon from "@Shared/components/Icon";
 import Link from "@Shared/components/Link";
+import storage from "src/services/storage";
+import { useAuthDispatch } from "@Contexts/auth/auth.provider";
+import useAuth from "@Hooks/useAuth";
 
 const UserMenu = ({
   onClickOutside,
 }: {
   onClickOutside: () => void;
 }): JSX.Element => {
-  // const { mutate } = useUser();
+  const { mutateUser } = useUser({});
   const { logout } = useAuth();
   const { push } = useRouter();
   const { direction } = useLanguage();
@@ -23,42 +25,30 @@ const UserMenu = ({
   });
 
   function handleLogout() {
-    push("/home");
-    logout();
     onClickOutside();
-    mutate("api_user", null);
+    logout();
+    mutateUser(null);
+    push("/home");
   }
 
   return (
     <MenuWrapper direction={direction} ref={menuRef}>
-      <Link href="/profile">
+      <Link href="/spaces">
         <MenuItem>
           <MenuIcon>
             <Icon name="health" />
           </MenuIcon>
-          Profile
+          My Spaces
         </MenuItem>
       </Link>
-      <Link href="/settings">
+      <Link href="/profile">
         <MenuItem>
           <MenuIcon>
             <Icon name="math" />
           </MenuIcon>
-          Account
+          Profile
         </MenuItem>
       </Link>
-      <MenuItem>
-        <MenuIcon>
-          <Icon name="financial" />
-        </MenuIcon>
-        Subscribe
-      </MenuItem>
-      <MenuItem>
-        <MenuIcon>
-          <Icon name="legal" />
-        </MenuIcon>
-        Privacy
-      </MenuItem>
       <MenuItem onClick={handleLogout}>
         <MenuIcon>
           <Icon name="time" />

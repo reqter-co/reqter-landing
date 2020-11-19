@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   }
 `;
 export const Container = styled.div`
-  ${tw`py-16 flex max-w-6xl m-auto text-white border-t border-gray-700`};
+  ${tw`py-16 flex max-w-6xl m-auto text-white`};
   ${md} {
     ${tw`px-4`};
   }

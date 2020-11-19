@@ -1,4 +1,4 @@
-import { get, post } from "@Utils/http";
+import { get, post, put } from "@Utils/http";
 import { clientid, urls } from "@Core/constants";
 import storage from "../../services/storage";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
@@ -7,11 +7,9 @@ import { IUser, ISignUpFailed } from "@Interfaces/user";
 const getUserInfo = async () => {
   const token = storage.getItem("@caaser-token");
   if (!token) {
-    const error: any = new Error("Not authorized!");
-    error["status"] = 403;
-    throw error;
+    return null;
   }
-  const response = await get<IUser>(urls.userInfo, {
+  const response = await get<IUser | null>(urls.userInfo, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -19,11 +17,12 @@ const getUserInfo = async () => {
     },
   });
   if (response && response.parsedBody) {
+    if (response.parsedBody.auth === false) {
+      return null;
+    }
     return response.parsedBody;
   }
-  const error: any = new Error("Not authorized!");
-  error["status"] = 403;
-  throw error;
+  return null;
 };
 const login = async (username: string, password: string) => {
   const response = await post<{ access_token: string }>(
@@ -69,4 +68,71 @@ const signUp = async (fullname: string, email: string, password: string) => {
   return null;
 };
 
-export { login, getUserInfo, signUp };
+const forgotPass_SendCode = async (email: string) => {
+  const response = await put(
+    urls.forgotPass_sendCode,
+    {
+      username: email,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        clientid,
+      },
+    }
+  );
+
+  if (response && response.parsedBody) {
+    return response.parsedBody;
+  }
+  return null;
+};
+const forgotPass_VerifyCode = async (email: string, code: string) => {
+  const response = await put<{ access_token: string }>(
+    urls.forgotPass_verifyCode,
+    {
+      username: email,
+      code,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        clientid,
+      },
+    }
+  );
+
+  if (response && response.parsedBody) {
+    return response.parsedBody;
+  }
+  return null;
+};
+const forgotPass_ResetPass = async (token: string, newpassword: string) => {
+  const response = await put(
+    urls.forgotPass_verifyCode,
+    {
+      newpassword,
+    },
+    {
+      headers: {
+        authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+        clientid,
+      },
+    }
+  );
+
+  if (response && response.parsedBody) {
+    return response.parsedBody;
+  }
+  return null;
+};
+
+export {
+  login,
+  getUserInfo,
+  signUp,
+  forgotPass_SendCode,
+  forgotPass_VerifyCode,
+  forgotPass_ResetPass,
+};

@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-import dynamic from "next/dynamic";
 import { AppProvider } from "@Contexts/app/app.provider";
 import { AuthProvider } from "@Contexts/auth/auth.provider";
 import { LanguageProvider } from "@Contexts/language/language.provider";

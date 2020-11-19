@@ -15,10 +15,9 @@ async function http<T>(request: RequestInfo): Promise<HttpResponse<T>> {
       response.parsedBody = body;
     }
   } catch (ex) {}
-
-  // if (!response.ok) {
-  //   throw new Error(response.statusText);
-  // }
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
   return response;
 }
 export async function get<T>(
@@ -41,7 +40,9 @@ export async function post<T>(
 export async function put<T>(
   path: string,
   body: any,
-  args: RequestInit = { method: "put", body: JSON.stringify(body) }
+  args: HttpRequest
 ): Promise<HttpResponse<T>> {
-  return await http<T>(new Request(path, args));
+  return await http<T>(
+    new Request(path, { method: "put", body: JSON.stringify(body), ...args })
+  );
 }

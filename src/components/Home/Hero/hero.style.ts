@@ -49,20 +49,11 @@ export const Actions = styled.div`
   ${xs} {
     ${tw`flex-col`};
   }
-`;
-export const Button = styled.button`
-  ${tw`flex justify-center items-center mt-10 py-3 px-6 bg-white text-center text-black text-lg rounded-lg outline-none font-semibold shadow hover:shadow-xl`};
-  &:first-child {
+  button:first-child {
     margin-inline-end: 10px;
-    ${xs} {
-      margin-inline-end: 0px;
+    a {
+      ${tw`m-0 no-underline`};
     }
-  }
-  &:last-child {
-    ${tw`bg-primary-light-color text-white`};
-  }
-  ${sm} {
-    ${tw`mt-2`}
   }
 `;
 
