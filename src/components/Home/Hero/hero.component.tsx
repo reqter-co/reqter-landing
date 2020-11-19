@@ -5,12 +5,14 @@ import {
   Title,
   Description,
   Actions,
-  Button,
   Right,
   Image,
 } from "./hero.style";
 import useLanding from "@Hooks/useLanding";
 import useDataPath from "@Hooks/useDataPath";
+import Link from "@Shared/components/Link";
+import Button from "@Shared/components/Button";
+import tw from "twin.macro";
 
 const Hero = () => {
   const { landingPage } = useLanding();
@@ -31,8 +33,16 @@ const Hero = () => {
             {getKeyValue(landingPage, "herodescription")}
           </Description>
           <Actions>
-            <Button>Create a free account</Button>
-            <Button>Video Demo</Button>
+            <Button
+              primary
+              size="md"
+              cls={tw`bg-white text-black shadow hover:bg-white hover:shadow-lg py-3`}
+            >
+              <Link href="/signup">Create a free account</Link>
+            </Button>
+            <Button primary size="md">
+              Video Demo
+            </Button>
           </Actions>
         </Left>
         <Right>

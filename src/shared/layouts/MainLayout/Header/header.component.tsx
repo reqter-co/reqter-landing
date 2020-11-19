@@ -1,6 +1,5 @@
 import tw from "twin.macro";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import Link from "@Shared/components/Link";
 import {
   Wrapper,
@@ -13,11 +12,11 @@ import {
 } from "./header.style";
 import useDataPath from "@Hooks/useDataPath";
 import useUser from "@Hooks/useUser";
+import useRouter from "@Hooks/useRouter";
 import { IHeader } from "@Interfaces/header";
 import UserMenu from "@Shared/components/UserMenu";
 import AppLogo from "@Shared/components/AppLogo/logo.component";
 import Button from "@Shared/components/Button";
-// import { ThemeContext } from "@Contexts/theme";
 import { IUser } from "@Interfaces/user";
 import Icon from "@Shared/components/Icon";
 
@@ -26,11 +25,10 @@ interface IProps {
 }
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
-  // const { theme, toggleTheme } = useContext(ThemeContext);
   const { user } = useUser({});
+  const { push, currentRoute } = useRouter();
   const { getKeyValue } = useDataPath();
   const [isSticky, setSticky] = useState<boolean>(false);
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +43,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   }, []);
 
   const checkIsTransparent = (): boolean => {
-    return router.pathname === `/`;
+    return currentRoute === `/`;
   };
   return (
     <>
@@ -55,7 +53,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
         isTransparent={checkIsTransparent()}
       >
         <Content>
-          <Logo>
+          <Logo onClick={() => push("/")}>
             <AppLogo />
           </Logo>
           <Menu>
