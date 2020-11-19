@@ -2,7 +2,7 @@ import storage from "../../services/storage";
 const isBrowser = typeof window !== "undefined";
 export const INITIAL_STATE = {
   isAuthenticated: isBrowser && !!storage.getItem("@caaser-token"),
-  isLoggedOut: false,
+  isLoggedOutFromHeaderMenu: false,
   redirectPage: "",
 };
 
@@ -16,12 +16,16 @@ type StateType = typeof INITIAL_STATE;
 export function authReducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
     case "LOGIN_SUCCESS":
-      return { ...state, isAuthenticated: true };
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoggedOutFromHeaderMenu: false,
+      };
     case "LOGOUT":
       return {
         ...state,
         isAuthenticated: false,
-        isLoggedOut: false,
+        isLoggedOutFromHeaderMenu: true,
       };
     case "SET_REDIRECT_PAGE":
       return { ...state, redirectPage: action.payload };

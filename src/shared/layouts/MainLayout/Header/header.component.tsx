@@ -68,7 +68,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
             <MenuItem>{getKeyValue(data, "link2title--", "Blog")}</MenuItem>
           </Menu>
           <Actions className="tab-port:hidden">
-            {!user || (user && user.auth === false) ? (
+            {!user ? (
               <Button primary size="md">
                 <Link href="/login">{getKeyValue(data, "link3title")}</Link>
               </Button>

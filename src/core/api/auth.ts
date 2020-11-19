@@ -6,6 +6,9 @@ import { IUser, ISignUpFailed } from "@Interfaces/user";
 // =====================================================
 const getUserInfo = async () => {
   const token = storage.getItem("@caaser-token");
+  if (!token) {
+    return null;
+  }
   const response = await get<IUser | null>(urls.userInfo, {
     method: "GET",
     headers: {
@@ -14,6 +17,9 @@ const getUserInfo = async () => {
     },
   });
   if (response && response.parsedBody) {
+    if (response.parsedBody.auth === false) {
+      return null;
+    }
     return response.parsedBody;
   }
   return null;

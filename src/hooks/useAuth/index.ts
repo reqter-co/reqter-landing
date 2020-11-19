@@ -15,9 +15,8 @@ const useAuth = () => {
   const dispatch = useAuthDispatch();
   // const { push } = useRouter();
   const isAuthenticated = useAuthState("isAuthenticated");
-  const isLoggedOut = useAuthState("isLoggedOut");
+  const isLoggedOutFromHeaderMenu = useAuthState("isLoggedOutFromHeaderMenu");
   const redirectPage = useAuthState("redirectPage");
-  const isRedirected = useAuthState("isRedirected");
   const handleLoginSuccess = (token: string) => {
     storage.setItem("@caaser-token", token);
     dispatch({ type: "LOGIN_SUCCESS" });
@@ -36,8 +35,8 @@ const useAuth = () => {
     // }
   };
   const logout = () => {
-    storage.removeItem("@caaser-token");
     dispatch({ type: "LOGOUT" });
+    storage.removeItem("@caaser-token");
   };
   const setRedirectPage = (pageName: string) => {
     dispatch({ type: "SET_REDIRECT_PAGE", payload: pageName });
@@ -123,11 +122,10 @@ const useAuth = () => {
   return {
     _login,
     _signUp,
-    isRedirected,
     redirectPage,
     setRedirectPage,
     isAuthenticated,
-    isLoggedOut,
+    isLoggedOutFromHeaderMenu,
     handleLoginSuccess,
     logout,
     _forgotPassSendCode,
