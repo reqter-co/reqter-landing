@@ -14,6 +14,8 @@ import CustomButton from "@Shared/components/Button";
 import useAuth from "@Hooks/useAuth";
 import PasswordInput from "@Shared/components/Form/Password/password.component";
 import { ISignUpFailed, IUser } from "@Interfaces/user";
+import useNotify from "@Hooks/useNotify";
+import { saveToken } from "@Utils/index";
 import {
   Content,
   Title,
@@ -22,7 +24,7 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
-import storage from "src/services/storage";
+import useUser from "@Hooks/useUser";
 
 type Props = {
   data: ISignUpPage;
@@ -39,7 +41,9 @@ const SignUpForm = ({ data }: Props) => {
   const { push } = useRouter();
   const { register, errors, handleSubmit } = useForm<IFormProps>();
   const { getKeyValue } = useDataPath();
+  const { showNotify } = useNotify();
   const [loading, toggleLoading] = useState(false);
+  const { mutateUser } = useUser({});
 
   const onSubmit = ({ fullname, email, password }: IFormProps) => {
     if (!loading) {
@@ -57,13 +61,22 @@ const SignUpForm = ({ data }: Props) => {
                 type: "error",
               });
             } else {
+              saveToken((result as IUser).access_token);
               notify({
                 description: "You registered successfully",
                 type: "success",
               });
-              storage.setItem("@caaser-token", (result as IUser).access_token);
+              mutateUser(result as IUser);
               push("/spaces");
             }
+        },
+        (error) => {
+          console.log(error);
+          toggleLoading(false);
+          showNotify({
+            type: "error",
+            description: "Signup failed.",
+          });
         }
       );
     }

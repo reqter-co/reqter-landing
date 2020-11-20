@@ -1,4 +1,4 @@
-import storage from "../../services/storage";
+import { saveToken, removeToken } from "@Utils/index";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
 // import useRouter from "@Hooks/useRouter";
 // import { mutate } from "swr";
@@ -18,7 +18,7 @@ const useAuth = () => {
   const isLoggedOutFromHeaderMenu = useAuthState("isLoggedOutFromHeaderMenu");
   const redirectPage = useAuthState("redirectPage");
   const handleLoginSuccess = (token: string) => {
-    storage.setItem("@caaser-token", token);
+    saveToken(token);
     dispatch({ type: "LOGIN_SUCCESS" });
     // const redirectUrl = process.env.NEXT_PUBLIC_REDIRECT_LOGIN_ADDRESS;
     // if (redirectUrl) {
@@ -36,7 +36,7 @@ const useAuth = () => {
   };
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    storage.removeItem("@caaser-token");
+    removeToken();
   };
   const setRedirectPage = (pageName: string) => {
     dispatch({ type: "SET_REDIRECT_PAGE", payload: pageName });
@@ -45,34 +45,30 @@ const useAuth = () => {
   const _login = async (
     username: string,
     password: string,
-    onFinished: (result: any) => void
+    onSuccess: (result: any) => void,
+    onError: (error: any) => void
   ) => {
     try {
       const result = await login(username, password);
       if (result) handleLoginSuccess(result?.access_token);
-      if (onFinished) {
-        onFinished(result);
-      }
+      if (onSuccess) onSuccess(result);
     } catch (error) {
-      if (onFinished) {
-        onFinished(error);
-      }
+      if (onError) onError(error);
     }
   };
   const _signUp = async (
-    fullname: string,
+    fullName: string,
     email: string,
     password: string,
-    onFinished: (result: IUser | ISignUpFailed | null) => void
+    onSuccess: (result: IUser | ISignUpFailed | null) => void,
+    onError: (error: any) => void
   ) => {
     try {
-      const result = await signUp(fullname, email, password);
+      const result = await signUp(fullName, email, password);
       dispatch({ type: "LOGIN_SUCCESS" });
-      onFinished(result);
+      if (onSuccess) onSuccess(result);
     } catch (error) {
-      if (onFinished) {
-        onFinished(error);
-      }
+      if (onError) onError(error);
     }
   };
   const _forgotPassSendCode = async (

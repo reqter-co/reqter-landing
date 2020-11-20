@@ -1,7 +1,7 @@
-import storage from "../../services/storage";
+import { getToken } from "@Utils/index";
 const isBrowser = typeof window !== "undefined";
 export const INITIAL_STATE = {
-  isAuthenticated: isBrowser && !!storage.getItem("@caaser-token"),
+  isAuthenticated: isBrowser && !!getToken(),
   isLoggedOutFromHeaderMenu: false,
   redirectPage: "",
 };

@@ -11,7 +11,7 @@ type Props = {
 const ForgetPassWizard = ({ data }: Props) => {
   const loginPage = data;
 
-  const [tab, changeTab] = useState(1);
+  const [tab, changeTab] = useState(4);
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
   const handleSuccessSendCode = (email: string) => {
