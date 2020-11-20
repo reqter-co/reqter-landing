@@ -3,21 +3,28 @@ import useSWR from "swr";
 import useRouter from "@Hooks/useRouter";
 import { getUserInfo } from "@Core/api/auth";
 import useAuth from "@Hooks/useAuth";
+import { getToken } from "@Utils/index";
 type Props = {
-  redirectTo?: boolean | string;
+  redirectTo?: string;
 };
-export default function useUser({ redirectTo = false }: Props) {
+export default function useUser({ redirectTo = "" }: Props) {
+  const { data: user, mutate: mutateUser, error } = useSWR(
+    "user-api",
+    getUserInfo
+  );
   const { isLoggedOutFromHeaderMenu } = useAuth();
-  const { data: user, mutate: mutateUser } = useSWR("/api/user", getUserInfo);
   const { push } = useRouter();
   useEffect(() => {
     if (!redirectTo) return;
-    if (redirectTo && !user) {
-      if (!isLoggedOutFromHeaderMenu) {
-        push(redirectTo as string);
+    if (!isLoggedOutFromHeaderMenu) {
+      const token = getToken();
+      if ((error && !user) || !token) {
+        if (redirectTo) {
+          push(redirectTo);
+        }
       }
     }
-  }, [user, redirectTo]);
+  }, [user, error]);
 
   return { user, mutateUser };
 }

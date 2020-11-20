@@ -1,14 +1,12 @@
 import { get, post, put } from "@Utils/http";
 import { clientid, urls } from "@Core/constants";
-import storage from "../../services/storage";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
+import { getToken } from "@Utils/index";
 
 // =====================================================
 const getUserInfo = async () => {
-  const token = storage.getItem("@caaser-token");
-  if (!token) {
-    return null;
-  }
+  const token = getToken();
+  console.log(token);
   const response = await get<IUser | null>(urls.userInfo, {
     method: "GET",
     headers: {
@@ -16,6 +14,7 @@ const getUserInfo = async () => {
       authorization: "Bearer " + token,
     },
   });
+  console.log(response);
   if (response && response.parsedBody) {
     if (response.parsedBody.auth === false) {
       return null;
@@ -44,7 +43,6 @@ const login = async (username: string, password: string) => {
   }
   return null;
 };
-
 const signUp = async (fullname: string, email: string, password: string) => {
   const response = await post<IUser | ISignUpFailed>(
     urls.signUp,
@@ -67,7 +65,6 @@ const signUp = async (fullname: string, email: string, password: string) => {
   }
   return null;
 };
-
 const forgotPass_SendCode = async (email: string) => {
   const response = await put(
     urls.forgotPass_sendCode,
@@ -127,6 +124,28 @@ const forgotPass_ResetPass = async (token: string, newpassword: string) => {
   }
   return null;
 };
+const confirmEmail = async (token: string) => {
+  let response;
+  try {
+    response = await put(
+      urls.confirmEmail,
+      {},
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
 
 export {
   login,
@@ -135,4 +154,5 @@ export {
   forgotPass_SendCode,
   forgotPass_VerifyCode,
   forgotPass_ResetPass,
+  confirmEmail,
 };

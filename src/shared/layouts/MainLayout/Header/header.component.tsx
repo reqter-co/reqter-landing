@@ -48,7 +48,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   return (
     <>
       <Wrapper
-        css={[(isSticky || !checkIsTransparent()) && tw`shadow-lg`]}
+        css={[(isSticky || !checkIsTransparent()) && tw`shadow`]}
         isSticky={isSticky}
         isTransparent={checkIsTransparent()}
       >

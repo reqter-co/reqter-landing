@@ -17,7 +17,6 @@ const saveResult = (key: string, value: any) => {
 };
 // =====================================================
 export const getToken = async () => {
-  console.log(urls);
   const response = await post<{ access_token: string }>(
     urls.token,
     {},

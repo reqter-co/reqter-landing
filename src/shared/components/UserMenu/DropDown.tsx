@@ -25,8 +25,8 @@ const UserMenu = ({
   function handleLogout() {
     onClickOutside();
     logout();
-    mutateUser(null);
     push("/home");
+    mutateUser(null);
   }
 
   return (

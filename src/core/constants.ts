@@ -15,6 +15,7 @@ export const defaultMetaTags: MetaTags = {
 
 export const clientid =
   process.env.NEXT_PUBLIC_CLIENT_ID || "03387475-3e13-4781-ab3d-d155515c7cb7";
+export const TOKEN_KEY = "@reqter-token";
 // ============================================================
 const baseUrl = process.env.NEXT_PUBLIC_DATA_BASE_URL;
 const authBaseUrl = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
@@ -37,4 +38,5 @@ export const urls = {
   forgotPass_sendCode: authBaseUrl + "/auth/forgotpassword",
   forgotPass_verifyCode: authBaseUrl + "/auth/verifycode",
   forgotPass_resetPass: authBaseUrl + "/auth/resetpassword",
+  confirmEmail: authBaseUrl + "/auth/confirmemail",
 };

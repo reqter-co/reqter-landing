@@ -12,6 +12,7 @@ import useDataPath from "@Hooks/useDataPath";
 import { ILogin } from "@Interfaces/login";
 import { emailPattern } from "@Shared/helper/patterns";
 import CustomButton from "@Shared/components/Button";
+import useNotify from "@Hooks/useNotify";
 import {
   Content,
   Title,
@@ -33,13 +34,16 @@ type IFormProps = {
 
 const LoginForm = ({ data }: Props) => {
   const loginPage = data;
-  const { mutateUser } = useUser({});
   const { _login } = useAuth();
   const { push } = useRouter();
+  const { mutateUser } = useUser({});
+  const { showNotify } = useNotify();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
-      email: process.env.NEXT_PUBLIC_LOGIN_USERNAME || "",
-      password: process.env.NEXT_PUBLIC_LOGIN_PASSWORD || "",
+      // email: process.env.NEXT_PUBLIC_LOGIN_USERNAME || "",
+      email: "",
+      // password: process.env.NEXT_PUBLIC_LOGIN_PASSWORD || "",
+      password: "",
     },
   });
   const { getKeyValue } = useDataPath();
@@ -48,11 +52,23 @@ const LoginForm = ({ data }: Props) => {
   const onSubmit = ({ email, password }: IFormProps) => {
     if (!loading) {
       toggleLoading(true);
-      _login(email, password, async () => {
-        await mutateUser(null);
-        toggleLoading(false);
-        push("/spaces");
-      });
+      _login(
+        email,
+        password,
+        () => {
+          mutateUser(null);
+          toggleLoading(false);
+          push("/spaces");
+        },
+        (error) => {
+          console.log(error);
+          toggleLoading(false);
+          showNotify({
+            type: "error",
+            description: "Login failed.",
+          });
+        }
+      );
     }
   };
   // function handleSocialLogin(user: any) {}

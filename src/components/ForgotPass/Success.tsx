@@ -3,7 +3,7 @@ import Button from "@Shared/components/Button";
 import { theme } from "twin.macro";
 const SuccessForgetPass = () => {
   return (
-    <div className="flex justify-center flex-col h-full px-5">
+    <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center">
       <svg
         className="self-center"
         id="bfbf73d7-c530-40db-b058-cfcd33b42d36"
@@ -203,7 +203,7 @@ const SuccessForgetPass = () => {
           />
         </g>
       </svg>
-      <h1 className="text-xl font-semibold mt-5">
+      <h1 className="text-xl font-semibold mt-5 self-center">
         Your password changed successfully.
       </h1>
       <h3 className="my-4">
