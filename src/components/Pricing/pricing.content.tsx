@@ -1,5 +1,4 @@
 import { theme } from "twin.macro";
-import {} from "./pricing.style";
 import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
 import FreePlan from "./FreePlan/freePlan.component";
 import Section from "@Shared/components/Section";

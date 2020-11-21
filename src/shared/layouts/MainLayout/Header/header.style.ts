@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import tw, { theme } from "twin.macro";
+import tw from "twin.macro";
 import { md, sm } from "@Utils/mediaQueries";
 type Props = {
   isSticky?: boolean;
@@ -8,16 +8,8 @@ type Props = {
   css?: any;
 };
 export const Wrapper = styled.header<Props>`
+  ${tw`w-full z-50 w-full bg-white top-0 fixed`};
   height: 90px;
-  ${tw`w-full z-50 w-full`};
-  background-color: ${({ isSticky, isTransparent }) =>
-    !isTransparent
-      ? theme`colors.white`
-      : isSticky
-      ? "rgba(255,255,255,1)"
-      : `transparent`};
-  top: 0;
-  position: fixed;
 `;
 export const Content = styled.div`
   ${tw`max-w-6xl m-auto h-full flex items-center relative`};
@@ -36,8 +28,8 @@ export const Menu = styled.ul`
     ${tw`hidden`}
   }
 `;
-export const MenuItem = styled.li<{ className?: string }>`
-  ${tw`font-bold px-6 cursor-pointer text-black text-base`}
+export const MenuItem = styled.li<{ css?: any }>`
+  ${tw`font-bold px-6 cursor-pointer transition duration-300 text-base`}
 `;
 export const Actions = styled.div`
   ${tw`absolute right-0`};

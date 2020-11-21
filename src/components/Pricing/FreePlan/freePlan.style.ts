@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-import { xs } from "@Utils/mediaQueries";
+// import { xs } from "@Utils/mediaQueries";
 
 export const Wrapper = styled.div`
   ${tw`m-auto flex bg-black-light rounded-lg p-8 max-w-4xl text-white my-10 px-10 tab-port:mx-5 tab-port:flex-col`};
