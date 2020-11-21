@@ -53,13 +53,23 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
             <AppLogo />
           </Logo>
           <Menu>
-            <MenuItem>
-              <Link href="/products">
-                {getKeyValue(data, "link2title--", "Products")}
+            <MenuItem
+              css={[
+                currentRoute === "/product" && tw`text-secondary-dark-color`,
+              ]}
+            >
+              <Link href="/product">
+                {getKeyValue(data, "link2title--", "Product")}
               </Link>
             </MenuItem>
-            <MenuItem>
-              {getKeyValue(data, "link1title--", "Solutions")}
+            <MenuItem
+              css={[
+                currentRoute === "/solutions" && tw`text-secondary-dark-color`,
+              ]}
+            >
+              <Link href="/solutions">
+                {getKeyValue(data, "link1title--", "Solutions")}
+              </Link>
             </MenuItem>
             <MenuItem>{getKeyValue(data, "link2title--", "Learn")}</MenuItem>
             <MenuItem
