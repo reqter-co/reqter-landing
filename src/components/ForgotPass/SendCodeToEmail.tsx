@@ -48,7 +48,7 @@ const SendCodeToEmail = ({ onSuccessSendCode, data }: Props) => {
     }
   };
   return (
-    <Content onSubmit={handleSubmit(onSubmit)}>
+    <Content onSubmit={handleSubmit(onSubmit)}className="fade-in">
       <Title>
         {getKeyValue(loginPage, "formtitle1", "Get recovery password")}
       </Title>

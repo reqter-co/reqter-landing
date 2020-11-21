@@ -43,26 +43,34 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   }, []);
 
   const checkIsTransparent = (): boolean => {
-    return currentRoute === `/`;
+    return currentRoute === `/spaces` || currentRoute === `/profile`;
   };
   return (
     <>
-      <Wrapper
-        css={[(isSticky || !checkIsTransparent()) && tw`shadow`]}
-        isSticky={isSticky}
-        isTransparent={checkIsTransparent()}
-      >
+      <Wrapper css={[(isSticky || checkIsTransparent()) && tw`shadow`]}>
         <Content>
           <Logo onClick={() => push("/")}>
             <AppLogo />
           </Logo>
           <Menu>
-            <MenuItem>{getKeyValue(data, "link2title--", "Products")}</MenuItem>
+            <MenuItem>
+              <Link href="/products">
+                {getKeyValue(data, "link2title--", "Products")}
+              </Link>
+            </MenuItem>
             <MenuItem>
               {getKeyValue(data, "link1title--", "Solutions")}
             </MenuItem>
             <MenuItem>{getKeyValue(data, "link2title--", "Learn")}</MenuItem>
-            <MenuItem>{getKeyValue(data, "link1title--", "Pricing")}</MenuItem>
+            <MenuItem
+              css={[
+                currentRoute === "/pricing" && tw`text-secondary-dark-color`,
+              ]}
+            >
+              <Link href="/pricing">
+                {getKeyValue(data, "link1title--", "Pricing")}
+              </Link>
+            </MenuItem>
             <MenuItem>{getKeyValue(data, "link2title--", "Blog")}</MenuItem>
           </Menu>
           <Actions className="tab-port:hidden">

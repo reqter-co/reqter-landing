@@ -49,7 +49,7 @@ const UserMenu = ({
       </Link>
       <MenuItem onClick={handleLogout}>
         <MenuIcon>
-          <Icon name="time" />
+          <Icon name="sign-out" />
         </MenuIcon>
         Logout
       </MenuItem>

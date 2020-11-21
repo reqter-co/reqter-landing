@@ -50,7 +50,7 @@ const ResetPass = ({ data, token, onSuccessChangePassword }: Props) => {
     }
   };
   return (
-    <Content onSubmit={handleSubmit(onSubmit)}>
+    <Content onSubmit={handleSubmit(onSubmit)}className="fade-in">
       <Title>{getKeyValue(loginPage, "formtitle1", "Reset password")}</Title>
       <Description>
         {getKeyValue(loginPage, "formdescription1", "Enter new password")}
