@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     --bg-color: ${theme`colors.black`}
   }
   .logo-cls-1 {
-    fill:${theme`colors.secondary-light-color`};
+    fill:${theme`colors.primary-light-color`};
   }
   .logo-cls-2,
   .logo-cls-3 {
@@ -23,7 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     stroke-width: 4.22px;
   }
   .logo-cls-4 {
-    fill:${theme`colors.secondary-dark-color`};
+    fill:${theme`colors.primary-light-color`};
   }
 
   .fade-in {
