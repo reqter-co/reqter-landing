@@ -1,9 +1,8 @@
-import Link from "@Shared/components/Link";
 import Button from "@Shared/components/Button";
 import { theme } from "twin.macro";
 const SuccessForgetPass = () => {
   return (
-    <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center">
+    <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center fade-in">
       <svg
         className="self-center"
         id="bfbf73d7-c530-40db-b058-cfcd33b42d36"
@@ -210,8 +209,8 @@ const SuccessForgetPass = () => {
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse minima
         similique culpa porro quam, aliquid at
       </h3>
-      <Button primary size="lg">
-        <Link href="/login">Login</Link>
+      <Button primary link href="/login" size="lg">
+        Login
       </Button>
     </div>
   );

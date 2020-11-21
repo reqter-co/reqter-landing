@@ -1,10 +1,10 @@
-import Link from "@Shared/components/Link";
 import Button from "@Shared/components/Button";
 import { theme } from "twin.macro";
 
 const ConfirmEmailContent = ({ confirmResult }: { confirmResult: any }) => {
+  console.log(confirmResult);
   return (
-    <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center">
+    <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center fade-in">
       <svg
         className="self-center"
         id="a14ba7ff-79c5-4507-8a0b-0e8afb192fdb"
@@ -162,8 +162,8 @@ const ConfirmEmailContent = ({ confirmResult }: { confirmResult: any }) => {
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse minima
         similique culpa porro quam, aliquid at
       </h3>
-      <Button primary size="lg">
-        <Link href="/login">Login</Link>
+      <Button primary link href="/login" size="lg">
+        Login
       </Button>
     </div>
   );

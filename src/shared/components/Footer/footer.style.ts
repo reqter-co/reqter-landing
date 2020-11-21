@@ -2,14 +2,13 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { xs, sm, md } from "@Utils/mediaQueries";
 export const Wrapper = styled.div`
-  background-color: ;
   ${tw`py-5 bg-black-light`};
   ${xs} {
     ${tw`py-0`};
   }
 `;
 export const Container = styled.div`
-  ${tw`py-16 flex max-w-6xl m-auto text-white`};
+  ${tw`py-16 pt-6 flex max-w-6xl m-auto text-white`};
   ${md} {
     ${tw`px-4`};
   }

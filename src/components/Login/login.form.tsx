@@ -74,7 +74,7 @@ const LoginForm = ({ data }: Props) => {
   // function handleSocialLogin(user: any) {}
   // function handleSocialLoginFailure(error: any) {}
   return (
-    <Content onSubmit={handleSubmit(onSubmit)}>
+    <Content onSubmit={handleSubmit(onSubmit)} className="fade-in">
       <Title>{getKeyValue(loginPage, "formtitle")}</Title>
       <Description>{getKeyValue(loginPage, "formdescription")}</Description>
       <Input

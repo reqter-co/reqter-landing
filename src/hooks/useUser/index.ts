@@ -3,7 +3,6 @@ import useSWR from "swr";
 import useRouter from "@Hooks/useRouter";
 import { getUserInfo } from "@Core/api/auth";
 import useAuth from "@Hooks/useAuth";
-import { getToken } from "@Utils/index";
 type Props = {
   redirectTo?: string;
 };
@@ -17,8 +16,7 @@ export default function useUser({ redirectTo = "" }: Props) {
   useEffect(() => {
     if (!redirectTo) return;
     if (!isLoggedOutFromHeaderMenu) {
-      const token = getToken();
-      if ((error && !user) || !token) {
+      if (error && !user) {
         if (redirectTo) {
           push(redirectTo);
         }

@@ -49,7 +49,7 @@ const VerifyCode = ({ data, email, onSuccessVerifyCode }: Props) => {
     }
   };
   return (
-    <Content onSubmit={handleSubmit(onSubmit)}>
+    <Content onSubmit={handleSubmit(onSubmit)} className="fade-in">
       <Title>{getKeyValue(loginPage, "formtitle1", "Verify sent code")}</Title>
       <Description>
         {getKeyValue(loginPage, "formdescription1", "Enter the code just sent")}

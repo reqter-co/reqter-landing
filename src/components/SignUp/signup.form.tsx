@@ -1,7 +1,6 @@
 import tw from "twin.macro";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useRouter from "@Hooks/useRouter";
 import Input from "@Shared/components/Form/Input";
 import { notify } from "@Shared/components/Toast/toast.component";
 // import Icon from "@Shared/components/Icon";
@@ -15,7 +14,7 @@ import useAuth from "@Hooks/useAuth";
 import PasswordInput from "@Shared/components/Form/Password/password.component";
 import { ISignUpFailed, IUser } from "@Interfaces/user";
 import useNotify from "@Hooks/useNotify";
-import { saveToken } from "@Utils/index";
+import Success from "./signup.success";
 import {
   Content,
   Title,
@@ -24,7 +23,6 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
-import useUser from "@Hooks/useUser";
 
 type Props = {
   data: ISignUpPage;
@@ -38,12 +36,11 @@ type IFormProps = {
 const SignUpForm = ({ data }: Props) => {
   const signupPage = data;
   const { _signUp } = useAuth();
-  const { push } = useRouter();
   const { register, errors, handleSubmit } = useForm<IFormProps>();
   const { getKeyValue } = useDataPath();
   const { showNotify } = useNotify();
   const [loading, toggleLoading] = useState(false);
-  const { mutateUser } = useUser({});
+  const [tab, changeTab] = useState("form");
 
   const onSubmit = ({ fullname, email, password }: IFormProps) => {
     if (!loading) {
@@ -61,13 +58,7 @@ const SignUpForm = ({ data }: Props) => {
                 type: "error",
               });
             } else {
-              saveToken((result as IUser).access_token);
-              notify({
-                description: "You registered successfully",
-                type: "success",
-              });
-              mutateUser(result as IUser);
-              push("/spaces");
+              changeTab("success");
             }
         },
         (error) => {
@@ -81,8 +72,10 @@ const SignUpForm = ({ data }: Props) => {
       );
     }
   };
-  return (
-    <Content onSubmit={handleSubmit(onSubmit)}>
+  return tab === "success" ? (
+    <Success />
+  ) : (
+    <Content onSubmit={handleSubmit(onSubmit)} className="fade-in">
       <Title>{getKeyValue(signupPage, "formtitle")}</Title>
       <Description>{getKeyValue(signupPage, "formdescription")}</Description>
       <Input
