@@ -81,7 +81,15 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
                 {getKeyValue(data, "link1title--", "Pricing")}
               </Link>
             </MenuItem>
-            <MenuItem>{getKeyValue(data, "link2title--", "Blog")}</MenuItem>
+            <MenuItem
+              css={[
+                currentRoute === "/blog" && tw`text-secondary-dark-color`,
+              ]}
+            >
+              <Link href="/blog">
+                {getKeyValue(data, "link2title--", "Blog")}
+              </Link>
+            </MenuItem>
           </Menu>
           <Actions className="tab-port:hidden">
             {!user ? (
