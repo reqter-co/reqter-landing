@@ -2,14 +2,8 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export const Wrapper = styled.article`
-  ${tw`flex flex-col mb-5 w-1/2 no-underline p-2 px-3`};
+  ${tw`flex flex-col mb-5 w-1/2 no-underline p-2 px-3 hover:shadow-lg cursor-pointer`};
   ${tw`phone:w-full`};
-  a {
-    ${tw`flex flex-col w-full items-start h-full`};
-    text-decoration: none !important;
-  }
-  * {
-  }
 `;
 
 export const ImageBox = styled.div`
@@ -39,9 +33,9 @@ export const TagItem = styled.div`
   margin-inline-end: 10px;
 `;
 export const Footer = styled.div`
-  ${tw`flex justify-between w-full`}
+  ${tw`flex justify-between w-full items-center`}
 `;
 
 export const Date = styled.div`
-  ${tw`text-lg`};
+  ${tw`text-sm text-gray-500`};
 `;

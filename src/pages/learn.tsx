@@ -5,13 +5,19 @@ import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
 import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
 import Content from "@Components/Learn/learn.content";
-
+import { IBlog } from "@Interfaces/blog";
+import { getAllBlogs } from "@Core/api/common-api";
 interface IProps {
   headerData: any;
   footerData: any;
+  learns: IBlog[];
 }
 
-const Blog: NextPage<IProps, any> = ({ headerData, footerData }) => {
+const LearnPage: NextPage<IProps, any> = ({
+  headerData,
+  footerData,
+  learns,
+}) => {
   return (
     <Layout
       metaTags={defaultMetaTags}
@@ -19,25 +25,29 @@ const Blog: NextPage<IProps, any> = ({ headerData, footerData }) => {
       headerData={headerData}
     >
       <PageWrapper
-        title="ReqterCMS Learn"
+        title="ReqterCMS Academy"
         description={`Answer your questions around "What is a Headless CMS?", "What is GraphQL?", "What is a DXP?", and more, with our ReqterCMS Knowledge Hub.`}
       >
-        <Content />
+        <Content data={learns} />
       </PageWrapper>
     </Layout>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { headerData, footerData } = await getLandingPageData();
+  const [{ headerData, footerData }, learns] = await Promise.all([
+    getLandingPageData(),
+    getAllBlogs(),
+  ]);
 
   return {
     props: {
       headerData,
       footerData,
+      learns,
     },
     revalidate: 60,
   };
 };
 
-export default Blog;
+export default LearnPage;

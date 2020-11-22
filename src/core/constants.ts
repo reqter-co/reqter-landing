@@ -39,4 +39,5 @@ export const urls = {
   forgotPass_verifyCode: authBaseUrl + "/auth/verifycode",
   forgotPass_resetPass: authBaseUrl + "/auth/resetpassword",
   confirmEmail: authBaseUrl + "/auth/confirmemail",
+  allBlogs: "",
 };

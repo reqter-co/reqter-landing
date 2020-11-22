@@ -11,39 +11,41 @@ import {
 } from "./blog-card.style";
 import Button from "@Shared/components/Button";
 import tw from "twin.macro";
-import { Link } from "@Shared/components/Footer/footer.style";
+import Link from "@Shared/components/Link";
+import { IBlog } from "@Interfaces/blog";
 interface IProps {
-  data: {
-    title: string;
-    tags: any;
-    description: string;
-    image?: string;
-    slug: string;
-  };
+  data: IBlog;
+  sender: "learn" | "blog";
 }
-const Card: React.FC<IProps> = ({ data }) => {
-  const { title, description, tags, slug, image } = data;
+const Card = ({ data, sender }: IProps) => {
+  const { name, slug, thumbnail, publishdate, shortdescription, tags } = data;
   return (
-    <Wrapper>
-      <Link href={`/blog/${slug}`}>
+    <Link href={`/${sender}/${slug}`}>
+      <Wrapper>
         <ImageBox>
-          <Image src={image} />
+          <Image src={thumbnail} />
         </ImageBox>
-        <Title>{title}</Title>
+        <Title>{name}</Title>
         <Tags>
           {tags?.map((item: any, index: string) => (
             <TagItem key={index}>{item.text}</TagItem>
           ))}
         </Tags>
-        <Description>{description}</Description>
+        <Description>{shortdescription}</Description>
         <Footer>
-          <Button secondary cls={tw`self-start phone:self-stretch`} size="sm">
+          <Button
+            secondary
+            link
+            href={`/blog/${slug}`}
+            cls={tw`self-start phone:self-stretch`}
+            size="sm"
+          >
             Read Detail
           </Button>
-          <Date></Date>
+          <Date>{publishdate}</Date>
         </Footer>
-      </Link>
-    </Wrapper>
+      </Wrapper>
+    </Link>
   );
 };
 export default Card;
