@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import PricingContent from "@Components/Pricing/pricing.content";
+import ProductContent from "@Components/Product/product.content";
 
 interface IProps {
   headerData: any;
@@ -17,7 +17,7 @@ const Product: NextPage<IProps, any> = ({ headerData, footerData }) => {
       footerData={footerData}
       headerData={headerData}
     >
-      <PricingContent />
+      <ProductContent />
     </Layout>
   );
 };
