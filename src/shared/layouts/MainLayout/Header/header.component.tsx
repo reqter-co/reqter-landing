@@ -71,7 +71,13 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
                 {getKeyValue(data, "link1title--", "Solutions")}
               </Link>
             </MenuItem>
-            <MenuItem>{getKeyValue(data, "link2title--", "Learn")}</MenuItem>
+            <MenuItem
+              css={[currentRoute === "/learn" && tw`text-secondary-dark-color`]}
+            >
+              <Link href="/learn">
+                {getKeyValue(data, "link2title--", "Learn")}
+              </Link>
+            </MenuItem>
             <MenuItem
               css={[
                 currentRoute === "/pricing" && tw`text-secondary-dark-color`,
@@ -82,9 +88,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
               </Link>
             </MenuItem>
             <MenuItem
-              css={[
-                currentRoute === "/blog" && tw`text-secondary-dark-color`,
-              ]}
+              css={[currentRoute === "/blog" && tw`text-secondary-dark-color`]}
             >
               <Link href="/blog">
                 {getKeyValue(data, "link2title--", "Blog")}
