@@ -1,33 +1,19 @@
 import tw from "twin.macro";
 import { useEffect, useState } from "react";
-import Link from "@Shared/components/Link";
-import {
-  Wrapper,
-  Content,
-  Logo,
-  Menu,
-  MenuItem,
-  Actions,
-  NavBarIcon,
-} from "./header.style";
-import useDataPath from "@Hooks/useDataPath";
-import useUser from "@Hooks/useUser";
+import { Wrapper, Content } from "./header.style";
 import useRouter from "@Hooks/useRouter";
 import { IHeader } from "@Interfaces/header";
-import UserMenu from "@Shared/components/UserMenu";
-import AppLogo from "@Shared/components/AppLogo/logo.component";
-import Button from "@Shared/components/Button";
-import { IUser } from "@Interfaces/user";
-import Icon from "@Shared/components/Icon";
+import DesktopMenu from "./desktop-menu";
+import Logo from "./logo";
+import HeaderLogin from "./header-login";
+import ToggleButton from "./nav-toggle-button";
 
 interface IProps {
   data: IHeader;
 }
 
 const HeaderMenu = ({ data }: IProps): JSX.Element => {
-  const { user } = useUser({});
-  const { push, currentRoute } = useRouter();
-  const { getKeyValue } = useDataPath();
+  const { currentRoute } = useRouter();
   const [isSticky, setSticky] = useState<boolean>(false);
 
   useEffect(() => {
@@ -49,66 +35,10 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
     <>
       <Wrapper css={[(isSticky || checkIsTransparent()) && tw`shadow`]}>
         <Content>
-          <Logo onClick={() => push("/")}>
-            <AppLogo />
-          </Logo>
-          <Menu>
-            <MenuItem
-              css={[
-                currentRoute === "/product" && tw`text-secondary-dark-color`,
-              ]}
-            >
-              <Link href="/product">
-                {getKeyValue(data, "link2title--", "Product")}
-              </Link>
-            </MenuItem>
-            <MenuItem
-              css={[
-                currentRoute === "/solutions" && tw`text-secondary-dark-color`,
-              ]}
-            >
-              <Link href="/solutions">
-                {getKeyValue(data, "link1title--", "Solutions")}
-              </Link>
-            </MenuItem>
-            <MenuItem
-              css={[currentRoute === "/learn" && tw`text-secondary-dark-color`]}
-            >
-              <Link href="/learn">
-                {getKeyValue(data, "link2title--", "Learn")}
-              </Link>
-            </MenuItem>
-            <MenuItem
-              css={[
-                currentRoute === "/pricing" && tw`text-secondary-dark-color`,
-              ]}
-            >
-              <Link href="/pricing">
-                {getKeyValue(data, "link1title--", "Pricing")}
-              </Link>
-            </MenuItem>
-            <MenuItem
-              css={[currentRoute === "/blog" && tw`text-secondary-dark-color`]}
-            >
-              <Link href="/blog">
-                {getKeyValue(data, "link2title--", "Blog")}
-              </Link>
-            </MenuItem>
-          </Menu>
-          <Actions className="tab-port:hidden">
-            {!user ? (
-              <Button primary size="md">
-                <Link href="/login">{getKeyValue(data, "link3title")}</Link>
-              </Button>
-            ) : (
-              <UserMenu user={user as IUser} />
-            )}
-          </Actions>
-          <Actions>
-            <NavBarIcon>
-              <Icon name="align-right" />
-            </NavBarIcon>
-          </Actions>
+          <Logo />
+          <DesktopMenu data={data} />
+          <HeaderLogin data={data} />
+          <ToggleButton />
         </Content>
       </Wrapper>
     </>

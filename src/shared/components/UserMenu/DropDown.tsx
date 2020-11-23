@@ -39,12 +39,12 @@ const UserMenu = ({
           My Spaces
         </MenuItem>
       </Link>
-      <Link href="/profile">
+      <Link href="/account">
         <MenuItem>
           <MenuIcon>
             <Icon name="math" />
           </MenuIcon>
-          Profile
+          Account
         </MenuItem>
       </Link>
       <MenuItem onClick={handleLogout}>
