@@ -12,6 +12,7 @@ const Tabs = ({
     <TabsContainer>
       {menu?.map((item: any) => (
         <TabItem
+          key={item.id}
           selected={selected && selected.id === item.id}
           onClick={() => onSelectTab(item)}
         >

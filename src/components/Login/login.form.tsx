@@ -1,3 +1,4 @@
+import { queryCache } from "react-query";
 import tw from "twin.macro";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +23,6 @@ import {
   SignupText,
   SignupLinkText,
 } from "./styles";
-import useUser from "@Hooks/useUser";
 
 type Props = {
   data: ILogin;
@@ -36,7 +36,7 @@ const LoginForm = ({ data }: Props) => {
   const loginPage = data;
   const { _login } = useAuth();
   const { push } = useRouter();
-  const { mutateUser } = useUser({});
+  // const { mutateUser } = useUser({});
   const { showNotify } = useNotify();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
@@ -56,16 +56,15 @@ const LoginForm = ({ data }: Props) => {
         email,
         password,
         () => {
-          mutateUser(null);
+          queryCache.setQueryData("user", null);
           toggleLoading(false);
           push("/spaces");
         },
         (error) => {
-          console.log(error);
           toggleLoading(false);
           showNotify({
             type: "error",
-            description: "Login failed.",
+            description: error,
           });
         }
       );
