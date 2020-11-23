@@ -13,9 +13,7 @@ import { IUser, ISignUpFailed } from "@Interfaces/user";
 
 const useAuth = () => {
   const dispatch = useAuthDispatch();
-  // const { push } = useRouter();
   const isAuthenticated = useAuthState("isAuthenticated");
-  const isLoggedOutFromHeaderMenu = useAuthState("isLoggedOutFromHeaderMenu");
   const redirectPage = useAuthState("redirectPage");
   const handleLoginSuccess = (token: string) => {
     saveToken(token);
@@ -121,7 +119,6 @@ const useAuth = () => {
     redirectPage,
     setRedirectPage,
     isAuthenticated,
-    isLoggedOutFromHeaderMenu,
     handleLoginSuccess,
     logout,
     _forgotPassSendCode,

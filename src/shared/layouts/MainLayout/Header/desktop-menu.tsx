@@ -18,6 +18,7 @@ const DesktopMenu = ({ data }: IProps): JSX.Element => {
     <Menu>
       {DESKTOP_MENU_ITEMS.map((menu) => (
         <MenuItem
+          key={menu.id}
           css={[currentRoute === menu.href && tw`text-secondary-dark-color`]}
         >
           <Link href={menu.href}>

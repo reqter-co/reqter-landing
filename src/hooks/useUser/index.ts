@@ -1,28 +1,28 @@
 import { useEffect } from "react";
-import useSWR from "swr";
+import { useQuery } from "react-query";
 import useRouter from "@Hooks/useRouter";
 import { getUserInfo } from "@Core/api/auth";
-import useAuth from "@Hooks/useAuth";
 type Props = {
   redirectTo?: string;
 };
 export default function useUser({ redirectTo = "" }: Props) {
-  const { data: user, mutate: mutateUser, error } = useSWR(
-    "user-api",
-    getUserInfo
-  );
-  const { isLoggedOutFromHeaderMenu } = useAuth();
+  const {
+    isLoading,
+    isError,
+    data: user,
+    error,
+    status,
+    isFetching,
+  } = useQuery("user", getUserInfo);
   const { push } = useRouter();
   useEffect(() => {
     if (!redirectTo) return;
-    if (!isLoggedOutFromHeaderMenu) {
-      if (error) {
-        if (redirectTo) {
-          push(redirectTo);
-        }
+    if (status === "error") {
+      if (redirectTo) {
+        push(redirectTo);
       }
     }
-  }, [user, error, redirectTo]);
+  }, [status]);
 
-  return { user, mutateUser };
+  return { user, isLoading, isError, error, status, isFetching };
 }
