@@ -4,14 +4,13 @@ import {
   Image,
   Title,
   Description,
-  Tags,
-  TagItem,
   Footer,
   Date,
 } from "./blog-card.style";
 import Button from "@Shared/components/Button";
 import tw from "twin.macro";
 import Link from "@Shared/components/Link";
+import Tags from "@Shared/components/Tags";
 import { IBlog } from "@Interfaces/blog";
 interface IProps {
   data: IBlog;
@@ -26,11 +25,7 @@ const Card = ({ data, sender }: IProps) => {
           <Image src={thumbnail} />
         </ImageBox>
         <Title>{name}</Title>
-        <Tags>
-          {tags?.map((item: any, index: string) => (
-            <TagItem key={index}>{item.text}</TagItem>
-          ))}
-        </Tags>
+        <Tags data={tags} />
         <Description>{shortdescription}</Description>
         <Footer>
           <Button

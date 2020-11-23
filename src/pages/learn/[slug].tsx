@@ -4,19 +4,26 @@ import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
 import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
-import { getAllBlogs, getBlogBySlug } from "@Core/api/common-api";
+import RelatedItems from "@Shared/components/Related-blogs";
+import {
+  getAllBlogs,
+  getBlogBySlug,
+  getRelatedItemsByCategory,
+} from "@Core/api/common-api";
 import { IBlog } from "@Interfaces/blog";
-
+import Content from "@Components/BlogDetail";
 interface IProps {
   headerData: any;
   footerData: any;
   blogData: IBlog;
+  relatedItems: IBlog[];
 }
 
 const LearnDetail: NextPage<IProps, any> = ({
   headerData,
   footerData,
   blogData,
+  relatedItems,
 }) => {
   return (
     <Layout
@@ -27,7 +34,12 @@ const LearnDetail: NextPage<IProps, any> = ({
       <PageWrapper
         title={blogData?.name}
         description={blogData?.shortdescription}
-      ></PageWrapper>
+      >
+        <Content data={blogData} />
+        {relatedItems && relatedItems.length && (
+          <RelatedItems data={relatedItems} />
+        )}
+      </PageWrapper>
     </Layout>
   );
 };
@@ -39,12 +51,18 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
     getLandingPageData(),
     getBlogBySlug(slug),
   ]);
+  const relatedItems: any = blogData
+    ? await getRelatedItemsByCategory(blogData.category)
+    : null;
   const { headerData, footerData } = data;
   return {
     props: {
       headerData,
       footerData,
       blogData,
+      relatedItems: relatedItems
+        ? relatedItems.filter((item: any) => item.slug !== slug)
+        : null,
     },
     revalidate: 1,
   };

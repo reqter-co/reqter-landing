@@ -24,14 +24,6 @@ export const Description = styled.h3`
   ${tw`text-gray-900 my-5 leading-7`};
 `;
 
-export const Tags = styled.div`
-  ${tw`flex w-full mt-5`};
-`;
-
-export const TagItem = styled.div`
-  ${tw`text-black text-xs bg-secondary-light-color py-1 px-2 rounded`};
-  margin-inline-end: 10px;
-`;
 export const Footer = styled.div`
   ${tw`flex justify-between w-full items-center`}
 `;

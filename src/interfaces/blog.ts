@@ -6,4 +6,5 @@ export interface IBlog {
   publishdate: string;
   shortdescription: string;
   tags: any;
+  category?: string;
 }
