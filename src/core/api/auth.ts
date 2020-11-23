@@ -6,7 +6,6 @@ import { getToken } from "@Utils/index";
 // =====================================================
 const getUserInfo = async () => {
   const token = getToken();
-  console.log(token);
   const response = await get<IUser | null>(urls.userInfo, {
     method: "GET",
     headers: {
@@ -14,7 +13,6 @@ const getUserInfo = async () => {
       authorization: "Bearer " + token,
     },
   });
-  console.log(response);
   if (response && response.parsedBody) {
     if (response.parsedBody.auth === false) {
       return null;

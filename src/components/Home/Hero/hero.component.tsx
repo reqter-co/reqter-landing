@@ -36,7 +36,7 @@ const Hero = () => {
             <Button
               primary
               size="md"
-              cls={tw`bg-white text-black shadow hover:bg-white hover:shadow-lg py-3`}
+              cls={tw`bg-white text-black shadow hover:bg-white hover:shadow-lg py-3 phone:mb-3`}
             >
               <Link href="/signup">Create a free account</Link>
             </Button>

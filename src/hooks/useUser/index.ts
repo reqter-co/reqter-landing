@@ -16,13 +16,13 @@ export default function useUser({ redirectTo = "" }: Props) {
   useEffect(() => {
     if (!redirectTo) return;
     if (!isLoggedOutFromHeaderMenu) {
-      if (error && !user) {
+      if (error) {
         if (redirectTo) {
           push(redirectTo);
         }
       }
     }
-  }, [user, error]);
+  }, [user, error, redirectTo]);
 
   return { user, mutateUser };
 }
