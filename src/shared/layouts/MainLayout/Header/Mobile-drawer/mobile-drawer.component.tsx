@@ -27,7 +27,7 @@ import useLanguage from "@Hooks/useLanguage";
 import useAuth from "@Hooks/useAuth";
 
 const Drawer = ({ onClose }: { onClose: () => void }) => {
-  const { user, mutateUser } = useUser({});
+  const { user } = useUser({});
   const { currentRoute } = useRouter();
   const { getKeyValue } = useDataPath();
   const { logout } = useAuth();
@@ -39,7 +39,7 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
     onClose();
     logout();
     push("/home");
-    mutateUser(null);
+    // mutateUser(null);
   }
 
   return (
@@ -89,6 +89,7 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
           return menu.needsLogin ? (
             user ? (
               <MenuItem
+                key={menu.id}
                 css={[
                   currentRoute === menu.href
                     ? direction === "ltr"
@@ -104,6 +105,7 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
             ) : null
           ) : (
             <MenuItem
+              key={menu.id}
               css={[
                 currentRoute === menu.href
                   ? direction === "ltr"
