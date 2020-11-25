@@ -17,22 +17,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        vazir: [
-          "Vazir",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          '"Segoe UI"',
-          "Roboto",
-          '"Helvetica Neue"',
-          "Arial",
-          '"Noto Sans"',
-          "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
+        vazir: ["Vazir", "system-ui"],
       },
       colors: {
         "primary-light-color": "#3784ff",

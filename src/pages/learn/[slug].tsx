@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
+import PageWrapper from "src/pages-content/Common/Wrapper/wrapper.component";
 import RelatedItems from "@Shared/components/Related-blogs";
 import {
   getAllBlogs,
@@ -11,7 +11,7 @@ import {
   getRelatedItemsByCategory,
 } from "@Core/api/common-api";
 import { IBlog } from "@Interfaces/blog";
-import Content from "@Components/BlogDetail";
+import Content from "src/pages-content/BlogDetail";
 interface IProps {
   headerData: any;
   footerData: any;

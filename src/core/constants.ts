@@ -41,3 +41,7 @@ export const urls = {
   confirmEmail: authBaseUrl + "/auth/confirmemail",
   allBlogs: "",
 };
+
+export const spaces_urls = {
+  list: "https://jsonplaceholder.typicode.com/albums",
+};

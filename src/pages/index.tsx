@@ -2,11 +2,11 @@ import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
-import Hero from "@Components/Home/Hero/hero.component";
-import Needs from "@Components/Home/Needs";
-import StartFree from "@Components/Home/ForFree/free.component";
-import WhyUs from "@Components/Home/WhyUs";
-import Features from "@Components/Home/Features";
+import Hero from "src/pages-content/Home/Hero/hero.component";
+import Needs from "src/pages-content/Home/Needs";
+import StartFree from "src/pages-content/Home/ForFree/free.component";
+import WhyUs from "src/pages-content/Home/WhyUs";
+import Features from "src/pages-content/Home/Features";
 import { getLandingPageData } from "@Core/api";
 import { LandingProvider } from "@Contexts/landing/landing.provider";
 

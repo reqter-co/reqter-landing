@@ -28,6 +28,8 @@ import {
   FaTimesCircle,
   FaExclamationTriangle,
   FaSignOutAlt,
+  FaFolderPlus,
+  FaPlus,
 } from "react-icons/fa";
 
 const icons: { [key in string]: any } = {
@@ -58,6 +60,8 @@ const icons: { [key in string]: any } = {
   "circle-times": <FaTimesCircle />,
   warning: <FaExclamationTriangle />,
   "sign-out": <FaSignOutAlt />,
+  plus: <FaPlus />,
+  "plus-folder": <FaFolderPlus />,
 };
 const Icon = ({ name = "" }: { name: string }) => {
   return icons[name.toLowerCase()] ? icons[name.toLowerCase()] : "";

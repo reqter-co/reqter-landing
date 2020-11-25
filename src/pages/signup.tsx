@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { NextPage, GetStaticProps } from "next";
 import AuthLayout from "@Shared/layouts/AuthLayout";
-import SignUpForm from "@Components/SignUp/signup.form";
+import SignUpForm from "src/pages-content/SignUp/signup.form";
 import { MetaTags, PageType, RobotsContent } from "@Interfaces/meta-tags";
 import { concatenateStrings } from "@Shared/helper";
 import { getSignUpPageData } from "@Core/api";

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsContext } from "next";
 import AuthLayout from "@Shared/layouts/AuthLayout";
-import ConfirmEmailContent from "@Components/ConfirmEmail/confirmEmail.content";
+import ConfirmEmailContent from "src/pages-content/ConfirmEmail/confirmEmail.content";
 import { MetaTags, PageType, RobotsContent } from "@Interfaces/meta-tags";
 import { concatenateStrings } from "@Shared/helper";
 import { getLoginPageData } from "@Core/api";

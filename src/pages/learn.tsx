@@ -3,8 +3,8 @@ import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
-import Content from "@Components/Learn/learn.content";
+import PageWrapper from "src/pages-content/Common/Wrapper/wrapper.component";
+import Content from "src/pages-content/Learn/learn.content";
 import { IBlog } from "@Interfaces/blog";
 import { getAllBlogs } from "@Core/api/common-api";
 interface IProps {

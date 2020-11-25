@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import ProductContent from "@Components/Product/product.content";
+import ProductContent from "src/pages-content/Product/product.content";
 
 interface IProps {
   headerData: any;

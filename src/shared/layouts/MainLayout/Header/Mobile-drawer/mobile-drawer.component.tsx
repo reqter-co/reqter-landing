@@ -27,7 +27,7 @@ import useLanguage from "@Hooks/useLanguage";
 import useAuth from "@Hooks/useAuth";
 
 const Drawer = ({ onClose }: { onClose: () => void }) => {
-  const { user } = useUser({});
+  const { user, clearUser } = useUser({});
   const { currentRoute } = useRouter();
   const { getKeyValue } = useDataPath();
   const { logout } = useAuth();
@@ -39,7 +39,7 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
     onClose();
     logout();
     push("/home");
-    // mutateUser(null);
+    clearUser();
   }
 
   return (

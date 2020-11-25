@@ -19,7 +19,7 @@
     "target": "esnext",
     "baseUrl": "./",
     "paths": {
-      "@Components/*": ["./src/components/*"],
+      "@PagesContent/*": ["src/pages-content/*"],
       "@Hooks/*": ["./src/hooks/*"],
       "@Utils/*": ["./src/utils/*"],
       "@Interfaces/*": ["./src/interfaces/*"],

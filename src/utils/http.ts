@@ -1,4 +1,5 @@
 import fetch from "isomorphic-unfetch";
+import { getToken } from "@Utils/index";
 interface HttpResponse<T> extends Response {
   parsedBody?: T;
 }
@@ -45,3 +46,21 @@ export async function put<T>(
     new Request(path, { method: "put", body: JSON.stringify(body), ...args })
   );
 }
+
+export const fetchInterceptor = () => {
+  const token = getToken();
+  return {
+    async get<T>(url: string): Promise<T | null> {
+      const response = await get<T>(url, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + token,
+        },
+      });
+      if (response && response.parsedBody) {
+        return response.parsedBody;
+      }
+      return null;
+    },
+  };
+};

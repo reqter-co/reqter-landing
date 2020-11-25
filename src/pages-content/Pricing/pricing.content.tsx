@@ -1,5 +1,5 @@
 import { theme } from "twin.macro";
-import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
+import PageWrapper from "src/pages-content/Common/Wrapper/wrapper.component";
 import FreePlan from "./FreePlan/freePlan.component";
 import Section from "@Shared/components/Section";
 import Plans from "./Plans/plans.component";

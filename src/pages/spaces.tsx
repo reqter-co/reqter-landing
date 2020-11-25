@@ -1,9 +1,10 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import Content from "@Components/Spaces/space.content";
+import Layout from "@Shared/layouts/MainLayout";
+import PageWrapper from "@Shared/components/AuthPageWrapper";
+import Content from "src/pages-content/Spaces/space.content";
 import useUser from "@Hooks/useUser";
 interface IProps {
   headerData: any;
@@ -19,11 +20,7 @@ const Spaces: NextPage<IProps> = ({ headerData, footerData }) => {
       footerData={footerData}
       headerData={headerData}
     >
-      {!user ? (
-        <div className="mt-32 h-64 max-w-6xl m-auto">Loading...</div>
-      ) : (
-        <Content />
-      )}
+      <PageWrapper>{user && <Content />}</PageWrapper>
     </Layout>
   );
 };
