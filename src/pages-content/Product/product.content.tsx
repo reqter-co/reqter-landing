@@ -1,4 +1,4 @@
-import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
+
 import Card from "@Shared/components/PS-Card/ps-card.component";
 import { CardsContainer } from "./product.style";
 const ProductContent = () => {
@@ -71,16 +71,11 @@ const ProductContent = () => {
     },
   ];
   return (
-    <PageWrapper
-      title="ReqterCMS Product"
-      description="Empower your development and editorial teams' workflows and bring your digital projects to life with ReqterCMS.Deliver the perfect Customer Experience with a scalable and secure Enterprise Headless CMS that seamlessly fits in to your ideal Digital Experience Platform"
-    >
-      <CardsContainer>
-        {list?.map((item, index) => (
-          <Card key={index} isReverse={index % 2 === 0} data={item} />
-        ))}
-      </CardsContainer>
-    </PageWrapper>
+    <CardsContainer>
+      {list?.map((item, index) => (
+        <Card key={index} isReverse={index % 2 === 0} data={item} />
+      ))}
+    </CardsContainer>
   );
 };
 export default ProductContent;

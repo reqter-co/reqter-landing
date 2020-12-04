@@ -4,12 +4,12 @@ import {
   Description,
   Content,
   Children,
-} from "./authPageWrapper.style";
+} from "./user-pages-wrapper.style";
 interface IProps {
   title: string;
   description: string;
 }
-const AuthPageWrapper: React.FC<IProps> = ({
+const UserPagesWrapper: React.FC<IProps> = ({
   title,
   description,
   children,
@@ -24,4 +24,5 @@ const AuthPageWrapper: React.FC<IProps> = ({
     </Wrapper>
   );
 };
-export default AuthPageWrapper;
+
+export default UserPagesWrapper;

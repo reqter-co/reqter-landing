@@ -1,32 +1,28 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
+import { getLayout } from "@Shared/layouts/MainLayout";
+import SEO from "@Shared/components/SEO";
 import { getLandingPageData } from "@Core/api";
-import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
+import PageWrapper from "@Shared/layouts/PublicPagesWrapper/wrapper.component";
 import Content from "src/pages-content/Blog/blog.content";
 import { IBlog } from "@Interfaces/blog";
 import { getAllBlogs } from "@Core/api/common-api";
 interface IProps {
-  headerData: any;
-  footerData: any;
   blogs: IBlog[];
 }
 
-const Blog: NextPage<IProps, any> = ({ headerData, footerData, blogs }) => {
+const Blog: NextPage<IProps> & { getLayout: any } = ({ blogs }) => {
   return (
-    <Layout
-      metaTags={defaultMetaTags}
-      footerData={footerData}
-      headerData={headerData}
-    >
+    <>
+      <SEO tags={defaultMetaTags} />
       <PageWrapper
         title="ReqterCMS Blog"
         description="Read the latest news and stories from the ReqterCMS team, covering announcements, product releases, and updates."
       >
         <Content data={blogs} />
       </PageWrapper>
-    </Layout>
+    </>
   );
 };
 
@@ -46,4 +42,5 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+Blog.getLayout = getLayout;
 export default Blog;

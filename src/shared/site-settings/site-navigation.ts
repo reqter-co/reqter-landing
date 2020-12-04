@@ -15,6 +15,13 @@ export const ACCOUNT_PROFILE = "/account/profile";
 export const ACCOUNT_PAYMENT = "/account/payment";
 export const ACCOUNT_SETTINGS = "/account/settings";
 // =====================
+type Props = {
+  id: string;
+  defaultName: string;
+  href: string;
+  icon: string;
+  needsLogin: boolean;
+};
 export const HOME_MENU_ITEM = {
   id: "nav.home",
   defaultName: "Home",
@@ -52,23 +59,27 @@ export const BLOG_MENU_ITEM = {
   href: BLOG_PAGE,
   needsLogin: false,
 };
-export const SPACES_MENU_ITEM = {
+export const SPACES_MENU_ITEM: Props = {
   id: "nav.spaces",
   defaultName: "My Spaces",
   href: SPACES_PAGE,
+  icon: "health",
   needsLogin: true,
 };
-export const ACCOUNT_MENU_ITEM = {
+export const ACCOUNT_MENU_ITEM: Props = {
   id: "nav.account",
   defaultName: "Account",
   href: ACCOUNT_PAGE,
+  icon: "math",
   needsLogin: true,
 };
-export const LOGOUT_MENU_ITEM = {
+export const LOGOUT_MENU_ITEM: Props = {
   id: "nav.logout",
   defaultName: "Logout",
   href: LOGOUT_PAGE,
   needsLogin: true,
+  
+  icon: "sign-out",
 };
 export const ACCOUNT_PROFILE_SIDEBAR = {
   id: "account.side.profile",
@@ -108,7 +119,7 @@ export const MOBILE_MENU_ITEMS = [
   PRICING_MENU_ITEM,
   BLOG_MENU_ITEM,
 ];
-export const USER_DROPDOWN_MENU_ITEMS = [
+export const USER_DROPDOWN_MENU_ITEMS: Props[] = [
   ...AUTHORIZED_MENU_ITEMS,
   LOGOUT_MENU_ITEM,
 ];

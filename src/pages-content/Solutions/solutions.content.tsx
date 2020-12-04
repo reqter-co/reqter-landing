@@ -1,4 +1,3 @@
-import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
 import Card from "@Shared/components/PS-Card/ps-card.component";
 import { CardsContainer } from "./solutions.style";
 const SolutionsContent = () => {
@@ -77,16 +76,11 @@ const SolutionsContent = () => {
     },
   ];
   return (
-    <PageWrapper
-      title="ReqterCMS empowers you to do your best"
-      description="Build better digital experiences with market-leading APIs. Innovative teams of all sizes use ReqterCMS to scale their technologies and build ambitious market-leading applications."
-    >
-      <CardsContainer>
-        {list?.map((item, index) => (
-          <Card key={index} isReverse={index % 2 === 0} data={item} />
-        ))}
-      </CardsContainer>
-    </PageWrapper>
+    <CardsContainer>
+      {list?.map((item, index) => (
+        <Card key={index} isReverse={index % 2 === 0} data={item} />
+      ))}
+    </CardsContainer>
   );
 };
 export default SolutionsContent;

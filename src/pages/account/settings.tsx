@@ -1,40 +1,27 @@
-import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
-import PageWrapper from "@Shared/components/AuthPageWrapper";
-import AccountContainer from "@Shared/components/Account-Container";
+import { getLayout as getUserLayout } from "@Shared/layouts/UserPagesWrapper";
+import SEO from "@Shared/components/SEO";
+import AccountContainer from "@Shared/layouts/Account-Container";
 import Content from "@PagesContent/Account/Settings";
 import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
 import { AccountProvider } from "@Contexts/account/account.provider";
-interface IProps {
-  headerData: any;
-  footerData: any;
-}
 
-const Settings: NextPage<IProps> = ({ headerData, footerData }) => {
+const Settings: NextPage & { getLayout: any } = () => {
   const { user } = useUser({ redirectTo: "/login" });
 
   return (
-    <Layout
-      metaTags={defaultMetaTags}
-      footerData={footerData}
-      headerData={headerData}
-    >
-      <PageWrapper
-        title="User Account"
-        description="Manage your account to have a great opportunities"
-      >
-        <AccountContainer title="Settings">
-          {user && (
-            <AccountProvider data={{ user }}>
-              <Content />
-            </AccountProvider>
-          )}
-        </AccountContainer>
-      </PageWrapper>
-    </Layout>
+    <>
+      <SEO tags={defaultMetaTags} />
+      <AccountContainer title="Settings">
+        {user && (
+          <AccountProvider data={{ user }}>
+            <Content />
+          </AccountProvider>
+        )}
+      </AccountContainer>
+    </>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
@@ -49,4 +36,12 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
+Settings.getLayout = (page: any, pageProps: any) => {
+  console.log(pageProps);
+  return getUserLayout(
+    page,
+    "User Account",
+    "Manage your account to have a great opportunities"
+  );
+};
 export default Settings;

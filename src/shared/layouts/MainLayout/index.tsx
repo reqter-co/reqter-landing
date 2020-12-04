@@ -1,32 +1,17 @@
 import React from "react";
 import Header from "./Header/header.component";
 import Footer from "@Shared/components/Footer";
-import Meta from "@Shared/components/Meta";
-import { MetaTags } from "@Interfaces/meta-tags";
-import { IHeader } from "@Interfaces/header";
-import { IFooter } from "@Interfaces/footer";
 import { Main, Content } from "./styles";
 
-interface MainProps {
-  metaTags: MetaTags;
-  headerData: IHeader;
-  footerData: IFooter;
-}
-const Layout: React.FC<MainProps> = ({
-  metaTags,
-  headerData,
-  footerData,
-  children,
-}): JSX.Element => {
+const Layout: React.FunctionComponent = ({ children }) => {
   return (
     <Main>
-      <Meta tags={metaTags} />
-      <Header data={headerData} />
+      <Header />
       <Content>{children}</Content>
-      <Footer data={footerData} />
+      <Footer />
       {/* <Modal /> */}
     </Main>
   );
 };
-// export const getLayout = (page: any) => <Layout>{page}</Layout>;
+export const getLayout = (page: any) => <Layout>{page}</Layout>;
 export default Layout;

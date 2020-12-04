@@ -7,12 +7,11 @@ import DesktopMenu from "./desktop-menu";
 import Logo from "./logo";
 import HeaderLogin from "./header-login";
 import ToggleButton from "./nav-toggle-button";
+import useApp from "@Hooks/useApp";
 
-interface IProps {
-  data: IHeader;
-}
-
-const HeaderMenu = ({ data }: IProps): JSX.Element => {
+const HeaderMenu = (): JSX.Element => {
+  const { headerData } = useApp();
+  const data = headerData as IHeader;
   const { currentRoute } = useRouter();
   const [isSticky, setSticky] = useState<boolean>(false);
 
@@ -29,7 +28,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   }, []);
 
   const checkIsTransparent = (): boolean => {
-    return currentRoute === `/spaces` || currentRoute === `/account`;
+    return currentRoute === `/spaces` || currentRoute.includes(`/account`);
   };
   return (
     <>

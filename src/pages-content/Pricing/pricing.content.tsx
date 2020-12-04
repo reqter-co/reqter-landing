@@ -1,15 +1,11 @@
 import { theme } from "twin.macro";
-import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
 import FreePlan from "./FreePlan/freePlan.component";
 import Section from "@Shared/components/Section";
 import Plans from "./Plans/plans.component";
 import FAQ from "./FAQ/faq.component";
 const PricingContent = () => {
   return (
-    <PageWrapper
-      title="ReqterCMS Pricing"
-      description="From ambitious ideas to market-leading applications consumed by millions across the world, our plans scale with you based on your needs."
-    >
+    <>
       <FreePlan />
       <Section
         bgColor={theme`colors.transparent`}
@@ -18,7 +14,7 @@ const PricingContent = () => {
       />
       <Plans />
       <FAQ />
-    </PageWrapper>
+    </>
   );
 };
 export default PricingContent;

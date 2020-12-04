@@ -1,7 +1,7 @@
 import React from "react";
 import FormContainer from "./FormContainer";
 import Info from "./Info";
-import Meta from "@Shared/components/Meta";
+import Meta from "@Shared/components/SEO";
 import { MetaTags } from "@Interfaces/meta-tags";
 import { Wrapper } from "./styles";
 

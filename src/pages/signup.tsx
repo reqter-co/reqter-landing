@@ -51,12 +51,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-// export async function getStaticPaths() {
-//   const locales = await getAppLocales();
-//   return {
-//     paths: locales.map((item: any) => `/${item.locale}/signup`),
-//     fallback: "blocking",
-//   };
-// }
 
 export default SignUp;
