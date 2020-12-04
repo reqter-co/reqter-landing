@@ -1,10 +1,12 @@
-export const initialState = {};
+export const initialState = {
+  user: null,
+};
 
-type ActionType = { type: "SET_SEARCH_TERM"; payload: string };
+type ActionType = { type: "" };
 
 type StateType = typeof initialState;
 
-export function profileReducer(
+export function accountReducer(
   state: StateType,
   action: ActionType
 ): StateType {

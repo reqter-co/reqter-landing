@@ -2,8 +2,12 @@ import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
+import PageWrapper from "@Shared/components/AuthPageWrapper";
+import AccountContainer from "@Shared/components/Account-Container";
+import Content from "@PagesContent/Account/Profile";
 import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
+import { AccountProvider } from "@Contexts/account/account.provider";
 interface IProps {
   headerData: any;
   footerData: any;
@@ -18,26 +22,28 @@ const Profile: NextPage<IProps> = ({ headerData, footerData }) => {
       footerData={footerData}
       headerData={headerData}
     >
-      {!user ? (
-        <div className="mt-32 h-64 max-w-6xl m-auto">Loading...</div>
-      ) : (
-        <div className="mt-32 h-64 max-w-6xl m-auto">Profile</div>
-      )}
+      <PageWrapper
+        title="User Account"
+        description="Manage your account to have a great opportunities"
+      >
+        <AccountContainer title="Profile">
+          {user && (
+            <AccountProvider data={{ user }}>
+              <Content />
+            </AccountProvider>
+          )}
+        </AccountContainer>
+      </PageWrapper>
     </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
-  const {
-    headerData,
-    footerData,
-    landingPageResponse,
-  } = await getLandingPageData();
+  const { headerData, footerData } = await getLandingPageData();
 
   return {
     props: {
       headerData,
       footerData,
-      landingPage: landingPageResponse,
     },
     revalidate: 60,
   };

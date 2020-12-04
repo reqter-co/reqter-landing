@@ -16,7 +16,7 @@ interface IProps {
   data: IBlog;
   sender: "learn" | "blog";
 }
-const Card = ({ data, sender }: IProps) => {
+const BlogCard = ({ data, sender }: IProps) => {
   const { name, slug, thumbnail, publishdate, shortdescription, tags } = data;
   return (
     <Link href={`/${sender}/${slug}`}>
@@ -43,4 +43,4 @@ const Card = ({ data, sender }: IProps) => {
     </Link>
   );
 };
-export default Card;
+export default BlogCard;

@@ -5,12 +5,15 @@ export const LEARN_PAGE = "/learn";
 export const PRICING_PAGE = "/pricing";
 export const BLOG_PAGE = "/blog";
 export const SPACES_PAGE = "/spaces";
-export const ACCOUNT_PAGE = "/account";
+export const ACCOUNT_PAGE = "/account/profile";
 export const LOGOUT_PAGE = "/";
 export const LOGIN_PAGE = "/login";
 export const SIGN_UP_PAGE = "/signup";
 export const FORGOT_PASS_PAGE = "/forgot-pass";
 export const CONFIRM_EMAIL_PAGE = "/confirm-email";
+export const ACCOUNT_PROFILE = "/account/profile";
+export const ACCOUNT_PAYMENT = "/account/payment";
+export const ACCOUNT_SETTINGS = "/account/settings";
 // =====================
 export const HOME_MENU_ITEM = {
   id: "nav.home",
@@ -67,6 +70,27 @@ export const LOGOUT_MENU_ITEM = {
   href: LOGOUT_PAGE,
   needsLogin: true,
 };
+export const ACCOUNT_PROFILE_SIDEBAR = {
+  id: "account.side.profile",
+  title: "Profile",
+  defaultName: "Profile",
+  href: ACCOUNT_PROFILE,
+  needsLogin: true,
+};
+export const ACCOUNT_PAYMENT_SIDEBAR = {
+  id: "account.side.payment",
+  title: "Payment",
+  defaultName: "Payment",
+  href: ACCOUNT_PAYMENT,
+  needsLogin: true,
+};
+export const ACCOUNT_SETTINGS_SIDEBAR = {
+  id: "account.side.settings",
+  title: "Settings",
+  defaultName: "Settings",
+  href: ACCOUNT_SETTINGS,
+  needsLogin: true,
+};
 // ===========================================
 export const AUTHORIZED_MENU_ITEMS = [SPACES_MENU_ITEM, ACCOUNT_MENU_ITEM];
 export const DESKTOP_MENU_ITEMS = [
@@ -87,4 +111,10 @@ export const MOBILE_MENU_ITEMS = [
 export const USER_DROPDOWN_MENU_ITEMS = [
   ...AUTHORIZED_MENU_ITEMS,
   LOGOUT_MENU_ITEM,
+];
+
+export const ACCOUNT_SIDEBAR_ITEMS = [
+  ACCOUNT_PROFILE_SIDEBAR,
+  ACCOUNT_PAYMENT_SIDEBAR,
+  ACCOUNT_SETTINGS_SIDEBAR,
 ];

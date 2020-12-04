@@ -1,17 +1,19 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import { getLandingPageData } from "@Core/api";
 import Layout from "@Shared/layouts/MainLayout";
 import PageWrapper from "@Shared/components/AuthPageWrapper";
-import Content from "src/pages-content/Spaces/space.content";
+import AccountContainer from "@Shared/components/Account-Container";
+import Content from "@PagesContent/Account/Settings";
+import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
+import { AccountProvider } from "@Contexts/account/account.provider";
 interface IProps {
   headerData: any;
   footerData: any;
 }
 
-const Spaces: NextPage<IProps> = ({ headerData, footerData }) => {
+const Settings: NextPage<IProps> = ({ headerData, footerData }) => {
   const { user } = useUser({ redirectTo: "/login" });
 
   return (
@@ -21,29 +23,30 @@ const Spaces: NextPage<IProps> = ({ headerData, footerData }) => {
       headerData={headerData}
     >
       <PageWrapper
-        title="Spaces List"
-        description="Create new one and open on of your spaces to edit"
+        title="User Account"
+        description="Manage your account to have a great opportunities"
       >
-        {user && <Content />}
+        <AccountContainer title="Settings">
+          {user && (
+            <AccountProvider data={{ user }}>
+              <Content />
+            </AccountProvider>
+          )}
+        </AccountContainer>
       </PageWrapper>
     </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
-  const {
-    headerData,
-    footerData,
-    landingPageResponse,
-  } = await getLandingPageData();
+  const { headerData, footerData } = await getLandingPageData();
 
   return {
     props: {
       headerData,
       footerData,
-      landingPage: landingPageResponse,
     },
     revalidate: 60,
   };
 };
 
-export default Spaces;
+export default Settings;

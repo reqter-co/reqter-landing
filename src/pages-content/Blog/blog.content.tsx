@@ -1,4 +1,4 @@
-import Card from "src/pages-content/Common/Blog-Card/blog-card.component";
+import Card from "@Shared/components/Blog-Card/blog-card.component";
 import { BlogContainer } from "./blog.style";
 import Section from "@Shared/components/Section";
 import { IBlog } from "@Interfaces/blog";

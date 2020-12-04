@@ -1,3 +1,4 @@
+import { fadeInUp } from "@Shared/animations";
 import styled from "styled-components";
 import tw, { theme } from "twin.macro";
 export const Wrapper = styled.div`
@@ -22,6 +23,7 @@ export const Name = styled.div`
   margin-inline-start: 5px;
 `;
 export const MenuWrapper = styled.ul`
+  animation: ${fadeInUp} 0.3s;
   ${tw`absolute right-0 bg-white shadow rounded-lg shadow border border-gray-300`};
   width: 200px;
   direction: ${({ direction }: { direction: string }) => direction};

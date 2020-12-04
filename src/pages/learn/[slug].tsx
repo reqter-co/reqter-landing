@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import Layout from "@Shared/layouts/MainLayout";
 import { getLandingPageData } from "@Core/api";
-import PageWrapper from "src/pages-content/Common/Wrapper/wrapper.component";
+import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
 import RelatedItems from "@Shared/components/Related-blogs";
 import {
   getAllBlogs,

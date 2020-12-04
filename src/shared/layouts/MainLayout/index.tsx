@@ -28,4 +28,5 @@ const Layout: React.FC<MainProps> = ({
     </Main>
   );
 };
+// export const getLayout = (page: any) => <Layout>{page}</Layout>;
 export default Layout;

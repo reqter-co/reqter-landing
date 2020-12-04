@@ -29,7 +29,7 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
   }, []);
 
   const checkIsTransparent = (): boolean => {
-    return currentRoute === `/spaces` || currentRoute === `/profile`;
+    return currentRoute === `/spaces` || currentRoute === `/account`;
   };
   return (
     <>

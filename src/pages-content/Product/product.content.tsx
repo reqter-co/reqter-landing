@@ -1,5 +1,5 @@
-import PageWrapper from "src/pages-content/Common/Wrapper/wrapper.component";
-import Card from "src/pages-content/Common/Card/card.component";
+import PageWrapper from "@Shared/components/PublicPagesWrapper/wrapper.component";
+import Card from "@Shared/components/PS-Card/ps-card.component";
 import { CardsContainer } from "./product.style";
 const ProductContent = () => {
   const list = [

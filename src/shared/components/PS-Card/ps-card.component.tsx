@@ -8,7 +8,7 @@ import {
   Right,
   Image,
   Row,
-} from "./card,style";
+} from "./ps-card,style";
 import Button from "@Shared/components/Button";
 import tw from "twin.macro";
 interface IProps {
@@ -20,13 +20,19 @@ interface IProps {
   };
   isReverse: boolean;
 }
-const Card: React.FC<IProps> = ({ data, isReverse }) => {
+const PSCard: React.FC<IProps> = ({ data, isReverse }) => {
   const { header, title, description } = data;
   return (
     <Wrapper>
       <Content>
         <Header>{header}</Header>
-        <Row css={[!isReverse ? tw`flex-row tab-port:flex-col` : tw`flex-row-reverse tab-port:flex-col`]}>
+        <Row
+          css={[
+            !isReverse
+              ? tw`flex-row tab-port:flex-col`
+              : tw`flex-row-reverse tab-port:flex-col`,
+          ]}
+        >
           <Left>
             <Image src="https://media.graphcms.com/resize=w:1200,fit:crop/quality=value:75/output=format:webp/compress/kr4jWOoQLOghTlhdDVUp" />
           </Left>
@@ -42,4 +48,4 @@ const Card: React.FC<IProps> = ({ data, isReverse }) => {
     </Wrapper>
   );
 };
-export default Card;
+export default PSCard;

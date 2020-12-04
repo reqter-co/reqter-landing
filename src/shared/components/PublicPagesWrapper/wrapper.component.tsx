@@ -1,6 +1,6 @@
 import { Wrapper } from "./wrapper.style";
-import Title from "../Title/title.component";
-import Description from "../Description/description.component";
+import Title from "./Title/title.component";
+import Description from "./Description/description.component";
 const PageWrapper: React.FC<{ title: string; description: string }> = ({
   title,
   description,
