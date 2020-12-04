@@ -36,7 +36,6 @@ const LoginForm = ({ data }: Props) => {
   const loginPage = data;
   const { _login } = useAuth();
   const { push } = useRouter();
-  // const { mutateUser } = useUser({});
   const { showNotify } = useNotify();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {

@@ -22,7 +22,7 @@ const ExtendedApp = ({ Component, pageProps }: IAppProps) => {
         <LanguageProvider data={{ appLocales: pageProps.appLocales }}>
           <GlobalStyles />
           {getLayout ? (
-            getLayout(<Component {...pageProps} />)
+            getLayout(<Component {...pageProps} />, pageProps)
           ) : (
             <Component {...pageProps} />
           )}

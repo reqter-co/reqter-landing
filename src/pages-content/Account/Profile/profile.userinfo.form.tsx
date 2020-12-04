@@ -5,9 +5,10 @@ import Input from "@Shared/components/Form/Input";
 import useDataPath from "@Hooks/useDataPath";
 import { emailPattern } from "@Shared/helper/patterns";
 import Submit from "@Shared/components/Button";
-// import useNotify from "@Hooks/useNotify";
 import { FormContainer } from "./profile.style";
+import useNotify from "@Hooks/useNotify";
 import useUser from "@Hooks/useUser";
+import useAuth from "@Hooks/useAuth";
 
 type IFormProps = {
   firstName: string;
@@ -15,8 +16,9 @@ type IFormProps = {
 };
 
 const ProfileUserForm = () => {
-  const { user } = useUser({});
-  // const { showNotify } = useNotify();
+  const { user, setUser } = useUser({});
+  const { showNotify } = useNotify();
+  const { _updateProfile } = useAuth();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
       firstName: user?.profile?.first_name || "",
@@ -26,9 +28,30 @@ const ProfileUserForm = () => {
   const { getKeyValue } = useDataPath();
   const [loading, toggleLoading] = useState(false);
 
-  const onSubmit = () => {
+  const onSubmit = ({ firstName, lastName }: IFormProps) => {
     if (!loading) {
       toggleLoading(true);
+      _updateProfile(
+        firstName,
+        lastName,
+        (user) => {
+          toggleLoading(false);
+          if (user) {
+            setUser(user);
+            showNotify({
+              type: "success",
+              description: "You updated your profile successfully.",
+            });
+          }
+        },
+        (error) => {
+          toggleLoading(false);
+          showNotify({
+            type: "error",
+            description: error,
+          });
+        }
+      );
     }
   };
   return (
@@ -39,7 +62,6 @@ const ProfileUserForm = () => {
         name="firstName"
         ref={register({
           required: true,
-          pattern: emailPattern,
         })}
         hasError={errors.firstName ? true : false}
       />
@@ -48,7 +70,6 @@ const ProfileUserForm = () => {
         name="lastName"
         ref={register({
           required: true,
-          minLength: 6,
         })}
         hasError={errors.lastName ? true : false}
       />

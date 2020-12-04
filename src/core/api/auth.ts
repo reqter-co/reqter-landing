@@ -145,6 +145,30 @@ const confirmEmail = async (token: string) => {
   return null;
 };
 
+const updateProfile = async (first_name: string, last_name: string) => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put<IUser>(
+      urls.updateProfile,
+      { first_name, last_name },
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+
 export {
   login,
   getUserInfo,
@@ -153,4 +177,5 @@ export {
   forgotPass_VerifyCode,
   forgotPass_ResetPass,
   confirmEmail,
+  updateProfile
 };

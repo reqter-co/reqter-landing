@@ -8,6 +8,7 @@ import {
   forgotPass_SendCode,
   forgotPass_VerifyCode,
   forgotPass_ResetPass,
+  updateProfile,
 } from "@Core/api/auth";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
 
@@ -112,6 +113,19 @@ const useAuth = () => {
       }
     }
   };
+  const _updateProfile = async (
+    first_name: string,
+    last_name: string,
+    onSuccess: (user: IUser | null) => void,
+    onError: (error: any) => void
+  ) => {
+    try {
+      const user = await updateProfile(first_name, last_name);
+      onSuccess(user);
+    } catch (error) {
+      if (onError) onError(error);
+    }
+  };
 
   return {
     _login,
@@ -124,6 +138,7 @@ const useAuth = () => {
     _forgotPassSendCode,
     _forgotPassVerifyCode,
     _forgotPassResetPass,
+    _updateProfile,
   };
 };
 
