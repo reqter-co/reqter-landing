@@ -1,13 +1,13 @@
-import { Wrapper } from "./switch.style";
+import { Container } from "./switch.style";
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 const Switch = (props: IProps) => {
   return (
-    <Wrapper>
+    <Container>
       <label className="switch">
         <input type="checkbox" className="primary" {...props} />
         <span className="slider" />
       </label>
-    </Wrapper>
+    </Container>
   );
 };
 export default Switch;

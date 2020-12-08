@@ -47,6 +47,16 @@ export async function put<T>(
   );
 }
 
+export async function del<T>(
+  path: string,
+  body: any,
+  args: HttpRequest
+): Promise<HttpResponse<T>> {
+  return await http<T>(
+    new Request(path, { method: "delete", body: JSON.stringify(body), ...args })
+  );
+}
+
 export const fetchInterceptor = () => {
   const token = getToken();
   return {

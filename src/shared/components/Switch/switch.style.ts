@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import tw, { theme } from "twin.macro";
-export const Wrapper = styled.div`
-  background: transparent;
+export const Container = styled.div<{}>`
   .switch {
     position: relative;
     display: inline-block;
@@ -11,8 +10,6 @@ export const Wrapper = styled.div`
     .switch input {
       display: none;
     }
-
-    /* The slider */
     .slider {
       position: absolute;
       cursor: pointer;
@@ -66,7 +63,6 @@ export const Wrapper = styled.div`
       transform: translateX(26px);
     }
 
-    /* Rounded sliders */
     .slider.round {
       border-radius: 34px;
     }

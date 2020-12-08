@@ -9,6 +9,8 @@ import {
   updateProfile,
   changePassword,
   toggleNotification,
+  sendEmailConfirmation,
+  deleteAccount,
 } from "@Core/api/auth";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
 
@@ -150,6 +152,28 @@ const useAuth = () => {
       if (onError) onError(error);
     }
   };
+  const _sendEmailConfirmation = async (
+    onSuccess: () => void,
+    onError: (error: any) => void
+  ) => {
+    try {
+      await sendEmailConfirmation();
+      onSuccess();
+    } catch (error) {
+      if (onError) onError(error);
+    }
+  };
+  const _deleteAccount = async (
+    onSuccess: () => void,
+    onError: (error: any) => void
+  ) => {
+    try {
+      await deleteAccount();
+      onSuccess();
+    } catch (error) {
+      if (onError) onError(error);
+    }
+  };
 
   return {
     _login,
@@ -165,6 +189,8 @@ const useAuth = () => {
     _updateProfile,
     _changePassword,
     _toggleNotification,
+    _sendEmailConfirmation,
+    _deleteAccount,
   };
 };
 

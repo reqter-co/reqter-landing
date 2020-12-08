@@ -42,6 +42,8 @@ export const urls = {
   updateProfile: authBaseUrl + "/auth/updateprofile",
   changePassword: authBaseUrl + "/auth/changepassword",
   emailNotify: authBaseUrl + "/auth/changenotification",
+  sendEmailConfirmation: authBaseUrl + "/auth/confirmemail",
+  deleteAccount: authBaseUrl + "/auth/delete",
   allBlogs: "",
 };
 

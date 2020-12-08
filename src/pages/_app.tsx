@@ -5,6 +5,7 @@ import { LanguageProvider } from "@Contexts/language/language.provider";
 import "../assets/styles/main.css";
 import { GlobalStyles } from "../assets/styles/global.styles";
 import { Toast } from "@Shared/components/Toast/toast.component";
+import { Alert } from "@Shared/components/Alert/alert.component";
 import { NextPage } from "next";
 interface IAppProps extends AppProps {
   Component: NextPage & { getLayout: any };
@@ -31,6 +32,7 @@ const ExtendedApp = ({ Component, pageProps }: IAppProps) => {
             autoDelete={true}
             autoDeleteTime={3000}
           />
+          <Alert />
         </LanguageProvider>
       </AuthProvider>
     </AppProvider>

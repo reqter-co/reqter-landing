@@ -24,7 +24,6 @@ const ConfirmEmail: NextPage<ILoginPageProps, any> = ({
   loginPage,
   confirmResult,
 }) => {
-  console.log(confirmResult);
   const { getKeyValue } = useDataPath();
   const { getMediaValue } = useMediaUtils();
   const metaTags: MetaTags = useMemo(() => {

@@ -36,9 +36,9 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-
-Payment.getLayout = (page: any, pageProps: any) => {
-  console.log(pageProps);
+// , pageProps: any
+Payment.getLayout = (page: any) => {
+  // console.log(pageProps);
   return getUserLayout(
     page,
     "Account",

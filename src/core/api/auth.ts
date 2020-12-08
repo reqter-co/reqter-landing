@@ -1,4 +1,4 @@
-import { get, post, put } from "@Utils/http";
+import { get, post, put, del } from "@Utils/http";
 import { clientid, urls } from "@Core/constants";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
 import { getToken } from "@Utils/index";
@@ -214,6 +214,52 @@ const toggleNotification = async (notification: boolean) => {
   }
   return null;
 };
+const sendEmailConfirmation = async () => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put(
+      urls.sendEmailConfirmation,
+      {},
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+const deleteAccount = async () => {
+  const token = getToken();
+  let response;
+  try {
+    response = await del(
+      urls.deleteAccount,
+      {},
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
 
 export {
   login,
@@ -226,4 +272,6 @@ export {
   updateProfile,
   changePassword,
   toggleNotification,
+  sendEmailConfirmation,
+  deleteAccount,
 };

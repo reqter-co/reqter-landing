@@ -35,9 +35,9 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-
-Settings.getLayout = (page: any, pageProps: any) => {
-  console.log(pageProps);
+// , pageProps: any
+Settings.getLayout = (page: any) => {
+  // console.log(pageProps);
   return getUserLayout(
     page,
     "Account",

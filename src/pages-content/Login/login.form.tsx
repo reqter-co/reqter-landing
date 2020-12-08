@@ -59,7 +59,7 @@ const LoginForm = ({ data }: Props) => {
           toggleLoading(false);
           push("/spaces");
         },
-        (error) => {
+        () => {
           toggleLoading(false);
           showNotify({
             type: "error",

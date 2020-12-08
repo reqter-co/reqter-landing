@@ -2,7 +2,6 @@ import Button from "@Shared/components/Button";
 import { theme } from "twin.macro";
 
 const ConfirmEmailContent = ({ confirmResult }: { confirmResult: any }) => {
-  console.log(confirmResult);
   return (
     <div className="flex justify-center flex-col h-full px-5 max-w-lg self-center fade-in">
       <svg

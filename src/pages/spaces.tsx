@@ -33,9 +33,9 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-
-Spaces.getLayout = (page: any, pageProps: any) => {
-  console.log(pageProps);
+// , pageProps: any
+Spaces.getLayout = (page: any) => {
+  // console.log(pageProps);
   return getUserLayout(
     page,
     "Spaces List",
