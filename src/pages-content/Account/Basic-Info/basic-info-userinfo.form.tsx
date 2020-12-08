@@ -1,5 +1,5 @@
 import tw from "twin.macro";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "@Shared/components/Form/Input";
 import useDataPath from "@Hooks/useDataPath";
@@ -18,12 +18,18 @@ const UserForm = () => {
   const { user, setUser } = useUser({});
   const { showNotify } = useNotify();
   const { _updateProfile } = useAuth();
-  const { register, errors, handleSubmit } = useForm<IFormProps>({
+  const { register, errors, handleSubmit, reset } = useForm<IFormProps>({
     defaultValues: {
       firstName: user?.profile?.first_name || "",
       lastName: user?.profile?.last_name || "",
     },
   });
+  useEffect(() => {
+    reset({
+      firstName: user?.profile?.first_name || "",
+      lastName: user?.profile?.last_name || "",
+    });
+  }, [user]);
   const { getKeyValue } = useDataPath();
   const [loading, toggleLoading] = useState(false);
 

@@ -15,11 +15,9 @@ const Settings: NextPage & { getLayout: any } = () => {
     <>
       <SEO tags={defaultMetaTags} />
       <AccountContainer>
-        {user && (
-          <AccountProvider data={{ user }}>
-            <Content />
-          </AccountProvider>
-        )}
+        <AccountProvider data={{ user }}>
+          <Content />
+        </AccountProvider>
       </AccountContainer>
     </>
   );

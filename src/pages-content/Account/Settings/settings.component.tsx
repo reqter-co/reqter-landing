@@ -68,7 +68,13 @@ const AccountSettingsContainer = () => {
             push("/home");
             clearUser();
           },
-          () => {}
+          () => {
+            closeAlert();
+            showNotify({
+              type: "error",
+              description: "Failed in deleting your account.",
+            });
+          }
         );
       },
     });
