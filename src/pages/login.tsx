@@ -4,7 +4,7 @@ import AuthLayout from "@Shared/layouts/AuthLayout";
 import LoginForm from "src/pages-content/Login/login.form";
 import { MetaTags, PageType, RobotsContent } from "@Interfaces/meta-tags";
 import { concatenateStrings } from "@Shared/helper";
-import {  getLoginPageData } from "@Core/api";
+import { getLoginPageData } from "@Core/api";
 import { ILogin } from "@Interfaces/login";
 import useDataPath from "@Hooks/useDataPath";
 import useMediaUtils from "@Hooks/useMediaUtils";
@@ -36,6 +36,7 @@ const Login: NextPage<ILoginPageProps> = ({ loginPage }) => {
       title={getKeyValue(loginPage, "infotitle")}
       description={getKeyValue(loginPage, "infodescripton")}
       image={getMediaValue(getKeyValue(loginPage, "infoimage"), "image")}
+      // image="https://d-board-nextjs.mobifica.com/images/illustration.svg"
       formRender={() => <LoginForm data={loginPage} />}
     />
   );

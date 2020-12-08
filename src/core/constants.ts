@@ -40,6 +40,8 @@ export const urls = {
   forgotPass_resetPass: authBaseUrl + "/auth/resetpassword",
   confirmEmail: authBaseUrl + "/auth/confirmemail",
   updateProfile: authBaseUrl + "/auth/updateprofile",
+  changePassword: authBaseUrl + "/auth/changepassword",
+  emailNotify: authBaseUrl + "/auth/changenotification",
   allBlogs: "",
 };
 

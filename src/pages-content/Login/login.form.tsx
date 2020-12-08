@@ -63,7 +63,7 @@ const LoginForm = ({ data }: Props) => {
           toggleLoading(false);
           showNotify({
             type: "error",
-            description: error,
+            description: "Error in login",
           });
         }
       );

@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "@Shared/components/Form/Input";
 import useDataPath from "@Hooks/useDataPath";
-import { emailPattern } from "@Shared/helper/patterns";
 import Submit from "@Shared/components/Button";
-import { FormContainer } from "./profile.style";
+import { FormContainer } from "./basic-info.style";
 import useNotify from "@Hooks/useNotify";
 import useUser from "@Hooks/useUser";
 import useAuth from "@Hooks/useAuth";
@@ -15,7 +14,7 @@ type IFormProps = {
   lastName: string;
 };
 
-const ProfileUserForm = () => {
+const UserForm = () => {
   const { user, setUser } = useUser({});
   const { showNotify } = useNotify();
   const { _updateProfile } = useAuth();
@@ -57,7 +56,6 @@ const ProfileUserForm = () => {
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)} className="fade-in">
       <Input
-        autoFocus
         placeholder={getKeyValue({}, "emailplaceholder", "Your first name")}
         name="firstName"
         ref={register({
@@ -85,4 +83,4 @@ const ProfileUserForm = () => {
     </FormContainer>
   );
 };
-export default ProfileUserForm;
+export default UserForm;

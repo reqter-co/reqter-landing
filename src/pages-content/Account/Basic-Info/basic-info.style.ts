@@ -2,7 +2,10 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export const Wrapper = styled.div`
-  ${tw`flex flex-col py-4`};
+  ${tw`flex flex-col py-4 bg-white flex-1 shadow rounded p-6`};
+`;
+export const Title = styled.h1`
+  ${tw`font-semibold text-2xl border-b border-gray-300 pb-3 mb-5`};
 `;
 
 export const AvatarContainer = styled.div`
@@ -11,15 +14,15 @@ export const AvatarContainer = styled.div`
 `;
 
 export const AvatarImageBox = styled.div`
-  ${tw`bg-gray-100 flex justify-center items-center`};
+  ${tw`bg-gray-100 flex justify-center items-center phone:w-full`};
   width: 150px;
   margin-inline-end: 15px;
 `;
 
-export const AvatarDropZone = styled.div`
-  ${tw`flex flex-1 justify-center items-center border border-gray-200`};
+export const DropZoneContainer = styled.div`
+  ${tw`flex-1 phone:hidden`};
 `;
-export const NoAvatar = styled.div`
+export const Avatar = styled.div`
   ${tw`rounded-3xl overflow-hidden`};
   width: 95px;
   height: 95px;

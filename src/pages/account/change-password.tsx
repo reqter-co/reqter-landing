@@ -3,12 +3,12 @@ import { defaultMetaTags } from "@Core/constants";
 import { getLayout as getUserLayout } from "@Shared/layouts/UserPagesWrapper";
 import SEO from "@Shared/components/SEO";
 import AccountContainer from "@Shared/layouts/Account-Container";
-import Content from "@PagesContent/Account/Settings";
+import Content from "@PagesContent/Account/ChangePassword";
 import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
 import { AccountProvider } from "@Contexts/account/account.provider";
 
-const Settings: NextPage & { getLayout: any } = () => {
+const ChangePassword: NextPage & { getLayout: any } = () => {
   const { user } = useUser({ redirectTo: "/login" });
 
   return (
@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-Settings.getLayout = (page: any, pageProps: any) => {
+ChangePassword.getLayout = (page: any, pageProps: any) => {
   console.log(pageProps);
   return getUserLayout(
     page,
@@ -44,4 +44,4 @@ Settings.getLayout = (page: any, pageProps: any) => {
     "Manage your account to have a great opportunities"
   );
 };
-export default Settings;
+export default ChangePassword;

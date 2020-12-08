@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
 import SEO from "@Shared/components/SEO";
 import { getLayout } from "@Shared/layouts/MainLayout";
-import PageWrapper from "@Shared/layouts/PublicPagesWrapper/wrapper.component";
+import PageWrapper from "@Shared/layouts/PublicPagesWrapper";
 import { getLandingPageData } from "@Core/api";
 import PricingContent from "src/pages-content/Pricing/pricing.content";
 

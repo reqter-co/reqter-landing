@@ -1,7 +1,5 @@
 import { saveToken, removeToken } from "@Utils/index";
 import { useAuthState, useAuthDispatch } from "@Contexts/auth/auth.provider";
-// import useRouter from "@Hooks/useRouter";
-// import { mutate } from "swr";
 import {
   login,
   signUp,
@@ -9,6 +7,8 @@ import {
   forgotPass_VerifyCode,
   forgotPass_ResetPass,
   updateProfile,
+  changePassword,
+  toggleNotification,
 } from "@Core/api/auth";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
 
@@ -40,7 +40,6 @@ const useAuth = () => {
   const setRedirectPage = (pageName: string) => {
     dispatch({ type: "SET_REDIRECT_PAGE", payload: pageName });
   };
-
   const _login = async (
     username: string,
     password: string,
@@ -126,6 +125,31 @@ const useAuth = () => {
       if (onError) onError(error);
     }
   };
+  const _changePassword = async (
+    oldPassword: string,
+    newPassword: string,
+    onSuccess: () => void,
+    onError: (error: any) => void
+  ) => {
+    try {
+      await changePassword(oldPassword, newPassword);
+      onSuccess();
+    } catch (error) {
+      if (onError) onError(error);
+    }
+  };
+  const _toggleNotification = async (
+    notification: boolean,
+    onSuccess: (user: IUser | null) => void,
+    onError: (error: any) => void
+  ) => {
+    try {
+      const user = await toggleNotification(notification);
+      onSuccess(user);
+    } catch (error) {
+      if (onError) onError(error);
+    }
+  };
 
   return {
     _login,
@@ -139,6 +163,8 @@ const useAuth = () => {
     _forgotPassVerifyCode,
     _forgotPassResetPass,
     _updateProfile,
+    _changePassword,
+    _toggleNotification,
   };
 };
 

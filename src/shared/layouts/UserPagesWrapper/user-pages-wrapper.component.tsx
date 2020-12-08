@@ -18,7 +18,7 @@ const UserPagesWrapper: React.FC<IProps> = ({
     <Wrapper>
       <Content>
         <Title>{title}</Title>
-        {description && <Description>{description}</Description>}
+        {/* {description && <Description>{description}</Description>} */}
         <Children>{children}</Children>
       </Content>
     </Wrapper>

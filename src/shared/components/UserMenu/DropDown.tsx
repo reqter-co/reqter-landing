@@ -37,12 +37,14 @@ const UserMenu = ({
     <MenuWrapper direction={direction} ref={menuRef}>
       {USER_DROPDOWN_MENU_ITEMS.map((nav) => {
         if (nav.href === LOGOUT_PAGE) {
-          <MenuItem onClick={handleLogout}>
-            <MenuIcon>
-              <Icon name={nav.icon} />
-            </MenuIcon>
-            {nav.defaultName}
-          </MenuItem>;
+          return (
+            <MenuItem onClick={handleLogout}>
+              <MenuIcon>
+                <Icon name={nav.icon} />
+              </MenuIcon>
+              {nav.defaultName}
+            </MenuItem>
+          );
         }
         return (
           <Link href={nav.href}>

@@ -4,18 +4,18 @@ import { defaultMetaTags } from "@Core/constants";
 import SEO from "@Shared/components/SEO";
 import { getLayout as getUserLayout } from "@Shared/layouts/UserPagesWrapper";
 import AccountContainer from "@Shared/layouts/Account-Container";
-import Content from "@PagesContent/Account/Profile";
+import Content from "@PagesContent/Account/Basic-Info";
 import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
 import { AccountProvider } from "@Contexts/account/account.provider";
 
-const Profile: NextPage & { getLayout: any } = () => {
+const BasicInfo: NextPage & { getLayout: any } = () => {
   const { user } = useUser({ redirectTo: "/login" });
 
   return (
     <>
       <SEO tags={defaultMetaTags} />
-      <AccountContainer title="Profile">
+      <AccountContainer>
         {user && (
           <AccountProvider data={{ user }}>
             <Content />
@@ -36,13 +36,12 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-
-Profile.getLayout = (page: any, pageProps: any) => {
-  console.log(pageProps);
+// , pageProps: any
+BasicInfo.getLayout = (page: any) => {
   return getUserLayout(
     page,
-    "User Account",
+    "Account",
     "Manage your account to have a great opportunities"
   );
 };
-export default Profile;
+export default BasicInfo;

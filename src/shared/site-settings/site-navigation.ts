@@ -5,14 +5,15 @@ export const LEARN_PAGE = "/learn";
 export const PRICING_PAGE = "/pricing";
 export const BLOG_PAGE = "/blog";
 export const SPACES_PAGE = "/spaces";
-export const ACCOUNT_PAGE = "/account/profile";
+export const ACCOUNT_PAGE = "/account/basic-info";
 export const LOGOUT_PAGE = "/";
 export const LOGIN_PAGE = "/login";
 export const SIGN_UP_PAGE = "/signup";
 export const FORGOT_PASS_PAGE = "/forgot-pass";
 export const CONFIRM_EMAIL_PAGE = "/confirm-email";
-export const ACCOUNT_PROFILE = "/account/profile";
-export const ACCOUNT_PAYMENT = "/account/payment";
+export const ACCOUNT_BASIC_INFO = "/account/basic-info";
+export const ACCOUNT_BILLING = "/account/billing";
+export const ACCOUNT_CHANGE_PASSWORD = "/account/change-password";
 export const ACCOUNT_SETTINGS = "/account/settings";
 // =====================
 type Props = {
@@ -78,21 +79,28 @@ export const LOGOUT_MENU_ITEM: Props = {
   defaultName: "Logout",
   href: LOGOUT_PAGE,
   needsLogin: true,
-  
+
   icon: "sign-out",
 };
-export const ACCOUNT_PROFILE_SIDEBAR = {
-  id: "account.side.profile",
-  title: "Profile",
-  defaultName: "Profile",
-  href: ACCOUNT_PROFILE,
+export const ACCOUNT_BASIC_INFO_SIDEBAR = {
+  id: "account.side.basic.info",
+  title: "Basic Info",
+  defaultName: "Basic Info",
+  href: ACCOUNT_BASIC_INFO,
   needsLogin: true,
 };
-export const ACCOUNT_PAYMENT_SIDEBAR = {
-  id: "account.side.payment",
-  title: "Payment",
-  defaultName: "Payment",
-  href: ACCOUNT_PAYMENT,
+export const ACCOUNT_BILLING_SIDEBAR = {
+  id: "account.side.billing",
+  title: "Billing",
+  defaultName: "Billing",
+  href: ACCOUNT_BILLING,
+  needsLogin: true,
+};
+export const ACCOUNT_CHANGE_PASSWORD_SIDEBAR_ITEM = {
+  id: "account.side.change.password",
+  title: "Change Password",
+  defaultName: "Change Password",
+  href: ACCOUNT_CHANGE_PASSWORD,
   needsLogin: true,
 };
 export const ACCOUNT_SETTINGS_SIDEBAR = {
@@ -125,7 +133,8 @@ export const USER_DROPDOWN_MENU_ITEMS: Props[] = [
 ];
 
 export const ACCOUNT_SIDEBAR_ITEMS = [
-  ACCOUNT_PROFILE_SIDEBAR,
-  ACCOUNT_PAYMENT_SIDEBAR,
+  ACCOUNT_BASIC_INFO_SIDEBAR,
+  ACCOUNT_BILLING_SIDEBAR,
+  ACCOUNT_CHANGE_PASSWORD_SIDEBAR_ITEM,
   ACCOUNT_SETTINGS_SIDEBAR,
 ];

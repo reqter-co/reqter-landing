@@ -19,7 +19,7 @@ const HeaderLogin = ({ data }: IProps): JSX.Element => {
     <Actions className="tab-port:hidden">
       {!user ? (
         <Button primary size="md">
-          <Link href="/login">{getKeyValue(data, "link3title")}</Link>
+          <Link href="/login">{getKeyValue(data, "link3title", "Login")}</Link>
         </Button>
       ) : (
         <UserMenu user={user as IUser} />

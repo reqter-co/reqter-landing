@@ -1,4 +1,3 @@
-"use strict";
 import Cookies from "js-cookie";
 function setItem(key: string, value: string) {
   Cookies.set(key, value);

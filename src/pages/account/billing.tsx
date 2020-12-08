@@ -4,7 +4,7 @@ import { defaultMetaTags } from "@Core/constants";
 import { getLayout as getUserLayout } from "@Shared/layouts/UserPagesWrapper";
 import SEO from "@Shared/components/SEO";
 import AccountContainer from "@Shared/layouts/Account-Container";
-import Content from "@PagesContent/Account/Payment";
+import Content from "@PagesContent/Account/Billing";
 import { getLandingPageData } from "@Core/api";
 import useUser from "@Hooks/useUser";
 import { AccountProvider } from "@Contexts/account/account.provider";
@@ -15,7 +15,7 @@ const Payment: NextPage & { getLayout: any } = () => {
   return (
     <>
       <SEO tags={defaultMetaTags} />
-      <AccountContainer title="Payment">
+      <AccountContainer>
         {user && (
           <AccountProvider data={{ user }}>
             <Content />
@@ -41,7 +41,7 @@ Payment.getLayout = (page: any, pageProps: any) => {
   console.log(pageProps);
   return getUserLayout(
     page,
-    "User Account",
+    "Account",
     "Manage your account to have a great opportunities"
   );
 };
