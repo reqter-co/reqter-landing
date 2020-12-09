@@ -19,12 +19,12 @@ export default function useUser({ redirectTo = "" }: Props) {
 
   useEffect(() => {
     if (!redirectTo) return;
-    if (status === "error") {
+    if (isError) {
       if (redirectTo) {
         push(redirectTo);
       }
     }
-  }, [status]);
+  }, [status,isError]);
 
   function clearUser() {
     queryCache.setQueryData("user", null);

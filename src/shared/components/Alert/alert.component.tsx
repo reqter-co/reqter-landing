@@ -15,7 +15,7 @@ export interface IAlert {
   isApiCallOKButton?: boolean;
 }
 
-let toggleAlert = (alertInfo?: IAlert): void => undefined;
+let toggleAlert = (alertInfo?: IAlert): void => alertInfo as void;
 
 const Alert = () => {
   const [show, _toggleAlert] = useState(false);

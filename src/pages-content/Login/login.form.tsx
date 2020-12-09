@@ -39,9 +39,7 @@ const LoginForm = ({ data }: Props) => {
   const { showNotify } = useNotify();
   const { register, errors, handleSubmit } = useForm<IFormProps>({
     defaultValues: {
-      // email: process.env.NEXT_PUBLIC_LOGIN_USERNAME || "",
       email: "",
-      // password: process.env.NEXT_PUBLIC_LOGIN_PASSWORD || "",
       password: "",
     },
   });
@@ -55,7 +53,7 @@ const LoginForm = ({ data }: Props) => {
         email,
         password,
         () => {
-          queryCache.setQueryData("user", null);
+          queryCache.setQueryData("user", undefined);
           toggleLoading(false);
           push("/spaces");
         },

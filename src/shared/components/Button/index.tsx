@@ -33,7 +33,7 @@ const Button: React.FC<IButtonProps> = ({
           ? tw`text-lg py-2 px-6`
           : size === "sm"
           ? tw`text-sm py-2 px-5`
-          : tw`py-3`,
+          : tw`p-3`,
         cls ? cls : "",
       ]}
       {...rest}

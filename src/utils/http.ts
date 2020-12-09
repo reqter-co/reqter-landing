@@ -57,20 +57,25 @@ export async function del<T>(
   );
 }
 
-export const fetchInterceptor = () => {
-  const token = getToken();
+export const connectApi = (baseUrl: string) => {
   return {
     async get<T>(url: string): Promise<T | null> {
-      const response = await get<T>(url, {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      });
-      if (response && response.parsedBody) {
-        return response.parsedBody;
+      try {
+        const token = getToken();
+        const response = await get<T>(baseUrl + url, {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+        });
+
+        if (response && response.parsedBody) {
+          return response.parsedBody;
+        }
+        return null;
+      } catch (error) {
+        throw new Error(error);
       }
-      return null;
     },
   };
 };

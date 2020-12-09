@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@Shared/components/Button";
 import Switch from "@Shared/components/Switch";
 import { Wrapper, Title } from "./settings.style";
@@ -22,6 +22,10 @@ const AccountSettingsContainer = () => {
     _sendEmailConfirmation,
     _deleteAccount,
   } = useAuth();
+
+  useEffect(() => {
+    toggleNotify(user?.profile?.notification);
+  }, [user]);
 
   function handleNotifyChanged(e: React.FormEvent<HTMLInputElement>) {
     toggleNotify((prev) => !prev);
@@ -98,7 +102,7 @@ const AccountSettingsContainer = () => {
                 Send Confirmation
               </Button>
             ) : (
-              <span className="text-green-500 font-bold ">Confirmed</span>
+              <span tw="text-green-500 font-bold">Confirmed</span>
             );
           }}
         />

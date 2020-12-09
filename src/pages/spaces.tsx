@@ -9,7 +9,6 @@ import useUser from "@Hooks/useUser";
 
 const Spaces: NextPage & { getLayout: any } = () => {
   const { user } = useUser({ redirectTo: "/login" });
-
   return (
     <>
       <SEO tags={defaultMetaTags} />
