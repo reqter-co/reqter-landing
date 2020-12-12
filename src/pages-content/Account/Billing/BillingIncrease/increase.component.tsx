@@ -1,6 +1,13 @@
 import Input from "@Shared/components/Form/Input";
 import Button from "@Shared/components/Button";
-import { Wrapper, Title, PricesList, Form, PayTitle } from "./increase.style";
+import {
+  Wrapper,
+  Title,
+  PricesList,
+  Form,
+  InputGroup,
+  PayTitle,
+} from "./increase.style";
 import Per from "./Per";
 import tw from "twin.macro";
 const BillingIncrease = () => {
@@ -14,11 +21,11 @@ const BillingIncrease = () => {
         <Per title="Annual" value="6,150,120" />
       </PricesList>
       <Form>
-        <div className="flex flex-col pr-5 flex-1">
+        <InputGroup>
           <PayTitle>Choose a price</PayTitle>
           <Input type="number" placeholder="for example 100$" />
-        </div>
-        <Button size="md" cls={tw`mt-4 py-2 h-12`}>
+        </InputGroup>
+        <Button size="md" cls={tw`mt-4 py-2 h-12 phone:mt-0`}>
           Pay the price
         </Button>
       </Form>

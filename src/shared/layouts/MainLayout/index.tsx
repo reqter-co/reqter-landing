@@ -9,7 +9,6 @@ const Layout: React.FunctionComponent = ({ children }) => {
       <Header />
       <Content>{children}</Content>
       <Footer />
-      {/* <Modal /> */}
     </Main>
   );
 };

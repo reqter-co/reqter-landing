@@ -12,7 +12,7 @@ const AccountSideBar = () => {
       {sidebarMenu?.map((item: any) => (
         <Menu
           key={item.id}
-          css={[item.href === currentRoute ? tw`font-black` : ""]}
+          css={[item.href === currentRoute ? tw`font-bold` : ""]}
         >
           <Link href={item.href}>{item.title}</Link>
         </Menu>

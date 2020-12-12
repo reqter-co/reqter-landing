@@ -37,10 +37,10 @@ const UserMenu = ({ user }: { user: IUser }): JSX.Element => {
             (!user?.profile?.last_name || user?.profile?.last_name.length)
               ? "Your Name"
               : user?.profile?.first_name + " " + user?.profile?.last_name}
-            <span className="text-lgs">
-              <Icon name="caret-down" />
-            </span>
           </Name>
+          <span className="text-lgs">
+            <Icon name="caret-down" />
+          </span>
         </MenuContainer>
       </Wrapper>
       {isOpenMenu && <DropDown onClickOutside={handleClick} />}

@@ -2,8 +2,11 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export const Wrapper = styled.article`
-  ${tw`flex flex-col mb-5 w-1/2 no-underline p-2 px-3 hover:shadow-lg cursor-pointer`};
+  ${tw`flex flex-col mb-5 w-1/2 no-underline p-2 px-3 hover:shadow-lg`};
   ${tw`phone:w-full`};
+  a {
+    ${tw`flex flex-col w-full no-underline h-full flex-1`};
+  }
 `;
 
 export const ImageBox = styled.div`

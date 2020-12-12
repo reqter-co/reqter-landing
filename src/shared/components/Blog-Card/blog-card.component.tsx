@@ -19,8 +19,8 @@ interface IProps {
 const BlogCard = ({ data, sender }: IProps) => {
   const { name, slug, thumbnail, publishdate, shortdescription, tags } = data;
   return (
-    <Link href={`/${sender}/${slug}`}>
-      <Wrapper>
+    <Wrapper>
+      <Link href={`/${sender}/${slug}`}>
         <ImageBox>
           <Image src={thumbnail} />
         </ImageBox>
@@ -39,8 +39,8 @@ const BlogCard = ({ data, sender }: IProps) => {
           </Button>
           <Date>{publishdate}</Date>
         </Footer>
-      </Wrapper>
-    </Link>
+      </Link>
+    </Wrapper>
   );
 };
 export default BlogCard;

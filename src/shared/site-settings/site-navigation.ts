@@ -15,6 +15,7 @@ export const ACCOUNT_BASIC_INFO = "/account/basic-info";
 export const ACCOUNT_BILLING = "/account/billing";
 export const ACCOUNT_CHANGE_PASSWORD = "/account/change-password";
 export const ACCOUNT_SETTINGS = "/account/settings";
+export const TICKETS = "/tickets";
 // =====================
 type Props = {
   id: string;
@@ -79,7 +80,6 @@ export const LOGOUT_MENU_ITEM: Props = {
   defaultName: "Logout",
   href: LOGOUT_PAGE,
   needsLogin: true,
-
   icon: "sign-out",
 };
 export const ACCOUNT_BASIC_INFO_SIDEBAR = {
@@ -110,8 +110,25 @@ export const ACCOUNT_SETTINGS_SIDEBAR = {
   href: ACCOUNT_SETTINGS,
   needsLogin: true,
 };
+export const TICKETS_MENU_ITEM = {
+  id: "nav.tickets",
+  title: "Tickets",
+  defaultName: "Tickets",
+  href: TICKETS,
+  needsLogin: true,
+};
 // ===========================================
-export const AUTHORIZED_MENU_ITEMS = [SPACES_MENU_ITEM, ACCOUNT_MENU_ITEM];
+export const isUserPages = (currentRoute: string) => {
+  return AUTHORIZED_MENU_ITEMS.some((route) => route.href === currentRoute);
+};
+export const AUTHORIZED_MENU_ITEMS = [
+  SPACES_MENU_ITEM,
+  TICKETS_MENU_ITEM,
+  ACCOUNT_BASIC_INFO_SIDEBAR,
+  ACCOUNT_BILLING_SIDEBAR,
+  ACCOUNT_CHANGE_PASSWORD_SIDEBAR_ITEM,
+  ACCOUNT_SETTINGS_SIDEBAR,
+];
 export const DESKTOP_MENU_ITEMS = [
   PRODUCT_MENU_ITEM,
   SOLUTIONS_MENU_ITEM,
@@ -128,10 +145,10 @@ export const MOBILE_MENU_ITEMS = [
   BLOG_MENU_ITEM,
 ];
 export const USER_DROPDOWN_MENU_ITEMS: Props[] = [
-  ...AUTHORIZED_MENU_ITEMS,
+  SPACES_MENU_ITEM,
+  ACCOUNT_MENU_ITEM,
   LOGOUT_MENU_ITEM,
 ];
-
 export const ACCOUNT_SIDEBAR_ITEMS = [
   ACCOUNT_BASIC_INFO_SIDEBAR,
   ACCOUNT_BILLING_SIDEBAR,

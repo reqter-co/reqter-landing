@@ -7,7 +7,7 @@ export const SidebarContainer = styled.div`
 `;
 
 export const Menu = styled.div<{ css: any }>`
-  ${tw`flex items-center py-4 text-base text-gray-800 cursor-pointer transition duration-300 box-content`};
+  ${tw`flex items-center pb-6 text-base text-gray-800 cursor-pointer`};
   &:hover {
     ${tw`text-gray-900`};
   }

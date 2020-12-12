@@ -7,7 +7,7 @@ export const Wrapper = styled(Section)`
   ${tw`flex flex-col`}
 `;
 export const PlansContainer = styled.div`
-  ${tw`flex justify-center flex-wrap`};
+  ${tw`flex justify-between flex-wrap`};
 `;
 export const PriceTypeSwitcher = styled.div`
   ${tw`flex m-auto mb-10 shadow rounded overflow-hidden`};

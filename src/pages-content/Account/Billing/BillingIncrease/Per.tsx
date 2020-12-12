@@ -1,9 +1,21 @@
-import { PerContainer, PerTitle, PerValue } from "./increase.style";
+import Icon from "@Shared/components/Icon";
+import {
+  PerContainer,
+  IconBox,
+  Values,
+  PerTitle,
+  PerValue,
+} from "./increase.style";
 const BillingPer = ({ title, value }: { title: string; value: string }) => {
   return (
     <PerContainer>
-      <PerTitle>{title}</PerTitle>
-      <PerValue>{value} $</PerValue>
+      <IconBox>
+        <Icon name={"financial"} />
+      </IconBox>
+      <Values>
+        <PerTitle>{title}</PerTitle>
+        <PerValue>{value} $</PerValue>
+      </Values>
     </PerContainer>
   );
 };

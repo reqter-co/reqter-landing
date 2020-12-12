@@ -6,7 +6,7 @@ interface IProps {
 const ExtendedLink: FC<IProps> = ({ href, children, ...rest }) => {
   return (
     <Link href={href} {...rest}>
-      {children}
+      <a>{children}</a>
     </Link>
   );
 };

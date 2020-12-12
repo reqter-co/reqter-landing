@@ -19,8 +19,12 @@ export const UserImage = styled.img`
   ${tw`rounded-full shadow border-4 border-white`}
 `;
 export const Name = styled.div`
-  ${tw`text-base flex items-center`};
+  ${tw`text-base flex items-center flex-1`};
   margin-inline-start: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 `;
 export const MenuWrapper = styled.ul`
   animation: ${fadeInUp} 0.3s;

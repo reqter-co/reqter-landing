@@ -9,8 +9,11 @@ export const Content = styled.div`
   ${tw`max-w-6xl mx-auto flex flex-col tab-land:px-5 w-full`}
   ${tw`phone:px-2`}
 `;
+export const Header = styled.div`
+  ${tw`mb-6 phone:mb-3 flex `};
+`;
 export const Title = styled.h1`
-  ${tw`text-3xl font-bold mb-6 phone:mb-3`};
+  ${tw`text-3xl font-bold flex-1`};
 `;
 export const Description = styled.h3`
   ${tw`text-base mb-6`};
