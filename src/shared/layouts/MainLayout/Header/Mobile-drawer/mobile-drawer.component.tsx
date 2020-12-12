@@ -7,6 +7,7 @@ import {
   LoginSwitcherContainer,
   UserIcon,
   UserImage,
+  TextBox,
   Name,
   LogoutLink,
   Menu,
@@ -27,7 +28,7 @@ import useLanguage from "@Hooks/useLanguage";
 import useAuth from "@Hooks/useAuth";
 
 const Drawer = ({ onClose }: { onClose: () => void }) => {
-  const { user } = useUser({});
+  const { user, clearUser } = useUser({});
   const { currentRoute } = useRouter();
   const { getKeyValue } = useDataPath();
   const { logout } = useAuth();
@@ -39,7 +40,7 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
     onClose();
     logout();
     push("/home");
-    // mutateUser(null);
+    clearUser();
   }
 
   return (
@@ -71,16 +72,16 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
                 <Icon name="user" />
               </UserIcon>
             )}
-            <Name>
-              {(!user?.profile?.first_name ||
-                user?.profile?.first_name.length === 0) &&
-              (!user?.profile?.last_name || user?.profile?.last_name.length)
-                ? "Your Name"
-                : user?.profile?.first_name + " " + user?.profile?.last_name}
-            </Name>
-            <LogoutLink onClick={handleLogout}>
-              {LOGOUT_MENU_ITEM.defaultName}
-            </LogoutLink>
+            <TextBox>
+              <Name>
+                {(!user?.profile?.first_name ||
+                  user?.profile?.first_name.length === 0) &&
+                (!user?.profile?.last_name || user?.profile?.last_name.length)
+                  ? "Your Name"
+                  : user?.profile?.first_name + " " + user?.profile?.last_name}
+              </Name>
+              <Name>{user?.username}</Name>
+            </TextBox>
           </LoginSwitcherContainer>
         )}
       </LoginBox>
@@ -120,6 +121,11 @@ const Drawer = ({ onClose }: { onClose: () => void }) => {
             </MenuItem>
           );
         })}
+        {user && (
+          <LogoutLink onClick={handleLogout}>
+            {LOGOUT_MENU_ITEM.defaultName}
+          </LogoutLink>
+        )}
       </Menu>
     </Wrapper>
   );

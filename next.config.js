@@ -5,4 +5,12 @@ module.exports = {
     locales: locales,
     defaultLocale: locales.includes(defaultLocale) ? defaultLocale : "en",
   },
+  async rewrites() {
+    return [
+      {
+        source: "/account",
+        destination: "/account/profile",
+      },
+    ];
+  },
 };

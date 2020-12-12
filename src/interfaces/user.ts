@@ -11,6 +11,7 @@ export interface IUser {
   roles: Role[];
   username: string;
   profile: {
+    notification: boolean;
     first_name: string;
     last_name: string;
     avatar: {

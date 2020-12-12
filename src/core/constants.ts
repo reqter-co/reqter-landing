@@ -18,7 +18,7 @@ export const clientid =
 export const TOKEN_KEY = "@reqter-token";
 // ============================================================
 const baseUrl = process.env.NEXT_PUBLIC_DATA_BASE_URL;
-const authBaseUrl = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
+export const authBaseUrl = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
 const listLeanUrl = "/api/v1/lists/lean";
 export const urls = {
   assetsDownloadBaseUrl: "https://assets.reqter.com/asset/download/",
@@ -34,10 +34,19 @@ export const urls = {
   signUp: authBaseUrl + "/auth/register",
   loginPage: baseUrl + listLeanUrl + "/5f88864b56b30d001a1fc5e5",
   signUpPage: baseUrl + listLeanUrl + "/5f8d72fc56b30d001a1fc603",
-  userInfo: authBaseUrl + "/auth/info",
+  userInfo: "/auth/info",
   forgotPass_sendCode: authBaseUrl + "/auth/forgotpassword",
   forgotPass_verifyCode: authBaseUrl + "/auth/verifycode",
   forgotPass_resetPass: authBaseUrl + "/auth/resetpassword",
   confirmEmail: authBaseUrl + "/auth/confirmemail",
+  updateProfile: authBaseUrl + "/auth/updateprofile",
+  changePassword: authBaseUrl + "/auth/changepassword",
+  emailNotify: authBaseUrl + "/auth/changenotification",
+  sendEmailConfirmation: authBaseUrl + "/auth/confirmemail",
+  deleteAccount: authBaseUrl + "/auth/delete",
   allBlogs: "",
+};
+
+export const spaces_urls = {
+  list: "https://jsonplaceholder.typicode.com/albums",
 };

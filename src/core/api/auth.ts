@@ -1,25 +1,17 @@
-import { get, post, put } from "@Utils/http";
-import { clientid, urls } from "@Core/constants";
+import { queryCache } from "react-query";
+import { post, put, del, connectApi } from "@Utils/http";
+import { clientid, authBaseUrl, urls } from "@Core/constants";
 import { IUser, ISignUpFailed } from "@Interfaces/user";
 import { getToken } from "@Utils/index";
-
+const api = connectApi(authBaseUrl as string);
 // =====================================================
 const getUserInfo = async () => {
-  const token = getToken();
-  const response = await get<IUser | null>(urls.userInfo, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: "Bearer " + token,
-    },
-  });
-  if (response && response.parsedBody) {
-    if (response.parsedBody.auth === false) {
-      return null;
-    }
-    return response.parsedBody;
+  try {
+    return await api.get<IUser>(urls.userInfo);
+  } catch (error) {
+    queryCache.setQueryData("user", undefined);
+    throw new Error(error);
   }
-  return null;
 };
 const login = async (username: string, password: string) => {
   const response = await post<{ access_token: string }>(
@@ -145,6 +137,122 @@ const confirmEmail = async (token: string) => {
   return null;
 };
 
+const updateProfile = async (first_name: string, last_name: string) => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put<IUser>(
+      urls.updateProfile,
+      { first_name, last_name },
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+const changePassword = async (oldpassword: string, newpassword: string) => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put(
+      urls.changePassword,
+      { oldpassword, newpassword },
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+const toggleNotification = async (notification: boolean) => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put<IUser>(
+      urls.emailNotify,
+      { notification },
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+const sendEmailConfirmation = async () => {
+  const token = getToken();
+  let response;
+  try {
+    response = await put(
+      urls.sendEmailConfirmation,
+      {},
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+const deleteAccount = async () => {
+  const token = getToken();
+  let response;
+  try {
+    response = await del(
+      urls.deleteAccount,
+      {},
+      {
+        headers: {
+          authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response && response.parsedBody) {
+      return response.parsedBody;
+    }
+  } catch (error) {
+    return null;
+  }
+  return null;
+};
+
 export {
   login,
   getUserInfo,
@@ -153,4 +261,9 @@ export {
   forgotPass_VerifyCode,
   forgotPass_ResetPass,
   confirmEmail,
+  updateProfile,
+  changePassword,
+  toggleNotification,
+  sendEmailConfirmation,
+  deleteAccount,
 };

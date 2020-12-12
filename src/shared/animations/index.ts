@@ -9,6 +9,16 @@ export const zoomInAnim = keyframes`
     transform: scale(1);
   }
 `;
+export const fadeInUp = keyframes`
+  from {
+    opacity:0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+`;
 export const move_wave = keyframes`
 0% {
   transform: translateX(0) translateZ(0) scaleY(1);

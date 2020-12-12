@@ -1,3 +1,4 @@
+import { fadeInUp } from "@Shared/animations";
 import styled from "styled-components";
 import tw, { theme } from "twin.macro";
 export const Wrapper = styled.div`
@@ -18,10 +19,15 @@ export const UserImage = styled.img`
   ${tw`rounded-full shadow border-4 border-white`}
 `;
 export const Name = styled.div`
-  ${tw`text-base flex items-center`};
+  ${tw`text-base flex items-center flex-1`};
   margin-inline-start: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 `;
 export const MenuWrapper = styled.ul`
+  animation: ${fadeInUp} 0.3s;
   ${tw`absolute right-0 bg-white shadow rounded-lg shadow border border-gray-300`};
   width: 200px;
   direction: ${({ direction }: { direction: string }) => direction};

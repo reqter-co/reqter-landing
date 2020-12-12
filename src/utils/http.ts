@@ -1,4 +1,5 @@
 import fetch from "isomorphic-unfetch";
+import { getToken } from "@Utils/index";
 interface HttpResponse<T> extends Response {
   parsedBody?: T;
 }
@@ -45,3 +46,36 @@ export async function put<T>(
     new Request(path, { method: "put", body: JSON.stringify(body), ...args })
   );
 }
+
+export async function del<T>(
+  path: string,
+  body: any,
+  args: HttpRequest
+): Promise<HttpResponse<T>> {
+  return await http<T>(
+    new Request(path, { method: "delete", body: JSON.stringify(body), ...args })
+  );
+}
+
+export const connectApi = (baseUrl: string) => {
+  return {
+    async get<T>(url: string): Promise<T | null> {
+      try {
+        const token = getToken();
+        const response = await get<T>(baseUrl + url, {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+        });
+
+        if (response && response.parsedBody) {
+          return response.parsedBody;
+        }
+        return null;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+  };
+};

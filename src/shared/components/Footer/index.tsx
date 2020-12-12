@@ -13,12 +13,12 @@ import {
 import Icon from "@Shared/components/Icon";
 import AppLogo from "@Shared/components/AppLogo/logo.component";
 import { IFooter } from "@Interfaces/footer";
-type Props = {
-  data: IFooter;
-};
+import useApp from "@Hooks/useApp";
 
-const Footer = ({ data }: Props) => {
+const Footer = () => {
   const { getKeyValue } = useDataPath();
+  const { footerData } = useApp();
+  const data = footerData as IFooter;
   return (
     <Wrapper>
       <Container>

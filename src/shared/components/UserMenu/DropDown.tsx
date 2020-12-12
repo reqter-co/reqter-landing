@@ -1,11 +1,15 @@
 import { useRef } from "react";
-import { queryCache } from "react-query";
+import {
+  USER_DROPDOWN_MENU_ITEMS,
+  LOGOUT_PAGE,
+} from "@Shared/site-settings/site-navigation";
 import { MenuWrapper, MenuIcon, MenuItem } from "./styles";
 import useLanguage from "@Hooks/useLanguage";
 import useClickOutside from "@Hooks/useClickOutside";
 import useRouter from "@Hooks/useRouter";
 import Icon from "@Shared/components/Icon";
 import Link from "@Shared/components/Link";
+import useUser from "@Hooks/useUser";
 import useAuth from "@Hooks/useAuth";
 
 const UserMenu = ({
@@ -13,6 +17,7 @@ const UserMenu = ({
 }: {
   onClickOutside: () => void;
 }): JSX.Element => {
+  const { clearUser } = useUser({});
   const { logout } = useAuth();
   const { push } = useRouter();
   const { direction } = useLanguage();
@@ -25,33 +30,33 @@ const UserMenu = ({
     onClickOutside();
     logout();
     push("/home");
-    queryCache.setQueryData("user", null);
+    clearUser();
   }
 
   return (
     <MenuWrapper direction={direction} ref={menuRef}>
-      <Link href="/spaces">
-        <MenuItem>
-          <MenuIcon>
-            <Icon name="health" />
-          </MenuIcon>
-          My Spaces
-        </MenuItem>
-      </Link>
-      <Link href="/account">
-        <MenuItem>
-          <MenuIcon>
-            <Icon name="math" />
-          </MenuIcon>
-          Account
-        </MenuItem>
-      </Link>
-      <MenuItem onClick={handleLogout}>
-        <MenuIcon>
-          <Icon name="sign-out" />
-        </MenuIcon>
-        Logout
-      </MenuItem>
+      {USER_DROPDOWN_MENU_ITEMS.map((nav) => {
+        if (nav.href === LOGOUT_PAGE) {
+          return (
+            <MenuItem onClick={handleLogout}>
+              <MenuIcon>
+                <Icon name={nav.icon} />
+              </MenuIcon>
+              {nav.defaultName}
+            </MenuItem>
+          );
+        }
+        return (
+          <Link href={nav.href}>
+            <MenuItem onClick={() => onClickOutside()}>
+              <MenuIcon>
+                <Icon name={nav.icon} />
+              </MenuIcon>
+              {nav.defaultName}
+            </MenuItem>
+          </Link>
+        );
+      })}
     </MenuWrapper>
   );
 };

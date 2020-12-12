@@ -2,6 +2,8 @@ export const initialState = {
   dir: "ltr",
   lang: "en",
   appLocales: [],
+  headerData: {},
+  footerData: {},
 };
 
 type ActionType = { type: "SET_SEARCH_TERM"; payload: string };

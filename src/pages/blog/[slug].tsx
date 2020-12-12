@@ -1,36 +1,30 @@
 import React from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
+import { getLayout } from "@Shared/layouts/MainLayout";
+import SEO from "@Shared/components/SEO";
 import { getLandingPageData } from "@Core/api";
-import PageWrapper from "@Components/Common/Wrapper/wrapper.component";
+import PageWrapper from "@Shared/layouts/PublicPagesWrapper/wrapper.component";
 import {
   getAllBlogs,
   getBlogBySlug,
   getRelatedItemsByCategory,
 } from "@Core/api/common-api";
 import { IBlog } from "@Interfaces/blog";
-import Content from "@Components/BlogDetail";
+import Content from "src/pages-content/BlogDetail";
 import RelatedItems from "@Shared/components/Related-blogs";
 interface IProps {
-  headerData: any;
-  footerData: any;
   blogData: IBlog;
   relatedItems: IBlog[];
 }
 
-const BlogDetail: NextPage<IProps, any> = ({
-  headerData,
-  footerData,
+const BlogDetail: NextPage<IProps> & { getLayout: any } = ({
   blogData,
   relatedItems,
 }) => {
   return (
-    <Layout
-      metaTags={defaultMetaTags}
-      footerData={footerData}
-      headerData={headerData}
-    >
+    <>
+      <SEO tags={defaultMetaTags} />
       <PageWrapper
         title={blogData?.name}
         description={blogData?.shortdescription}
@@ -40,7 +34,7 @@ const BlogDetail: NextPage<IProps, any> = ({
           <RelatedItems data={relatedItems} />
         )}
       </PageWrapper>
-    </Layout>
+    </>
   );
 };
 
@@ -85,5 +79,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
+BlogDetail.getLayout = getLayout;
 
 export default BlogDetail;

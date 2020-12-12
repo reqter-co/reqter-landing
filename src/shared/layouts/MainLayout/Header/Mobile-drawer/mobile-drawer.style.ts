@@ -1,3 +1,4 @@
+import { zoomInAnim } from "@Shared/animations";
 import { sm } from "@Utils/mediaQueries";
 import styled from "styled-components";
 import tw from "twin.macro";
@@ -7,6 +8,7 @@ export const Wrapper = styled.div`
   ${sm} {
     ${tw`flex flex-col`}
   }
+  animation: ${zoomInAnim} 0.5s;
 `;
 export const Header = styled.div`
   ${tw`relative flex items-center`};
@@ -17,28 +19,35 @@ export const CloseIcon = styled.div`
   right: 30px;
 `;
 export const LoginBox = styled.div`
-  ${tw`bg-gray-100 p-10 mt-5 flex justify-center items-center`};
+  ${tw`bg-gray-100 py-10 px-5 mt-5 flex justify-center items-center`};
   height: 150px;
 `;
 
 export const LoginSwitcherContainer = styled.div`
-  ${tw`flex flex-col justify-center items-center`};
+  ${tw`flex w-full items-center`};
 `;
 export const UserIcon = styled.div`
-  width: 55px;
-  height: 55px;
-  ${tw`rounded-full border-2 border-gray-800 flex items-center justify-center shadow mb-3`}
+  ${tw`rounded-full border-2 border-gray-500 text-gray-500 flex items-center justify-center shadow text-4xl`};
+  width: 80px;
+  height: 80px;
 `;
 export const UserImage = styled.img`
-  width: 55px;
-  height: 55px;
   ${tw`rounded-full shadow border-4 border-white`}
+  width: 80px;
+  height: 80px;
+`;
+export const TextBox = styled.div`
+  ${tw`flex flex-col px-3`};
 `;
 export const Name = styled.div`
   ${tw`text-xl font-bold flex items-center`};
+  &:last-child {
+    ${tw`text-lg font-normal`};
+  }
 `;
 export const LogoutLink = styled.div`
-  ${tw`text-gray-800 mt-3 text-lg`};
+  ${tw`py-2 text-xl font-bold w-full self-stretch text-secondary-dark-color`};
+  padding-inline-start: 20px;
 `;
 
 export const Menu = styled.ul`

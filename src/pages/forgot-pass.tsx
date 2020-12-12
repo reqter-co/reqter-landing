@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { NextPage, GetStaticProps } from "next";
 import AuthLayout from "@Shared/layouts/AuthLayout";
-import ForgotPass from "@Components/ForgotPass/forgotpass.form";
+import ForgotPass from "src/pages-content/ForgotPass/forgotpass.form";
 import { MetaTags, PageType, RobotsContent } from "@Interfaces/meta-tags";
 import { concatenateStrings } from "@Shared/helper";
 import { getLoginPageData } from "@Core/api";

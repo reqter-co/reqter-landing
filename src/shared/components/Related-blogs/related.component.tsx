@@ -1,4 +1,4 @@
-import Card from "@Components/Common/Blog-Card/blog-card.component";
+import Card from "@Shared/components/Blog-Card/blog-card.component";
 import { Wrapper, Container } from "./related.style";
 import { IBlog } from "@Interfaces/blog";
 import useRouter from "@Hooks/useRouter";

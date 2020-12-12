@@ -1,24 +1,23 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
+import PageWrapper from "@Shared/layouts/PublicPagesWrapper/wrapper.component";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
+import { getLayout } from "@Shared/layouts/MainLayout";
+import SEO from "@Shared/components/SEO";
 import { getLandingPageData } from "@Core/api";
-import Content from "@Components/Solutions/solutions.content";
+import Content from "src/pages-content/Solutions/solutions.content";
 
-interface IProps {
-  headerData: any;
-  footerData: any;
-}
-
-const Product: NextPage<IProps, any> = ({ headerData, footerData }) => {
+const Product: NextPage & { getLayout: any } = () => {
   return (
-    <Layout
-      metaTags={defaultMetaTags}
-      footerData={footerData}
-      headerData={headerData}
-    >
-      <Content />
-    </Layout>
+    <>
+      <SEO tags={defaultMetaTags} />
+      <PageWrapper
+        title="ReqterCMS empowers you to do your best"
+        description="Build better digital experiences with market-leading APIs. Innovative teams of all sizes use ReqterCMS to scale their technologies and build ambitious market-leading applications."
+      >
+        <Content />
+      </PageWrapper>
+    </>
   );
 };
 
@@ -33,5 +32,6 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
+Product.getLayout = getLayout;
 
 export default Product;

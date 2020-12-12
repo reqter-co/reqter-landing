@@ -3,9 +3,8 @@ import styled from "styled-components";
 
 export const CircleSpinner = styled.span<{ [key in string]: string }>`
   & {
-    /* Spinner size and color */
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.3rem;
+    height: 1.3rem;
     border-top-color: white;
     border-left-color: white;
 

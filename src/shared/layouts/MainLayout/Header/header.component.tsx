@@ -6,13 +6,14 @@ import { IHeader } from "@Interfaces/header";
 import DesktopMenu from "./desktop-menu";
 import Logo from "./logo";
 import HeaderLogin from "./header-login";
+import UserMenu from "./header-user-menu";
 import ToggleButton from "./nav-toggle-button";
+import useApp from "@Hooks/useApp";
+import { isUserPages } from "@Shared/site-settings/site-navigation";
 
-interface IProps {
-  data: IHeader;
-}
-
-const HeaderMenu = ({ data }: IProps): JSX.Element => {
+const HeaderMenu = (): JSX.Element => {
+  const { headerData } = useApp();
+  const data = headerData as IHeader;
   const { currentRoute } = useRouter();
   const [isSticky, setSticky] = useState<boolean>(false);
 
@@ -28,15 +29,15 @@ const HeaderMenu = ({ data }: IProps): JSX.Element => {
     };
   }, []);
 
-  const checkIsTransparent = (): boolean => {
-    return currentRoute === `/spaces` || currentRoute === `/profile`;
-  };
+  const _isUserPages = isUserPages(currentRoute);
+
   return (
     <>
-      <Wrapper css={[(isSticky || checkIsTransparent()) && tw`shadow`]}>
+      <Wrapper css={[(isSticky || _isUserPages) && tw`shadow`]}>
         <Content>
           <Logo />
-          <DesktopMenu data={data} />
+          {!_isUserPages ? <DesktopMenu data={data} /> : null}
+          {_isUserPages ? <UserMenu /> : null}
           <HeaderLogin data={data} />
           <ToggleButton />
         </Content>

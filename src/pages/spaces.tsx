@@ -1,30 +1,19 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 import { defaultMetaTags } from "@Core/constants";
-import Layout from "@Shared/layouts/MainLayout";
+import SEO from "@Shared/components/SEO";
 import { getLandingPageData } from "@Core/api";
-import Content from "@Components/Spaces/space.content";
+import { getLayout as getUserLayout } from "@Shared/layouts/UserPagesWrapper";
+import Content from "src/pages-content/Spaces/space.content";
 import useUser from "@Hooks/useUser";
-interface IProps {
-  headerData: any;
-  footerData: any;
-}
 
-const Spaces: NextPage<IProps> = ({ headerData, footerData }) => {
+const Spaces: NextPage & { getLayout: any } = () => {
   const { user } = useUser({ redirectTo: "/login" });
-
   return (
-    <Layout
-      metaTags={defaultMetaTags}
-      footerData={footerData}
-      headerData={headerData}
-    >
-      {!user ? (
-        <div className="mt-32 h-64 max-w-6xl m-auto">Loading...</div>
-      ) : (
-        <Content />
-      )}
-    </Layout>
+    <>
+      <SEO tags={defaultMetaTags} />
+      {user && <Content />}
+    </>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
@@ -43,5 +32,13 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-
+// , pageProps: any
+Spaces.getLayout = (page: any) => {
+  // console.log(pageProps);
+  return getUserLayout(
+    page,
+    "Spaces List",
+    "Create new one and open on of your spaces to edit"
+  );
+};
 export default Spaces;

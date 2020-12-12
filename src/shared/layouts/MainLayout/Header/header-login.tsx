@@ -1,4 +1,3 @@
-
 import Link from "@Shared/components/Link";
 import { Actions } from "./header.style";
 import useDataPath from "@Hooks/useDataPath";
@@ -13,14 +12,14 @@ interface IProps {
 }
 
 const HeaderLogin = ({ data }: IProps): JSX.Element => {
-  const { user, isError } = useUser({});
+  const { user } = useUser({});
   const { getKeyValue } = useDataPath();
 
   return (
     <Actions className="tab-port:hidden">
-      {isError || !user ? (
+      {!user ? (
         <Button primary size="md">
-          <Link href="/login">{getKeyValue(data, "link3title")}</Link>
+          <Link href="/login">{getKeyValue(data, "link3title", "Login")}</Link>
         </Button>
       ) : (
         <UserMenu user={user as IUser} />

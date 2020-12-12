@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import { useQuery } from "react-query";
+import { useQuery, queryCache } from "react-query";
 import useRouter from "@Hooks/useRouter";
 import { getUserInfo } from "@Core/api/auth";
+import { IUser } from "@Interfaces/user";
 type Props = {
   redirectTo?: string;
 };
 export default function useUser({ redirectTo = "" }: Props) {
+  const { push } = useRouter();
   const {
     isLoading,
     isError,
@@ -13,16 +15,32 @@ export default function useUser({ redirectTo = "" }: Props) {
     error,
     status,
     isFetching,
-  } = useQuery("user", getUserInfo);
-  const { push } = useRouter();
+  } = useQuery("user", getUserInfo, { retry: false });
+
   useEffect(() => {
     if (!redirectTo) return;
-    if (status === "error") {
+    if (isError) {
       if (redirectTo) {
         push(redirectTo);
       }
     }
-  }, [status]);
+  }, [status,isError]);
 
-  return { user, isLoading, isError, error, status, isFetching };
+  function clearUser() {
+    queryCache.setQueryData("user", null);
+  }
+  function setUser(user: IUser) {
+    queryCache.setQueryData("user", user);
+  }
+
+  return {
+    user,
+    isLoading,
+    isError,
+    error,
+    status,
+    isFetching,
+    clearUser,
+    setUser,
+  };
 }
